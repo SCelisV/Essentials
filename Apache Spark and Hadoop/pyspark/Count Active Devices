@@ -1,0 +1,34 @@
+spark 
+ 
+accountsDF = spark.read.table("devsh.accounts")
+accountsDF.show()
+accountsDF.printSchema()
+
+activeAccountsDF = accountsDF.where(accountsDF.acct_close_dt.isNull())
+activeAccountsDF.show()
+activeAccountsDF.printSchema()
+
+accountDeviceDF = spark.read.csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.show()
+accountDeviceDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.printSchema()
+
+activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt"). \
+join(accountDeviceDF, accountDeviceDF.account_id == activeAccountsDF.acct_num).show()
+
+activeAcctDevsDF = activeAccountsDF. \
+join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num). \
+select("device_id")
+activeAcctDevsDF.show()
+accountDeviceDF.printSchema()
+
+sumDevicesDF = activeAcctDevsDF.groupBy("device_id").count().withColumnRenamed("count", "active_num")
+
+orderDevicesDF = sumDevicesDF.orderBy(sumDevicesDF.active_num.desc())
+devDF = spark.read.json("/devsh_loudacre/devices.json")
+devDF.show()
+
+joinDevicesDF = orderDevicesDF.join(devDF, sumDevicesDF.device_id == devDF.devnum)
+joinDevicesDF.show()
+joinDevicesDF.select("device_id", "make", "model", joinDevicesDF.active_num).show()
+joinDevicesDF.select("device_id", "make", "model", joinDevicesDF.active_num).write.mode("overwrite").save("/devsh_loudacre/top_devices")

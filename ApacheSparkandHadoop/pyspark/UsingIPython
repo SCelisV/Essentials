@@ -1,0 +1,13 @@
+#-----------------
+#Hands-On Exercise: Using IPython
+#-----------------
+
+help()
+help> int
+# to quit
+help> q
+#(base) hadoop@sc-ubuntu-20-04-2-lts:~$ ipython
+#(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/CCA175/training_materials/jep$ ipython
+
+%ed hellopython.py
+mystring?

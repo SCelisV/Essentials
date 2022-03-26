@@ -1,0 +1,12 @@
+
+ - Tableau-prep
+
+https://www.tableau.com/es-es/trial/tableau-prep
+
+
+Informatica - https://www.informatica.com/services-and-training/glossary-of-terms/extract-transform-load-definition.html
+
+
+https://www.analyticsvidhya.com/blog/2013/05/creating-simple-effective-sales-dashboard-with-qlikview-part-2/
+
+

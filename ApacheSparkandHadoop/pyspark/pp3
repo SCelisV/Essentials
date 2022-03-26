@@ -1,0 +1,34 @@
+
+
+in_dir = "dataset/retail_db/orders_parquet"
+out_dir = "dataset/solutions/scq05"
+
+DFIn = (spark. read. parquet( in_dir ))
+DFIn.printSchema()
+DFIn.show()
+
+from pyspark.sql.functions import *
+from pyspark.sql.functions import col
+from pyspark.sql.functions import concat_ws
+from pyspark.sql.functions import substring
+
+DFOut = ( DFIn.
+filter( " order_status = 'COMPLETE' " ).
+withColumn( "order_date", from_unixtime( col( "order_date" )/1000, "yyyy-MM-dd" ) ).
+filter ( " year(order_date) = '2014' " ).
+filter ( " month(order_date) = '07' OR month(order_date) = '01' ")
+)
+
+DFOut.printSchema()
+DFOut.show()
+
+Out = ( DFIn.
+filter( " order_status = 'COMPLETE' " ).
+withColumn( "order_date", from_unixtime( col( "order_date" )/1000, "yyyy-MM-dd" ) ).
+filter ( " year(order_date) = '2014' " ).
+filter ( " month(order_date) = '07' OR month(order_date) = '01' ").
+write.
+option( "compression", "none" ).
+json( out_dir )
+)
+

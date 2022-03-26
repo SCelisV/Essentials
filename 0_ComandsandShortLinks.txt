@@ -1,0 +1,590 @@
+ver unidades de red conectadas --> net use
+conectar unidades de red --> net use t: \\HMNHD-TIBZU5\Torrent
+
+NeetMeeting --> conf
+
+
+C:\Documents and Settings\xe06320>net user /domain xe06320
+
+Global Group memberships     *D_ML00G339           *CTX_MSOUTLOOK_03
+                             *D_d308               *D_FM05G030
+                             *CTX_3270_PRO_ES_00   *U_S00233F1
+                             *D_ML00G500           *CTX_MSACCESS_03
+                             *d_d415               *CTX_USERS06_ES
+                             *CTX_USERS_SSCC_ES_03 *Domain Users
+                             *CTX_MSOFFICE_03      *CTX_NACAR_EUP
+                             *Log_DyD              *A_CHANGEMAN_DYD
+                             *D_FM05G047
+
+
+Cheqeuo de los Requisitos del sistema para la Instalación
+
+\I386\winnt32 /CHECKUPGRADEONLY --> compatibilidad del sistema
+
+helpctr --> ayuda de windows
+
+mmc --> microsoft management console
+
+azman.msc --> Administrador de Autorización
+
+certmgr.msc --> Certificados Usuario Actual
+
+certsrv.msc --> Administrar los Servicios de Certificate Server - Entidad Emisora de Certificados
+
+certtmpl.msc --> Plantillas de Certificado
+
+ciadv.msc --> Index Server
+
+compmgmt.msc --> Administración de Equipos
+
+dcpol.msc --> Editor de Objetos de Directiva de Grupo
+
+devmgmt.msc --> Administrador de Dispositivos - Hardware
+
+dfrg.msc --> Desfragmentador de Disco
+
+dfsgui.msc --> Sistema de Archivos Distribuido
+
+diskmgmt.msc --> Administración de Discos
+
+domain.msc --> Dominios y Confianzas de AD
+
+dompol.msc --> Configuración de Seguridad de Dominio Predeterminado
+
+dsa.msc --> Usuarios y Equipos de AD
+
+dssite.msc --> Sitios y Servicios de AD
+
+eventvwr.msc --> Visor de Sucesos
+
+filesvr.msc --> Administración de Servidores de Archivos
+
+fsmgmt.msc --> Carpetas Compartidas
+
+gpedit.msc --> Editor de Objetos de Directiva de Grupo - Directivas Locales
+
+ias.msc --> Servicio de Autenticación de Internet
+
+lusrmgr.msc --> Usuarios y Grupos Locales
+
+ntmsmgr.msc --> Almacenamiento de Medios Extraibles
+
+ntmsoprq.msc --> Solicitudes del Operador de Almacenamiento de Medios Extraibles
+
+perfmon.msc --> Rendimiento, Monitor del sistema
+
+rrasmgmt.msc --> Enrutamiento y Acceso Remoto
+
+rsop.msc --> Conjunto Resultante de Directivas
+
+secpol.msc --> Configuración de Seguridad Local 
+
+services.msc --> servicios que se pueden ejecutar en el sistema.
+
+tapimgmt.msc --> Telefonia
+
+tscc.msc --> Configuración de Servicios de Terminal Server
+
+tsmmc.msc --> Escritorios Remotos
+
+wmimgmt.msc --> WMI Windows Management Infrastructure
+
+ntbackup --> copia de seguridad en Windows XP
+
+msbackup --> copia de seguridad en Windows 98 and WindowsMe
+
+regedit --> editor del registro de Windows
+
+msinfo32 --> muestra información general del sistema.
+
+msconfig --> configuración del sistema
+
+ipconfig/renew --> renueva la IP otorgada por el DHCP
+
+Ipconfig/flushdns --> remueve la configuración desde la cache
+
+Nbtstat --> Muestra estadísticas del protocolo NetBIOS sobre TCP/IP (NetBT)
+nbtstat -R --> elimina la cache de nombres NetBIOS WINS
+nbtstat -RR --> Libera y actualiza los nombres NetBIOS del equipo que se está registrado con servidores WINS. 
+ipconfig/registerdns --> Registrar las direcciones de usuarios en DNS
+
+net send IP msg --> enviar mensajes
+
+mstsc.exe --> Conexión a escritorio remoto, archivos.rdp
+
+telnet IP --> se conecta con otro equipo en la red
+
+file://C:/path/descargar.txt --> abre un fichero desde el IE
+file://nombreequipo/file.xls --> cuando el DNS no esta disponible
+
+ftp://usuario:password@nombredelservidorftp --> utilizar el ftp desde el IE
+
+ftp://ftp.contoso.com/user --> permite access the user folder, by anonymous login
+
+appwiz.cpl --> agregar o quitar programas del panel de control
+
+access.cpl --> opciones de accesibilidad
+
+ALTizq+SHIFTizq+PrintScreen --> Alto contraste
+
+btcpl.cpl --> configuracion del bluetooth
+bthprops.cpl --> configuracion del bluetooth
+
+desk.cpl --> propiedades de pantalla
+
+firewall.cpl --> Configuración del firewall
+
+hdwwiz.cpl --> agregar hardware
+
+inetcpl.cpl --> propiedades de internet
+
+intl.cpl --> configuración regional de idioma
+
+irprops.cpl --> vinculo inhalambrico
+
+irftp --> enviar un archivo por un vínculo inhalambrico
+
+joy.cpl --> joystick
+
+main.cpl --> propiedades del mouse
+
+mmsys.cpl --> Propiedades de sonido y audio
+
+ncpa.cpl --> conexiones de red
+
+netsetup.cpl --> configuraciones de red
+
+nusrmgr.cpl --> cuentas de usuario
+
+nwc.cpl --> ??
+
+odbccp32.cpl --> Administrador de Origenes de Datos ODBC
+
+powercfg.cpl --> propiedades de opciones de energia
+
+slcpappl.cpl --> propiedades del modem
+
+sysdm.cpl --> propiedades del sistema
+
+telephon.cpl --> Información  de la ubicación
+
+timedate.cpl --> propiedades de fecha y hora
+
+wscui.cpl --> centro de seguridad de windows (firewall)
+
+wuaucpl.cpl --> Actualizaciones automáticas
+
+tracert google.es --> Para trazar una ruta.
+======
+
+http://localhost/iisHelp/ --> help IIS
+
+Adminpack.exe (Adminpack.msi) --> Herramientras Administrativas de WS2003
+
+shutdown /s /t 60 --> Apaga el sistema en 60segundos
+shutdown -a --> Detiene el apagado del sistema
+
+shutdown /r /m \\192.168.1.70 /t 60 /c "comment" /f /d p:4:1 --> reinicio del sistema remoto en 60s, motivo Aplicación: mantenimiento (planeado), comentario "comment"
+
+shutdown /r /t 60 /c "comment" /f /d p:4:1 --> reinicial el sistema local en 60s
+
+shutdown -r -f -m \\192.168.1.70 -t 60 -d up:125:1 --> reiniciar el equipo remoto en 60s, cierre de las aplicaciones,indicar un código de usuario, indicar que se trata de un apagado planeado, registrar el código de motivo principal 125 y registrar el código de motivo secundario 1
+
+netstat -e -s --> Estadísticas del protocolo y conexiones TCP/IP actuales
+netstat -r --> Muestra el contenido de la tabla de rutas
+netstat -n --> muestra las conexiones activas, direcciones locales y remotas, puertos utilizados y estado.
+
+winver --> Versión del SO.
+
+sigverif --> comprueba la firma digital de los archivos.
+
+runas /user:xpsp1\SoniaXP cmd --> ejecuta un comando con otro usuario; Ejecuta el símbolo del sistema con credenciales de administrador
+runas /user:xpsp1\administrador "mmc c:\windows\system32\compmgmt.msc" --> ejecuta la Administración de equipos con credenciales de administrador
+
+taskmgr ó Ctrl+Shift+Esc --> Administrador de tareas.
+
+ctrl+Alt+Supr (2veces)  --> me da la opción de usuario y contraseña
+
+Msiexec.exe --> Windows Installer facilita la administración del proceso de instalación y eliminación de software, así como la modificación, reparación y anuncio de las aplicaciones existentes. desde la CL (Linea de Comandos). (archivo .msi)
+Las transformaciones, o archivos .mst --> 
+msiexec /f[p][o][e][d][c[][a][u][m][s][v] {package|ProductCode}
+
+Msconfig --> Configuración del sistema, archivos de inicio
+
+secpol.msc --> configuracion de seguridad local
+
+Gpupdate --> actualiza las directivas
+GPUpdate /Target:{Equipo|Usuario} --> Actualiza solo las directivas del Equipo o del Usuario especificado.
+GPUpdate /Force --> Aplica toda la configuración de directivas.
+
+secedit.exe --> Automatizar las tareas de configuración de seguridad
+Secedit /configure /db C:\NewSec.sdb --> importa y 
+configura la plantilla de seguridad
+
+set --> lista las variables de entorno
+Set systemroot --> En donde esta instalado el SO
+
+control userpasswords --> cuentas de usuario
+
+control userpasswords2 --> cuentas de usuario
+
+convert [Volume] /fs:ntfs --> convertir FAT a NTFS
+para detener la conversion --> Delete the Autocheck autoconv\\??\c:/fs:ntfs from the BootExecute value in HKEY_LOCAL_MACHINE_SYSTEM\CurrentControSet\Control\SessionManager 
+
+Fsutil es una utilidad que le permite realizar tareas relacionadas con la (FAT) file allocation table y con el sistema de archivos NTFS
+fsutil fsinfo statistics c:
+fsutil fsinfo drivetype c:
+fsutil behavior set disablelastaccess 1 --> Disable last access update NTFS
+
+System.adm --> Configuración del sistema. 
+
+WMplayer.adm --> Configuración del Reproductor multimedia.
+wmplayer --> Windows Media Player
+
+inetres.adm --> Configuración de Internet Explorer. 
+
+conf.adm --> Configuración de NetMeeting. 
+conf --> Configuración de NetMeeting. 
+
+mobsync --> Administrador de sincronización
+
+net share --> para ver los recursos compartidos en el sistema.
+
+net share nombrerecursocompartido=c:\Data /remark:"Recurso Compartido para Sonia"
+
+cachemov.exe --> ??
+
+muisetup.exe --> Herramienta para seleccionar cuales lenguajes son disponibles, add, or remove.
+
+atdisk.sys --> lowlevel device driver for hard drives.
+
+gpresult.exe --> Herramienta de resultados para la Directiva de grupos del SO para un usuario de destino y equipo.
+
+gpedit.msc --> Editar el grupo de politicas
+
+rsop.msc --> Permite ver el conjunto resultante de directivas de un usuario en una máquina.
+
+sfc.exe --> System File Checker, Permite scan todos los archivos protegidos del sistema (.dll) y reemplaza los archivos que tengan versiones incorrectas
+
+ROUTE [-f] [-p] [comando [destino] [MASK máscara_red]  [puerta_enlace] [METRIC métrica]  [IF interfaz]
+Manipula las tablas de enrutamiento de red.
+
+route add -p --> hace una ruta persistente en los inicios del sistema.
+
+diskperf --> administar los contadores de rendimiento del disco
+
+ftonline --> utility usada para crear un volumen temporal, FTOnline can be used to temporary mount volume or stripe sets that where created on pre-Windows XP machines.
+ftonline --> para recuperar los datos desde un disco heredado. you can recover data on the legacy disks.
+
+start /separate --> usado para iniciar programas de 
+16-bit en espacios separados de memoria. 
+
+Perfiles Moviles Mandatory --> Renombrar el Ntuser.dat como Ntuser.man.
+
+Cipher --> muestra o modifica los directorios y archivos de cifrado o particiones NTFS. 
+
+Data Recovery Agent --> Para desencriptar (decrypt) los documentos.
+
+Password reset disk --> si olvida su password para entrar en XP.
+
+Para combiar el Windows Logon Background (Fondo de Inicio de Windows) --> con regedit en:HKEY_USERS\.DEFAULT\Control Panel\Desktop, Key: Value Name: Wallpaper (e.g. 'H:\MyDATA\0_Recuperacion_HD\Backup_Datos\SoniaCelis\Personales\01_MMC\Imagenes\24042005\3_Imagen(031).bmp').
+
+Netdiag /test:route /fix --> test de rendimiento en la red TCP/IP. Netdiag esta disponible para fix trivial problems. 
+
+Chkdsk /f --> determina si los archivos del sistema estan corruptos.
+
+net session \\nombreequipo /delete --> finaliza las sesiones que esten establecidas con el nombreequipo y cierra todos los archivos abiertos en este.
+
+net use \\nombreequipo / delete --> solo cancla una conexion.
+
+winnt32 /cmdcons --> instala la consola de recuperación, 
+
+"rundll32 printui.dll,PrintUIEntry /in /n \\192.168.1.60\EPSONSty" --> instalar una impresora
+
+===
+
+Puertos y Localización de Archivos
+
+\WINDOWS\pfirewall.log --> logfile de firewall
+
+\WINDOWS\Help\ntcmds.chm --> Command-line reference
+
+\Sysprep\Sysprep.inf --> Archivo de respuesta para Sysprep en el HardDisk a instalar ó en un floppy disk. Si la carpeta Sysprep no se llama así el programa lo ignora.
+
+\WINDOWS\system32\drivers\etc\services --> todos los servicios y los puertos
+
+\WINDOWS\system32\*.cpl --> programas q ejecutan herramientas de configuración de windows
+
+\WINDOWS\system32\*.msc --> programas de consola de administración mmc
+
+\WINDOWS\system32\*.sep --> Páginas Separadoras de listados de impresión(titulos,etc)
+
+\WINDOWS\system32\drivers\etc\services --> todos los servicios y los puertos
+
+\WINDOWS\system32\LogFiles --> IIS
+
+\WINDOWS\system32\drivers\etc\hosts --> los nombres simbolicos para la puerta de enlace
+
+\WINDOWS\system32\drivers\etc\networks --> los nombres simbolicos para el destino de red
+
+\WINDOWS\system32\config\sysevent.evt --> registro de sistema del visor de sucesos
+
+\WINDOWS\system32\config\appevent.evt --> registro de aplicación del visor de sucesos
+
+\WINDOWS\system32\config\secevent.evt --> registro de seguridad del visor de sucesos
+
+\WINDOWS\system32\spool\drivers
+
+\WINDOWS\security\templates --> plantillas de seguridad
+
+\Perflogs --> Carpeta para almacenar los informes de (Registros y alertas de rendimiento) perfmon.msc 
+
+\PerfLogs\System_Overview.blg --> Información General del Sistema
+
+\Documents and Settings\USER\Configuración local\Datos de programa\Microsoft\HelpCtr
+
+\Documents and Settings\USER\Configuración local\Datos de programa\Microsoft\HelpCtr\Favorites.stream --> helpctr
+
+\Documents and Settings\USER\Menú Inicio\Programas\Herramientas administrativas\ --> MMC
+
+\Documents and Settings\USER\Configuración local\Datos de programa\Microsoft\Outlook --> Outlook
+
+\Documents and Settings\amdxpsp2\Datos de programa\Microsoft\Internet Explorer\Quick Launch
+
+\Documents and Settings\USER\Configuración local\Datos de programa\Microsoft\Dr Watson 
+
+\Nokia, y crea una carpeta para identificar el dispositivo conectado en este caso --> I:\Nokia\KaKA_N6600 en la cual se guarda la información relativa a tareas de sincronización y copia de seguridad --> PcSuite_Nok6600
+
+xampp
+
+
+All personal data was safed in the following file:
+
+\Archivos de programa\xampp\security\xamppdirpasswd.txt
+\Archivos de programa\xampp\security\xampp.users
+\Archivos de programa\xampp\htdocs\xampp\.htaccess
+
+
+MYSQL 
+user root
+PASSWORD - 
+
+xampp (.htaccess)
+user --> root
+password --> 
+
+he XAMPP default ports:
+
+ftp 	  	21/tcp 	  	# File Transfer [Control] (XAMPP: FTP Default Port)
+smtp 	  	25/tcp 	  	mail # Simple Mail Transfer (XAMPP: SMTP Default Port)
+http 	  	80/tcp 	  	# World Wide Web HTTP (XAMPP: Apache Default Port)
+pop3 	  	110/tcp 	  	# Post Office Protocol - Version 3 (XAMPP: POP3 Default Port)
+imap 	  	143/tcp 	  	# Internet Message Access Protocol (XAMPP: IMAP Default Port)
+https 	  	443/tcp 	  	# http protocol over TLS/SSL (XAMPP: Apache SSL Port)
+mysql 	  	3306/tcp 	  	# MySQL (XAMPP: MySQL Default Port)
+AJP/1.3 	  	8009 	  	# AJP/1.3 (XAMPP: Tomcat AJP/1.3 Port)
+http-alt 	  	8080/tcp 	  	# HTTP Alternate (see port 80) (XAMPP: Tomcat Default Port)
+=====
+
+
+3389 --> Asistencia Remota para trafico saliente RDP (Remote Desktop Protocol)
+1863 --> Windows Messenger para mensajes instantaneos
+6891 al 6900 --> Windows Messenger para transferencia de archivos
+1503 --> Windows Messenger para aplicaciones sharing
+
+TELNET --> Protocolo TCP puerto 23
+SMTP --> Protocolo TCP puerto 25
+HTTP --> Protocolo TCP puerto 80
+ICMP --> Protocolo de control de mensajes de Internet
+
+
+PaRevisar 
+======================
+Dr. Watson.log
+Comsetup.log
+K:\WINDOWS\system32\config\netlogon.dns en el controlador..
+
+
+Direcciones_de_Interes - PaRevisar
+======================
+
+http://www.astalavista.com --> haker´s
+http://www.garbagepailkidsworld.com/
+http://www.sosio.org
+http://www.embusa.es/
+http://www.embusa.es/cons/noinmigrsolicitar.html
+http://scrapland.mercurysteam.com/
+http://www.my-symbian.com/
+http://www.7650forever.com/ 
+http://www.clubnokia6600.net/ 
+
+
+Bemused: Para controlar la lista del Winamp, Windows Media Player o presentaciones de PowerPoint de tu computadora (se necesita una PC con un adaptador Bluetooth o Infrarrojo).
+
+RingTone Studio: Para editar esos tonos que suenan tan bajitos, basta con subirles el volumen interno del MIDI, o hacer que vayan mas rapido, mas lento, en fin, es un excelente editor bastante util.
+
+File Explorer: Para explorar la tarjeta de memoria MMC y la memoria interna del telefono movil, para copiar archivos, enviarlos a otros telefonos que cuenten con Bluetooth o Infrarrojos.
+
+Forward: Para guardar en la memoria MMC cualquier archivo que te envien y posteriormente enviarlas a tu PC o a otro celular con Bluetooth o Infrarrojos.
+
+Handy Dates: Para que nunca te olvides de cumpleaños o fechas especiales, muy util si tu novia se enoja porque se te olvida esa fecha tan especial...
+
+Handy Reminder: Recordatorio para que no se te olviden cosas por hacer en el día, por ejemplo traer unos papeles importantes a las 3:00 PM y crees que la memoria te puede fallar.
+
+Torch: Para usarlo como una linterna, en caso que quieras buscar algo en la oscuridad, con este programa mantienes la enorme pantalla encendida el tiempo que quieras, cuando termines de buscar lo que encontrabas, lo cierras.
+
+Resco Viewer: Para visualizar fotos como si fuera un ACDSee o un Picasa, permite hacer slideshows (carruseles) para mostrar las imagenes que tomas.
+
+Agile Messenger: Para conectarte al MSN Messenger, Yahoo Messenger, ICQ o AOL Instant Messenger.
+
+Camcorder Pro: Para grabar videos hasta llenar toda la tarjeta (el limite es el limite fisico de la tarjeta).
+
+SlovoEd: Traductores en varios idiomas, yo incluyo en español-ingles, ingles-español; español-frances, frances-español; español-aleman; aleman-español, español-holandes, holandes-español; español-italiano, italiano-español; español-ruso (no existe en ruso-español por que el alfabeto ruso es cirilico y no hay manera de introducir esos caracteres)
+
+Smart Movie: para ver videos en AVI (hay gente que lo usa para ver peliculas pero yo prefiero videos cortos como musicales o videos chistosos de Internet)
+
+UltraMP3: para usarlo como reproductor MP3 (tengo tambien el Mp3Go pero este me gusta más)
+
+
+
+
+
+
+
+
+PaRevisar
+=========
+
+Partial List Of XP Start - Run Commands provided by ADO
+
+     These are GUI applications that can be opened from the run line.
+     These applications are not located in the C:\windows\system32\
+     directory, the keys for these applications are located in the
+     registry under:
+     HKLM\software\microsoft\windows\currentversion\app paths
+
+     CONF.EXE - NetMeeting
+     DIALER.EXE - Phone Dialer
+     HYPERTRM.EXE - HyperTerminal
+     ICWCONN1.EXE - Internet Connection Wizard
+     IEXPLORE.EXE - Internet Explorer
+     INETWIZ.EXE - Setup Your Internet Connection
+     INSTALL.EXE - User's Folder
+     MIGWIZ.EXE - File and Settings Transfer Wizard
+     MSCONFIG.EXE - System Configuration Utility
+     MSIMN.EXE - Outlook Express
+     MSINFO32.EXE - System Information
+     MSMSGS.EXE - Windows Messenger
+     MSN6.EXE - MSN Explorer
+     PBRUSH.EXE - Paint
+     WAB.EXE - Windows Address Book
+     WABMIG.EXE - Address Book Import Tool
+     WINNT32.EXE - User's Folder
+
+     These .EXE files reside in (c:\windows\system32\) or
+     (c:\windows\) directory.
+
+     ACCWIZ.EXE - Accessibility Wizard
+     CHARMAP.EXE - Character Map
+     CLEANMGR.EXE - Disk Space Cleanup Manager
+     CLICONFG.EXE - SQL Client Configuration Utility
+     CLSPACK.EXE - Class Package Export Tool
+     CMSTP.EXE - Connection Manager Profile Installer
+     CONTROL.EXE - Control Panel
+     DCOMCNFG.EXE - Component Services
+     DDESHARE.EXE - DDE Share
+     DRWATSON.EXE - Doctor Watson v1.00b
+     DRWTSN32.EXE - Doctor Watson Settings
+     DXDIAG.EXE - DirectX Diagnostics
+     EUDCEDIT.EXE - Private Character Editor
+     EVENTVWR.EXE - Event Viewer
+     EXPLORER.EXE - Windows Explorer
+     FXSCLNT.EXE - Fax Console
+     FXSCOVER.EXE - Fax Cover Page Editor
+     FXSEND.EXE - MS Fax Send Note Utility
+     LOGOFF.EXE - System Logoff
+     MAGNIFY.EXE - Microsoft Magnifier
+     MMC.EXE - Microsoft Management Console
+     MOBSYNC.EXE - Microsoft Synchronization Manager
+     MPLAY32.EXE - Windows Media Player version 5.1
+     MSTSC.EXE - Remote Desktop Connection
+     NARRATOR.EXE - Microsoft Narrator
+     NETSETUP.EXE - Network Setup Wizard
+     NSLOOKUP.EXE - NSLookup Application
+     NTSD.EXE - Symbolic Debugger for Windows 2000
+     ODBCAD32.EXE - ODBC Data Source Administrator
+     OSUNINST.EXE - Windows Uninstall Utility
+     PACKAGER.EXE - Object Packager
+     PERFMON.EXE - Performance Monitor
+     PROGMAN.EXE - Program Manager
+     RASPHONE.EXE - Remote Access Phonebook
+     REGEDIT.EXE - Registry Editor
+     REGEDT32.EXE - Registry Editor
+     RESET.EXE - Resets Session
+     RSTRUI.EXE - System Restore
+     RTCSHARE.EXE - RTC Application Sharing
+     SFC.EXE - System File Checker
+     SHRPUBW.EXE - Create Shared Folder
+     SHUTDOWN.EXE - System Shutdown
+     SIGVERIF.EXE - File Signature Verification
+     SNDREC32.EXE - Sound Recorder
+     SNDVOL32.EXE - Sound Volume
+     SYNCAPP.EXE - Create A Briefcase
+     SYSEDIT.EXE - System Configuration Editor
+     SYSKEY.EXE - SAM Lock Tool
+     TASKMGR.EXE - Task Manager
+     TELNET.EXE - MS Telnet Client
+     TSSHUTDN.EXE - System Shutdown
+     TOURSTART.EXE - Windows Tour Launcher
+     UTILMAN.EXE - System Utility Manager
+     USERINIT.EXE - My Documents
+     VERIFIER.EXE - Driver Verifier Manager
+     WIAACMGR.EXE - Scanner and Camera Wizard
+     WINCHAT.EXE - Windows for Workgroups Chat
+     WINHELP.EXE - Windows Help Engine
+     WINHLP32.EXE - Help
+     WINVER.EXE - Windows Version Information
+     WSCRIPT.EXE - Windows Script Host Settings
+     WUPDMGR.EXE - Windows Update
+
+     The following are Control Panel applets that can be run from the
+     run line. They are located in the c:\windows\system32 directory,
+     and have the file type extension ".CPL".
+
+     ACCESS.CPL - Accessibility Options
+     APPWIZ.CPL - Add or Remove Programs
+     DESK.CPL - Display Properties
+     HDWWIZ.CPL - Add Hardware Wizard
+     INETCPL.CPL - Internet Explorer Properties
+     INTL.CPL - Regional and Language Options
+     JOY.CPL - Game Controllers
+     MAIN.CPL - Mouse Properties
+     MMSYS.CPL - Sounds and Audio Device Properties
+     NCPA.CPL - Network Connections
+     NUSRMGR.CPL - User Accounts
+     ODBCCP32.CPL - ODBC Data Source Administrator
+     POWERCFG.CPL - Power Options Properties
+     SYSDM.CPL - System Properties
+     TELEPHON.CPL - Phone and Modem Options
+     TIMEDATE.CPL - Date and Time Properties
+
+     The following are Microsoft Management Console Snap-ins that can
+     be opened from the run line. These applications have the file
+     type extension ".MSC".
+
+     CERTMGR.MSC - Certificates
+     CIADV.MSC - Indexing Service
+     COMPMGMT.MSC - Computer Management
+     DEVMGMT.MSC - Device Manager
+     DFRG.MSC - Disk Defragmenter
+     DISKMGMT.MSC - Disk Management
+     EVENTVWR.MSC - Event Viewer
+     FSMGMT.MSC - Shared Folders
+     LUSRMGR.MSC - Local Users and Groups
+     NTMSMGR.MSC - Removable Storage
+     NTMSOPRQ.MSC - Removable Storage Operator Requests
+     PERFMON.MSC - Performance Monitor
+     SERVICES.MSC - Services
+     WMIMGMT.MSC - Windows Management Infrastructure
+
+wmpnetwk.exe

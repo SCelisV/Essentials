@@ -1,0 +1,204 @@
+#------------------
+#Hands-On Exercise: Variables
+#-----------------
+# Numerical variable basics
+# tempC = temp Celsius
+# tempF = temp Fahrenheit
+# C_to_F = 9/5
+
+tempC = 22
+
+C_to_F = 9/5
+
+tempF = tempC * C_to_F
+
+print(tempC, tempF)
+
+type(tempC)
+
+type(tempF)
+
+type(C_to_F)
+
+# multiple assignment and dynamic typing
+ambientTemp, deviceTemp = 19, 47.0
+print (type(ambientTemp), type(deviceTemp))
+print (ambientTemp, deviceTemp)
+
+ambientTemp, deviceTemp = 19.0, 47
+print (type(ambientTemp), type(deviceTemp))
+print (ambientTemp, deviceTemp)
+
+# operators and reflexive operators
+#
+# cpuT1 = sample CPU utilization at time 1
+# cpuT2 = sample CPU utilization at time 2
+
+cpuT1 = 17
+cpuT2 = 38
+averageCPU = (cpuT1 + cpuT2) / 2.0
+print("Average CPU: ", averageCPU)
+
+# New software could reduce cpu utilization by 12%
+reduction = 12.0/100
+print("Expected CPU: ", cpuT2-(cpuT2*reduction))
+
+# Increment cpu utilization at time 1 by 1%
+cpuT1 += 1
+print (cpuT1)
+
+# Find total of time 1 and time 2 cpu samples
+cpuT1 += cpuT2
+print (cpuT1)
+
+# Increment cpuT2
+cpuT2++
+cpuT2++
+
+cpuT2 = cpuT2 + 1
+print (cpuT2)
+
+# Python provides 'floor division' and modulus
+print (37.0 / 5.0)
+print (37.0 // 5.0) # Gives the whole divisor
+print (37.0 % 5.0) # Gives the remainder
+
+# Explicit casting between integer and float
+cpuT1, cpuT2 = 50, 30.1
+print (cpuT1, cpuT2)
+cpuT1 = float(cpuT1)
+cpuT2 = int(cpuT2)
+print (cpuT1, cpuT2)
+
+#Binary, Octal, and Hexadecimal
+
+# -- Unique ID --
+# PartC = 0x13f4
+
+PartC = 0x13f4
+print ("ID: ", PartC, type(hexID))
+
+# Even though you entered PartC as a hex value,
+# Python converted it to decimal
+# Now try casting as you did with int() and float()
+
+hexID = hex(PartC)
+binID = bin(PartC)
+octID = oct(PartC)
+print ("hex ID: ", hexID, type(hexID))
+print ("bin ID: ", binID, type(binID))
+print ("oct ID: ", octID, type(octID))
+
+# Prefixes are 0x for hex, leading zero for octal, and 0b for binary
+
+%ed
+hex ID:  0x13f4 <class 'str'>
+bin ID:  0b1001111110100 <class 'str'>
+oct ID:  0o11764 <class 'str'>
+
+#Advanced Mathematical Functions
+
+sqrt(192)
+
+from math import sqrt
+print (sqrt(192))
+
+sqrt(192)
+
+#Strings
+record = "2014-03-15:10:10:31,Titanic 4000,\
+1882b564-c7e0-4315-aa24-228c0155ee1b,\
+58,36,39,31,15,0,\
+TRUE,enabled,enabled,\
+40.69206648,-119.4216429"
+
+record = "2014-03-15:10:10:31,Titanic 4000,\
+1882b564-c7e0-4315-aa24-228c0155ee1b,\
+58,36,39,31,15,0,\
+TRUE,enabled,enabled,\
+40.69206648,-119.4216429"
+
+print("record: ", record, type(record))
+
+len(record)
+
+print(record[20])
+
+end=len(record)
+start=pos=0
+pos = record.find('Titanic')
+pos
+pos = record[pos:end].find(',')
+pos
+record[20:32]
+
+s_mod_num = record[20:32]
+s_mod_num
+
+len(s_mod_num)
+
+model = s_mod_num[0:len('Titanic')]
+model
+
+number = s_mod_num[len('Titanic'):]
+number
+
+model.upper()
+model += " " + number
+model
+
+# devuelve una lista con las posiciones de las comas en record
+end = len(record)
+list = []
+pos = start = 0
+while(pos != -1):
+    pos = record[start:end].find(',')
+    list.append(start+pos)
+    start = start + pos + 1
+    print(list)
+
+record_list = record.split(',')
+model_number = record_list[1]
+
+model_number
+
+model_number_list = model_number.split(' ')
+
+model_number_list
+
+model = model_number_list[0]
+
+number = model_number_list[1]
+
+print("model: ", model, " number: ", number)
+
+model = model_number_list[0].upper()
+
+print("model: ", model, " number: ", number)
+
+model += " " + number
+print('model += " " + number: ', model)
+
+
+#Boolean
+
+record_list = record.split(',')
+print("Byuetooth status: ", record_list[10]
+print("WiFi status: ", record_list[11]
+
+if (record_list[10] == record_list[11]):
+    print("Bluetooth and WiFi status are: ", record_list[10])
+
+print("Byuetooth status: ", record_list[10])
+print("WiFi status: ", record_list[11])
+
+print ("Bluetooth is ON :", record_list[10] == 'enabled')
+print ("Wifi is ON      :", record_list[11] == 'enabled')
+print ("Wifi is ONLINE  :", record_list[11] == 'connected')
+
+
+if record[100:107].find('conected') != 0:
+    print("NO esta conectada, esta: ", record[100:107])
+
+if int(record_list[3]) > 50:
+    print("La temperatura del disposivo es mayor de 50 grados Celsius: " , record_list[3])

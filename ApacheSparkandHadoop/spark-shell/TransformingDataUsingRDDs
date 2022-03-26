@@ -1,0 +1,194 @@
+//------------------
+//Hands-On Exercise: Transforming Data Using RDDs
+//------------------
+
+//cat $DEVDATA/weblogs/2013-09-15.log |more
+/*
+3.94.78.5 - 69827 [15/Sep/2013:23:58:36 +0100] "GET /KBDOC-00033.html HTTP/1.0" 200 14417 "http://www.loudacre.com"  "Loudacre Mobile Browser iFruit 1"
+3.94.78.5 - 69827 [15/Sep/2013:23:58:36 +0100] "GET /theme.css HTTP/1.0" 200 3576 "http://www.loudacre.com"  "Loudacre Mobile Browser iFruit 1"
+19.38.140.62 - 21475 [15/Sep/2013:23:58:34 +0100] "GET /KBDOC-00277.html HTTP/1.0" 200 15517 "http://www.loudacre.com"  "Loudacre Mobile Browser Ronin S1"
+19.38.140.62 - 21475 [15/Sep/2013:23:58:34 +0100] "GET /theme.css HTTP/1.0" 200 13353 "http://www.loudacre.com"  "Loudacre Mobile Browser Ronin S1"
+129.133.56.105 - 2489 [15/Sep/2013:23:58:34 +0100] "GET /KBDOC-00033.html HTTP/1.0" 200 10590 "http://www.loudacre.com"  "Loudacre Mobile Browser Sorrento F00L"
+
+*/
+
+// hdfs dfs -put $DEVDATA/weblogs /devsh_loudacre/
+
+// leer los ficheros que cuelgan del directorio
+val logsRDD = sc. textFile("/devsh_loudacre/weblogs/")
+// crea un array de arrays 
+val jpglogsRDD = logsRDD. filter(_.contains(".jpg"))
+val jpgLines = jpglogsRDD. take(5)
+jpgLines. foreach(println)
+
+
+
+val iLengthsRDD = logsRDD. map(_.length)
+iLengthsRDD. count
+iLengthsRDD. isEmpty
+// iLen es un array
+val iLen = iLengthsRDD. take(5)
+iLen.foreach(println)
+
+
+
+// array de arrays
+val iFieldsRDD = logsRDD. map(i => i.split(' '))
+val iFields = iFieldsRDD. take(5)
+val splitLine = iFieldsRDD. take(5)
+splitLine. foreach(println)
+for (i <- iFields) {
+     println("-------")
+     i. foreach(println)
+}
+
+
+
+// cojo el elemento 0 del array
+val ipsRDD = logsRDD. map(i => i.split(' ')(0))
+ipsRDD. take(5). foreach(println)
+//scelisdev02@cca175-m:~$ hdfs dfs -ls /devsh_loudacre/iplist
+// hdfs dfs -rm -R /devsh_loudacre/iplist
+ipsRDD. saveAsTextFile("/devsh_loudacre/iplist")
+
+
+
+//scelisdev02@cca175-m:~$ hdfs dfs -ls /devsh_loudacre/iplist
+//scelisdev02@cca175-m:~$ hdfs dfs -cat /devsh_loudacre/iplist/part-00000
+
+//hdfs dfs -rm -r /devsh_loudacre/userips_csv
+//hdfs dfs -ls /devsh_loudacre/userips_csv
+//hdfs dfs -cat /devsh_loudacre/userips_csv
+
+val htmllogsRDD = logsRDD. filter(i => i. contains(".html"))
+val htmlLines = htmllogsRDD. take(5)
+htmlLines. foreach(println)
+
+// or
+val htmllogsRDD = logsRDD.filter(_.contains(".html"))
+val htmlLines = htmllogsRDD. take(5)
+htmlLines.foreach(println)
+
+
+
+// cojer el elemento 0 y el elemento 2 del array
+val ipusersRDD = logsRDD. map(i => i.split(' ')(0) + "," + i.split(' ')(2))
+ipusersRDD. take(5).foreach(println)
+
+//or 
+val ipusersRDD = logsRDD. map(_.split(' ')). map(s => s(0) + "," + s(2))
+ipusersRDD. take(5). foreach(println)
+
+//hdfs dfs -rm -r /devsh_loudacre/userips_csv 
+ipusersRDD. saveAsTextFile("/devsh_loudacre/userips_csv")
+      
+//hdfs dfs -ls /devsh_loudacre/userips_csv/
+
+//scelisdev02@cca175-m:~/training_materials/devsh/exercises/transform-rdds/solution$ hdfs dfs -cat /devsh_loudacre/userips_csv/part-00000 |more
+
+val usersipDF = spark.read.options(Map("inferSchema"->"true")).csv("/devsh_loudacre/userips_csv")
+usersipDF.printSchema
+usersipDF.show()
+
+//Bonus Exercise 1: Clean Device Status Data
+//$cat $DEVDATA/devicestatus.txt
+//scelisdev02@cca175-m:~/training_materials$ hdfs dfs -put $DEVDATA/devicestatus.txt /devsh_loudacre/
+//scelisdev02@cca175-m:~/training_materials$ hdfs dfs -ls /devsh_loudacre/
+
+val devstatusRDD = sc. textFile("/devsh_loudacre/devicestatus.txt")
+devstatusRDD. take(5). foreach(println)
+
+val delimitadorRDD = devstatusRDD. filter(_.length > 20)
+delimitadorRDD. take(5). foreach(println)
+
+val iFieldsRDD = devstatusRDD. map(i => i.split(i.charAt(19)))
+iFieldsRDD. take(5). foreach(println)
+//or
+val iFieldsRDD = devstatusRDD. map(i => i.split(i(19)))
+iFieldsRDD. take(5).foreach(println)
+
+val valuesFieldsRDD = iFieldsRDD. filter(_.length == 14)
+valuesFieldsRDD. take(5). foreach(println)
+
+val dataRDD = valuesFieldsRDD. map(i =>  (i(0), i(1). split(' ')(0), i(2), i(12), i(13)) )
+dataRDD. take(5). foreach(println)
+
+// or
+
+val devstatusRDD = sc. textFile("/devsh_loudacre/devicestatus.txt")
+devstatusRDD. take(5). foreach(println)
+
+val cleanstatusRDD = devstatusRDD. filter(_.length > 20). map(i => i.split(i(19))). filter(_.length == 14)
+cleanstatusRDD. take(5). foreach(println)
+
+val dataRDD = cleanstatusRDD. map(i =>  (i(0), i(1).split(' ')(0), i(2), i(12), i(13)) )
+dataRDD. take(5). foreach(println)
+
+///devsh_loudacre/devicestatus_etl directory on HDFS.
+
+//hdfs dfs -rm -R /devsh_loudacre/devicestatus_etl
+
+dataRDD. map(i => i.toString). map(s => s. substring(1, s. length-1)). saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+//or
+
+dataRDD. map(_.toString). map(s => s. substring(1, s. length-1)). saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+
+//scelisdev02@cca175-m:~/training_materials$ hdfs dfs -ls /devsh_loudacre/devicestatus_etl
+//scelisdev02@cca175-m:~/training_materials$ hdfs dfs -cat /devsh_loudacre/devicestatus_etl/part-00000
+
+val dataDF = spark.read.options(Map("inferSchema"->"true")).csv("/devsh_loudacre/devicestatus_etl")
+dataDF.printSchema
+dataDF.show()
+
+val devstatusRDD = sc.textFile("/devsh_loudacre/devicestatus.txt")
+
+val cleanstatusRDD = devstatusRDD. filter(_.length > 20). map(i => i.split(i.charAt(19))). filter(_.length == 14)
+
+val dataRDD = cleanstatusRDD. map(i =>  (i(0), i(1).split(' ')(0), i(2), i(12), i(13)) )
+
+dataRDD. map(_.toString). map(s => s.substring(1,s.length-1)). saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+                                                                                
+//Bonus Exercise 2: Convert Multi-i XML files to CSV files 
+
+//scelisdev02@cca175-m:~/training_materials$ ls $DEVDATA/activations
+//scelisdev02@cca175-m:~/training_materials$ cat $DEVDATA/activations/2008-10.xml
+
+//scelisdev02@cca175-m:~/training_materials$ hdfs dfs -put $DEVDATA/activations /devsh_loudacre
+
+//$DEVSH/exercises/transform-rdds/bonus-xml. 
+
+//scelisdev02@cca175-m:~/training_materials$ vi $DEVSH/exercises/transform-rdds/bonus-xml/ActivationModels.pyspark
+
+import scala.xml._
+
+def getActivations(xmlstring: String): Iterator[Node] = {
+    val nodes = XML. loadString(xmlstring) \\ "activation"
+    nodes. toIterator
+}
+
+def getModel(activation: Node): String = {
+    (activation \ "model"). text
+}
+
+def getAccount(activation: Node): String = {
+    (activation \ "account-number"). text
+}
+
+val files="/devsh_loudacre/activations"
+
+val activationFiles = sc. wholeTextFiles(files)
+// muestro dos ficheros
+for (i <- activationFiles. take(10)) print (i)
+
+val activationTrees = activationFiles. flatMap(i => getActivations(i._2))
+// muestro dos ias de un fichero 
+for (i <- activationTrees. take(10)) print (i)
+
+val models = activationTrees. map(i => getAccount(i) + ":" + getModel(i))
+for (i <- models. take(10)) print (i)
+
+//scelisdev02@cca175-m:~$ hdfs dfs -rm -R /devsh_loudacre/account-models
+models.saveAsTextFile("/devsh_loudacre/account-models")
+
+//scelisdev02@cca175-m:~$ hdfs dfs -ls /devsh_loudacre/account-models
+//scelisdev02@cca175-m:~$ hdfs dfs -cat /devsh_loudacre/account-models/part-00000 |more

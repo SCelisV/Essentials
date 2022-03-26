@@ -1,0 +1,2758 @@
+su -
+
+The Unix and Linux OS structure
+
+Kernel - Core manages all physical resources - CPU - RAM - Disks - I/O
+File system - organization of files / directories
+(/) - a root directory
+/bin - the most important commands OS
+/dev - the device files hardware
+/etc - configuration how kernel work with devices
+/lib -
+/boot - boot up (start) the OS
+/home - private directories for each user
+/mnt - to add a mount point file system (like D or Windows for ex)
+/proc - 
+/tmp - temporary
+/usr -
+/var -
+/sbin -
+/kernel
+
+Shell command interpreter 
+- Bourne Again Shell (bash) = Korn (ksn) + C (csh) => default shells in Oracle Linux and Oracle Solaris OSes
+- Bourne (sh) 
+- C (csh)
+- TC (tcsh)
+- Korn (ksn)
+- Z (zsh)
+
+Files Types
+
+ (-) Ordinary files
+ (d) Directories
+	Special files
+	(l) Symbolic links
+	(s) sockets
+	Storage devices 
+	(c) Character device ( support character data )
+	(b) Block device (support binary data )
+	Communication channels
+	(p) Pipe
+	(D) Door
+
+Components of a User account
+
+Username ór login name
+password
+(UID) user identification number unique identification within the system
+
+(GID) group identification number identificatin of the group the user belongs. The two types of groups that a user can belong to are as:
+    - Primary group: Specifies a group that the operating system assigns to files that are created by the user. Each user must belong to a primary group.
+    - secondary group: Specifies one or more groups to which a user also belongs.
+(GECOS) Comments General Electric Comprehensive OS information that idenfies the user.
+User's home directory is the portion of a file system allocated to a user for storing private files
+User's login shell is the user's work environment set up by the initialization files which are defined by the user's login shell
+Prompts for bash shell for a regular user ($)
+Prompts for the root user/role shell (#)
+
+change a passwd on Oracle and Solaris
+$ passwd
+
+(RBAC) role-based access control
+
+$ su [-] [username] => assume an identify of other user
+$ cd
+$ cd ~username 
+
+~~~~~~~~~~~~~~~~~~
+UBUNTU: "AltGr+ñ"
+MAC: "option+ñ"
+~~~~~~~~~~~~~~~~~~
+
+A role in Oracle Solaris is a login account just like a user account => False because a role cannot be used as a login account a role is only used to configure the security policy for your OS
+
+(BSD) Berkeley Software Distribution
+(SunOS) BSD - predecessor or Solaris UNIX version 4.2.
+(Oracle Solaris) - AT&T's Bell Labs - System V.
+(AIX) - IBM - System V.
+(Mac OS X) - Apple - BSD version of UNIX
+(HP-UX) - Hewlett Packard - System V.
+(UNIXWare) - Novell - System V.
+
+Linux Distributions (distro) - DistroWatch.com
+
+- Red Hat Enterprise Linux (RHEL) including Fedora, CentOS
+- Oracle Linux (OL) based on RHEL with Oracl's Unbreakable Enterprise Kernel (UEK)
+- Debian GNU/Linux including Ubuntu, Linux Mint, and others
+- Slackware
+- openSUSE (SUSE)
+- Gentoo
+
+GUI graphical user interface
+
+Oracle Linux -> 
+Ctrl+Alt+F6 switch to the command line mode.
+Ctrl+Alt+F1 or Alt + Right Arrow keys reverts to the desktop window.
+
+Oracle Solaris -> 
+Ctrl+Alt+F6 switch to the command line mode.
+Ctrl+Alt+F7 reverts to the desktop window
+
+some shells -> Ctrl+D
+
+command, option, argument
+
+Display the OS information
+$ uname
+$ uname --help
+$ uname -i
+$ uname -n
+$ uname -rs
+$ uname -a
+$ uname -r -s
+
+$ date
+
+$ clear
+
+command with Arguments 
+$ cal
+$ cal mm yyyy
+
+(ls)  a long listing for the informations command withOUT Options and Arguments
+$ ls
+command with Options
+
+show the username and the group that owns the object: $ ls -l
+show the UID and GID numbers corresponding to who owns the object $ ls -n
+
+command with Options and Arguments
+$ ls -l Downloads
+
+multiple commands on a single line separated by (;)
+$ command [options] [argument]; command [options] [argument]
+$ date; uname; hosname
+
+$ man man
+(linux)
+Display the man pages section 1: /$ man 1 man
+$ man 2 man 
+
+(solaris)
+$ man -s1 man
+$ man -s2 exit 
+
+
+$ man uname
+
+comandos de ayuda dentro de uname:
+
+h help
+Space bar
+Enter
+b
+/pattern  - ("patron") - 
+n
+N
+q
+
+display man pages for información on the man command using the keyboard man: man -k man
+
+display all options where the keyword is: man -k who
+
+display a specific section: man -s 
+
+www.oracle.com => documentación
+
+display en man lo que contiene la key "dir"
+$man -k dir 
+
+pwd (print wroking directory) command => full pathname , 
+absolute pahts are starting with  root
+
+ls dir1 => relative  path needs to be combined with another  path
+
+d directory
+s link 
+link count => number of hard links were created for un specific object
+
+Display all the files in a directory, including hidden files: $ ls -a
+Display inode number (When a file is created on a system, a file name and Inode number is assigned to it.) and its corresponding name $ ls -i 
+Display long list and detail information about and specific object: files: $ ls -ld
+Display recursive manner information de files and directories: $ ls -R
+Display the type of file: $ ls -F
+Describe the type of file: $ file Pictures
+* Executable
+/ directory
+= Socket
+@ Symbolic link
+| First in First Out (FIFO)
+
+file [options] filename: determine certain file types: $ file /etc/ppp/ip*
+file /usr/bin/passwd
+
+file command output are: Text, Data, Executable or binary
+
+$ file a* = $ file [a]*
+acpi:           directory
+adduser.conf:   ASCII text
+alternatives:   directory
+anacrontab:     ASCII text
+apm:            directory
+apparmor:       directory
+apparmor.d:     directory
+apport:         directory
+appstream.conf: ASCII text
+apt:            directory
+avahi:          directory
+
+cd command is a bash built-in command
+
+changing Directories: $ cd directory
+
+. Current or working directory
+-- Parent directory, the directory directly above the current working directory
+
+cd ór cd ~ => return to your home directory
+
+cat (short for concatenate) or view file contents: $ cat filename
+
+Don't use to read binary files.
+cat first_file second_file > retult_file
+
+more (screen or page but not change)
+less (GNU less) navigate, and search but not change display screen or page at a time.
+less -?
+less --help
+less -V
+less --version
+
+wc (word count) counts newlines, words, bytes, and characters in a text file
+-l Line count
+-w word count
+-c byte count
+-m character count
+
+
+head display lines of text at the beginning of the text file
+$ head -10 filename
+$ head -5 /usr/share/dict/words
+$ head filename
+
+tail displays lines of text at the end of the text file
+$ tail -10 filename
+$ tail -5 /usr/share/dict/words
+$ tail +25136 /usr/share/dict/words
+$ tail filename
+
+diff displays the differences between two files
+$ diff filename1 filename2
+(< less than) filename1
+(> greater than) filename 2
+
+cp command copy files and directories
+
+$ cp sourcefile targetfile
+$ cp filename newfile
+$ cp fileOne fileTwo dirOne
+$ cp fileOne -i dirOne
+$ cp dirOne -r(Solaris)/-R(Linux) dirTwo
+$ cp -r directory1 directory2
+$ cp -ri directory1 directory2
+
+mv (is a destructive) command moving and renaming files and directories not keep the files in their original places. maintain its original inode number. 
+
+$ mv [options] source(s) target/destination
+$ mv ~/newdir ~/monthy_reports
+option -i prevent from automatically overwriting existing files: $ mv -i source target
+
+When you move a single directory to a target directory that doesn't exist you actually rename the current directory and its path.
+
+When you move multiple directories to a target directory that doesn't exist: mv: target directory not found
+
+$ touch command create a new empty file.
+$ touch space
+$ touch moon sun cosmos
+
+mkdir make dir command 
+$ mkdir [options] directory_name
+$ mkdir -p directory_name: includes a pathname and the intermediate directories, create all of the nonexisting parent directories that to 
+$ mkdir /Reports/Weekly/
+
+rm removing command (destructive command)
+$ rm -r(Solaris)/-R(Linux) 
+check if existing files or directories by prompt: $ rm -i
+borra recursivamente y solicita confirmación $ rm -iR ~/monthy_reports/
+fuerza el borrado: $ rm -f, --force 
+
+Links symbolic and hard
+
+A symbolic link called a symlink (l) or soft link is a pointer that contains the full pathname to another fiel or directory
+can link files and directories located across different file systems.
+broken if the linked to file is removed
+ls -l
+
+A hard link shares the inode of another file and increases the link count  of the linked to file
+must be on the same file system and persist even if the other fill is removed
+ls -li and compare the inode numbers and link counts
+
+Create a symbolic link: $ ln -s source_file target_link
+
+$ ln -s fileOne.txt ~/tmp/link_fileOne.txt
+$ ls -F ~/tmp/
+link_fileOne.txt@
+
+Example:
+
+$ ln -s Alan_Beaulieu-Examples-SQ.txt link_Alan.txt
+$ link_Alan.txt -> Alan_Beaulieu-Examples-SQ.txt*
+$ cat link_Alan.txt
+
+$ ln -s /etc/profile myprofile
+$ cat -n myprofile -> number lines
+
+Hard link: 
+$ ln fileOne.txt ~/tmp/Hardlink_fileOne.txt
+$ ls -F ~/tmp/
+Hardlink_fileOne.txt  link_fileOne.txt@
+
+The simbol @ indicates that the file is a symbolic link.
+
+$ cat ~/tmp/Hardlink_fileOne.txt 
+ver el contenido del archivo con el número de línea: (number line): $ cat -n ~/tmp/Hardlink_fileOne.txt
+
+Whe creating a hard link, if the source doesn't exist then fails.
+(Solaris): ln: cannot access <source>
+(Linux): ln: failed to access '<source>': no such file or directory
+
+Hard link can be used to make a backup of the original file. 
+Thus if someone tries to move or remove the original file, the backup would remain.
+
+This will not protect the original file from saved editing changes.
+
+wild cards patterns
+regular expressions (regex or regexp)  
+
+programs like grep, more, less, vi, vim, emacs, sed, awk, tcl, ls, find, Microsoft Office use searches
+
+languages like Perl, Java, PHP (Hypertext Preprocessor), Python and Microsoft C and C++ use regex_patterns
+
+wild cards (metacharacters)
+* Asterisk (glob) matches zero or more characters
+? Question mark matches zero or a single character
+. Period matches a single character
+^ Caret at the beginning of the line 
+$ Dollar at the end of the line
+[] Brackets (a character class). The characters inside the brackets match one character position.
+`` Single quotation marks (apostrophe) tell the shell to ignore any enclosed metacharacters.
+"" Doble quotation marks enclose a space.
+\ Backslash escapes the following metacharacters.
+
+(Linux)$ man 7 regex
+(Solaris)$ man -s 5 regex
+
+$ touch file1 file11 file2 file23 file3 file32 file4 file45
+
+$ ls file[24]
+file2
+file4
+
+$ ls file[0-9]
+file1
+file2
+file3
+file4
+
+$ ls file[0-9][3]
+file23
+
+$ ls file[3]
+file3
+
+$ ls file[3]?
+file32
+
+Searching Files and Directories
+
+find [pathname] -name filename_pattern
+find [pathname] [expression]
+
+-name
+-type
+-perm
+-empty
+-size
+-group
+-user
+
+$ find -name 'Alan_Beaulieu?'*
+./Alan_Beaulieu-Learning_SQL-EN.pdf
+./Alan_Beaulieu-Examples-SQ.txt
+./MotoG4_BackUp/WhatsApp/Media/WhatsApp Documents/Sent/Alan_Beaulieu-Learning_SQL-EN.pdf
+./CFTIC/SQL/Alan_Beaulieu-Learning_SQL-EN.pdf
+
+Busca desde la raíz todos los ficheros que contengan 'file': $ find / -name 'file*'
+[expression] puede ser: ls -l, cp or mv, 
+(-exec, -ok) y or Y acknowledgment
+
+Busca desde /opt todos los archivos que empiezan con 'file' y luego ejecuta el command ls -l por cada archivo que encuentre y será reemplazado por esa siintaxis 
+$ find /opt -name 'file*' -exec ls -l {} \;
+-rw-r--r-- 1 root root 1712 oct 14 11:23 /opt/ORCLfmap/prot1_64/etc/filemap.ora
+-rw-r--r-- 1 uucp 143 354 dic  8  2017 /opt/java-jdk/jdk1.8.0_231/lib/missioncontrol/plugins/com.jrockit.mc.console.ui.notification_5.5.2.174165/icons/file_obj.gif
+
+$ find -type f
+              	b      block (buffered) special
+		c      character (unbuffered) special
+              	d      directory
+              	p      named pipe (FIFO)
+              	f      regular file
+              	l      symbolic link; this is never true if the -L option or the -follow option is in effect, unless the symbolic link is  broken.   If  you
+                     want to search for symbolic links when -L is in effect, use -xtype.
+		s      socket
+		D      door (Solaris)
+
+$ find ~ -type d
+$ find ~ -type f
+$ find . -name *.txt
+
+find files were modified in the last day: $ find . -mtime -1
+
+find files ordinary files of size 0 include an option prompting you with yes or no: $ find /etc -type f -size 0 -ok ls -l  {} \;
+< ls ... /etc/sensors.d/.placeholder > ? yes
+-rw-r--r-- 1 root root 0 abr  5  2017 /etc/sensors.d/.placeholder
+< ls ... /etc/subgid- > ? yes
+-rw-r--r-- 1 root root 0 oct 14  2019 /etc/subgid-
+find: ‘/etc/ssl/private’: Permission denied
+
+
+locate command will use a database that is generally updated once a day.
+locate works similar with grep command
+locate is dependent on the system administrator schedulling and updatedb command, which updates the location database.
+Usually the schedulling of the updatedb command is only once daily.
+Therefore, the files you just created might not be found by locate until the following day.
+
+$ locate [option] regex_pattern
+$ locate filename
+
+Busca los ficheros que empiezan por 'file': $ locate -b '\file'
+
+ASAP ( as soon as possible )
+
+Grep command: global regular expression print, permite you search a pattern  - ("patron") -  in one or more files.
+
+grep [options] regex_pattern [files(s)]
+
+Busca "select" en el fichero LearningSQLExample.sql: $ grep select LearningSQLExample.sql
+$ grep select --color LearningSQLExample.sql 
+
+Busca "instance" en todos los ficheros del directorio actual que terminen en txt
+$ grep -n -- 'instance' *.txt
+
+-v, --invert-match - Invert the sense of matching, to select non-matching lines.
+$ grep -v root /etc/group
+
+Display all the lines that have the pattern  - ("patron") -  "net" in the /usr/lib/sysctl.d/50-default.conf file with line numbers
+$ grep -n net /usr/lib/sysctl.d/50-default.conf 
+
+Display the number of lines that contain the pattern  - ("patron") -  "net" in the /usr/lib/sysctl.d/50-default.conf file
+$ grep -c net /usr/lib/sysctl.d/50-default.conf
+ 
+Display the number of lines that contain at least one instance of the pattern  - ("patron") -  "net" both in uppercase and lowercase (ignore case) 
+in the /usr/lib/sysctl.d/50-default.conf file
+$ grep -ic net /usr/lib/sysctl.d/50-default.conf
+
+In addition, originally there were two variant programs: egrep and fgrep.
+
+egrep has been replaced by grep -E => Interprets pattern  - ("patron") -  as an extended-regexp regular expression 
+$ egrep '(users|root)' /etc/group
+Display all lines in the filename that contain either the "Sales" or "Finance" pattern: $ egrep '(Sales|Finance)' filename
+
+fgrep has been replaced by grep -F => Interprets pattern  - ("patron") -  as a list of fixed-strings separated by newlines, any of which is to be matched
+
+Id command details about the current user and the current session:
+$ id
+uid=1001(hadoop) gid=1001(hadoop) groups=1001(hadoop),27(sudo)
+
+$ who
+sc       tty7         2021-01-15 22:42 (:0)
+
+vim Editor, which is one of the most used text editors on both Unix and Linux.
+
+$ vi [options] filename
+$ vim [options] filename
+
+to recover the file if the system fail or crashes: $ vi -r filename 
+open in read-only mode $ vi -R filename
+
+(Linux and Solaris)$ man vim ór $ man vi
+(Linux)$ whic vimtutor
+(Solaris)$ vimtutor
+
+
+vi provides six basic modes of operation 
+1. command mode (normal) - default (delete, change, copy and move text)
+2. Insert (and replace) mode
+
+ i - inserts text before the cursor
+ o - Opens a new blank line below the cursor
+ a - appends text after the cursor
+ R - Replaces text after the cursor
+ I - inserts text at the beginning of the line
+ O - Opens a new blank line above the cursor
+ A - appends text at the end of the line
+ :r - Read and inserts the contents of another file
+
+3. Visual mode
+4. Select mode
+5. Command-line mode
+6. Ex mode
+
+Moving the Cursor:
+
+ H - Left one CHARACTER
+ J - Down one LINE
+ K - Up one LINE
+ L - Right ONE CHARACTER
+ W - forward one WORD
+ B - Back one WORD
+ E - End of the current WORD
+ $ - End of the LINE
+ 0 - Beginning of the LINE
+ ^ - FIRST non-white space CHARACTER on the LINE
+ Enter - Down to the beginning of the NEXT LINE
+ G - To the LAST line of the FILE
+ 1G - to the FIRST line of the FILE
+ :n - to line N
+ nG - to line n
+ Ctrl + F - Pages FORWARD ONE screen
+ Ctrl + D - Scrolls DOWN ONE half screen
+ Ctrl + B - Pages BACK ONE screen
+ Ctrl + U - Scrolls UP ONE half screen
+ Ctrl + L - Refreshes the screen
+ Ctrl + G - Displays current buffer information
+
+Deletion Commands
+ R - Overwrites or replaces characters
+ C - Changes or overwrites
+ s - Substitutes a string for a character 
+ x - Deletes a character at the cursor
+ nx - Deletes n characters beginning at the cursor
+ dw - Deletes a word or part of the word to the right of the cursor 
+ dd - Deletes the line containing the cursor
+ ndd - Deletes n lines beginning with the line containing the cursor
+ D - Deletes the line from the cursosr to the right end of the line
+ :n, nd - Deletes lines n-n. For ex: :5-20d deletes lines 5-20
+
+Edit Commands
+ cw Changes or overwrites characters at the cursor location to the end of that word
+ r - Replaces the character at the cursor with one other character
+ J - Joins the current line and the line below
+ xp - Transposes the character at the cursor and the character to the right of the cursor
+ ~ - Changes letter casing to uppercase or lowercase, at the cursor
+ u - Undoes the previous command
+ U - Undoes all changes to the current line
+ . - Repeats the previous command
+
+Searching for Substituting (Replacing) Text Within a File:
+
+ /pattern - Searches forward for the pattern/string (regex_pattern)
+ ?pattern - Searches backward for the pattern/string (regex_pattern)
+ n - Searchs for the next ocurrence of the pattern  - ("patron") - 
+ N - Searches for the previous ocurrence of the pattern  - ("patron") - .
+ :%s/oldstring/newstring/g - Searches for the old string and substitutes(replaces) it with the new string. The % searches the whole file and g replaces every ocurrence of oldstring with newstring
+
+:%s/Dante/Homer/ -> change first ocurrences on line
+:%s/Dante/Homer/g -> change all ocurrences 
+:%s/Dante$/Homer/ -> change the ocurrences at the end of line
+:%s/^Dante/Homer/ -> change the ocurrences at the beginning of line
+
+Copy and Paste commands:
+
+ yy -  a copy of a line containing the cursor
+ nyy -  a copy of n lines containing the cursor
+ P - Puts  (yy) or deleted (dd) text after the line containing the cursor
+ p - Puts  (yy) or deleted (dd) text before the line containing the cursor
+ :n, n co n - Copies lines n-n and puts them after line n ex:1,3 co 5 copies lines 1-3 and puts them after line 5
+ :n, n m n - Moves lines n-n to line n ex:4,6 m 8 moves lines 4-6 to after line 8
+
+Save and Quit commands
+
+ :w - Saves the file with changes by writing to the disk
+ :w new_filename - Writes the contents of buffer to new_filename
+ :wq - Saves the file with changes and quit the editor
+ :x - Saves the file with changes and quit the editor
+ ZZ Saves the file with changes and quit the editor 
+ :q! - Quits without saving chages
+ ZQ - Quits without saving chages
+
+Session Customization Commands
+
+ :set nu - Shows line numbers
+ :set nonu - Hide line numbers
+ :set ic - Search / ignore case sentitive
+ :set noic - Search to be case sensitive 
+ :set list - Display invisible characters, such as ^I for a TAB and $ for endline 
+ :set nolist - Turn off Display invisible characters
+ :set showmode - Display the current mode of operation
+ :set noshowmode - Turn off the current mode of operation
+ :set - Displays all the vim variables that are set
+ :set all - Displays all vim variables and their current values
+
+https://www.vim.org/
+/usr/share/vim/vim80/doc/help.txt
+/usr/share/doc/vim/html/index.html
+https://vimhelp.org/#help.txt
+
+files that vi use for customization: .exrc and .vimrc 
+
+Para modificar la configuración al arrancar e incluido la línea set nu al final del fichero: /etc/vim/vimrc.tiny
+
+Bash Shell
+ 
+This is the default shell that is used on most Unix and Linux distributions, and it's commonly used by most administrators in order to execute commands on the operating system.
+
+types de Shell Expansions
+
+ Brace expansion: ({}) arbitrary strings may be generated.
+ sintax: [optional preamble] {string1[,string2][,stringn]} [optional postscript]
+ combining the preamble with the first string and with postscript
+ combining the preamble with the second string and with postscript
+ and so on... 
+ you will be able to generate a number of strings based on a pattern  - ("patron") -  that allows you to refer to a very large number, 
+ complex strings that may be needed for us applications 
+ ex: a{d,c,b}e => generate three different strings: ade, ace, abe
+
+ Tilde expansion: allows you to expand to the absolute path name of the user's home directory
+ (~) which represents the home directory of the current user 
+ (~) which a username which represents the home directory of the specified user
+
+ (~) equivale al nombre de ruta absoluto del home del user
+ 
+ cambiar de directorio dentro del mismo $HOME
+
+ cd ~/Downloads/
+ pwd
+ /home/hadoop/Downloads
+
+ cambiar al $HOME de otro usuario
+
+ cd ~user2
+ pwd
+ /home/user2
+
+ Parameter expansion: there are hundreds of parameters/variables that you can define.
+ and then you can use include ($) symbol prefixing
+ ex: variable USER: echo $USER y variable HOME: echo $HOME
+ local variables 
+ environment variables
+
+ Command substitution: allows you to use the output of a command in order to build another command.
+ $(command) or (`command`)
+ ex:
+
+ $ which passwd
+   /usr/bin/passwd
+
+ $ ls -l $(which passwd)
+   -rwsr-xr-x 1 root root 62024 ago 21  2019 /usr/bin/passwd
+
+ $ ls -l `which passwd`
+   -rwsr-xr-x 1 root root 62024 ago 21  2019 /usr/bin/passwd
+
+ $ ls -l $(which vi)
+ /home/hadoop/newdir
+ 0 lrwxrwxrwx 1 root root 20 ene  2  2020 /usr/bin/vi -> /etc/alternatives/vi
+
+ Path Name Expansion/File Name Generation
+ * - used to match zero or more characters - ex: $ ls f* - also used by regular expressions
+     In the user's home directory, use the (*) expansion symbol: $ echo D*
+ ? - used to match zero or a single character, also used by regular expressions - ex: $ ls d?
+ [] - used to matcheds a single character, created a character class which represents a set or range of characters for a single character position:
+    A SET of characters is any number of specific characters NOT ORDERED necessarily.
+    - ex: [abc] = [cab] $ ls [fp]* 
+    A range of characters is a series of ORDERED characteres.
+    - ex: [a-z] or [0-9] $ ls [a-f]*
+    also used by regular expressions
+ - represents the previos working directory
+
+ $ cd -
+ /home/sc/Documents
+ $ pwd
+ /home/sc/Documents 
+ $ cd -
+ $ pwd
+ /home/sc
+ $ cd -
+
+ $ echo $PWD
+ $ echo $OLDPWD
+ 
+Shell Metacharacters
+
+ | - pipe - sends the output of the command on the left as input to the command on the right of the symbol
+ & - ampersand, bakcground execution
+ ; - semicolon, command separator
+ \ - backslash, escape the next metacharacter to remove its meaning
+ () - round brackets, command grouping
+ < > >> - redirection symbols
+ ` ` $( ) - command substitution
+ space tab newline "whitespace" - Internal Field Separator (IFS)
+
+Command Communication Channels: By default the shell receives or reads input from the standard input - the keyboard - and displays the output and error messages to the standard output - the screen
+
+File Descriptors: each process works with three file descriptors
+
+0 - stdin - Standard command input - Default Keyboard
+1 - stdout - Standard command output - Default Screen
+2 - stderr - Standard command error -Default Screen
+
+Redirection Metacharacters
+
+- Redirection of standard input (<) - stdin
+
+  $ command < filename 
+  or
+  $ command 0< filename - 0 - stdin - Standard command input
+
+  $ mailx oracle < ~/dante (dante file as the input of mailx command)
+
+- Redirection of standard output (>) - stdout
+
+  $ command > filename 
+  or
+  $ command 1> filename - 1 - stdout - Standard command output
+  and 
+  $ command >> filename              # appends
+
+  $ ls -l > directory_list
+  $ echo "That's my directory list file" >> directory_list; cat directory_list
+
+- Redirection of standard output (>>) append
+
+- Redirection of standard error (2>) - stderr
+
+  Redirects any standard error mesagges to the: /dev/null file (delete them)
+  command 2>/dev/null
+
+- Redirection of both standard error and standard output (2>&1) redirected to the dat file.
+  The standard output and the standard error redirect to dat file.
+  $ ls /var /test 1> dat 2>&1
+  $ less dat
+
+ex: redirecciona la salida standard (1) y la salida standard error(2>&1)
+$ touch lab/error
+$ ls /var /test 1>lab/error 2>&1
+$ cat -n lab/error
+
+- The pipe symbol (|) redirects the standard output from one command to the standard input of another command
+  command1 | command2
+
+  $ who -> show who is login on
+  $ wc -l -> count lines
+
+  $ who | wc -l -> count all users are login on
+
+  $ ls -F /etc | grep "/" | wc -l -> count all directories there are on /etc
+
+  $ head -10 dante | tail -3 | lp -> print 
+
+- Redirection of standard output (stdout) by using tee command 
+
+  If you want to see the output from command1 before it's redirected to a filename:
+
+  $ head -10 dante | tee [-a] filename -> If el fichero no existe, lo crea; si existe redirecciona la salida y con -a add la salida al final del archivo. 
+ - Quoting Symbols
+   (' ') - ignore all enclosed metacharacters
+   (" ") - ignore all enclosed metacharacters and white space except: 
+	\ - interpreting the next symbol after 
+	' ' - execute and display the output for a command enclosed
+	$(command) - execute and display the output of the command enclosed
+
+ $ echo $SHELL -> /bin/bash
+ $ echo '$SHELL' -> $SHELL
+
+
+Local shell apply only to the current instance
+Global environment shell are Local shell that had been exported are valid for subordinate session   
+Display the value stored inside a local shell variable SHELL
+$ echo $SHELL
+/bin/bash
+
+Display Local shell variables 
+(Linux) there are variables and functions
+(Solaris) really only has variables
+$ set 
+BASH=/bin/bash
+PATH=/home/hadoop/anaconda3/bin:/home/hadoop/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hadoop/hadoop-3.2.1/sbin:/home/hadoop/hadoop-3.2.1/bin:/home/hadoop/hadoop-3.2.1/hive-3.1.2/bin:/home/hadoop/spark/spark-3.0.0-preview2-bin-hadoop3.2/bin:/home/hadoop/mongodb-linux-x86_64-ubuntu1804-4.2.2/bin
+
+Display Global environment
+$ env
+SHELL=/bin/bash
+
+Create a bash Local shell variable
+$ history = 50
+$ echo $history
+
+UnSet a Local shell variable
+$ history = 
+$ echo $history
+
+Create a bash environment shell variable 
+$ export history = 75
+$ env | grep history
+$ echo $history
+
+
+$ apps=/opt/
+$ priv=/sc/
+$ set | grep priv
+$ cd $apps; pwd
+$ cd $priv; pwd
+
+EDITOR: default editor for the shell
+FCEDIT: editor for fc command
+HOME: cd command
+LOGNAME: login name of the user
+PATH: list of directories when the shell search for a command
+	To include a directory in the PATH:
+$ echo $PATH
+/home/hadoop/anaconda3/bin:/home/hadoop/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hadoop/hadoop-3.2.1/sbin:/home/hadoop/hadoop-3.2.1/bin:/home/hadoop/hadoop-3.2.1/hive-3.1.2/bin:/home/hadoop/spark/spark-3.0.0-preview2-bin-hadoop3.2/bin:/home/hadoop/mongodb-linux-x86_64-ubuntu1804-4.2.2/bin
+lo add al final del path existente: $ export PATH=$PATH:/sc 
+lo add al inicio del path existente: $ export PATH=/sc:$PATH 
+Asignar el path nuevamente:
+$ PATH=/home/hadoop/anaconda3/bin:/home/hadoop/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hadoop/hadoop-3.2.1/sbin:/home/hadoop/hadoop-3.2.1/bin:/home/hadoop/hadoop-3.2.1/hive-3.1.2/bin:/home/hadoop/spark/spark-3.0.0-preview2-bin-hadoop3.2/bin:/home/hadoop/mongodb-linux-x86_64-ubuntu1804-4.2.2/bin
+
+$ mkdir sbin
+$ PATH=$PATH:~/sbin
+$ echo $PATH
+
+How to modify prompt
+
+PS1: primary bash shell prompt
+	(Linux)
+	$ PS1='[\u@\h \W]\$' 
+           \u -> user name
+	   \h -> host name
+           \W -> curren directory
+	(Solaris)
+	$ PS1='[\u@\h:\W]\$' 
+PS2: secundary bash shell prompt ">"
+
+ex: 
+$ echo $PS1
+
+$ echo $LOGNAME
+hadoop
+$ uname -n
+sc-ubuntu-18-04-5-lts
+$ echo $PWD
+/home/hadoop
+
+$ PS1="$LOGNAME`uname -n`\$PWD $ "
+hadoopsc-ubuntu-18-04-5-lts/home/hadoop $
+
+$ PS1="[\u@\h \W]\$ "
+[hadoop@sc-ubuntu-18-04-5-lts ~]$ 
+
+$ PS1="(base) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+(base) hadoop@sc-ubuntu-18-04-5-lts:~$ 
+
+SHELL: name of shell
+
+command history -> $ man history there are HISTFILESIZE and HISTSIZE that control the number of entries.
+the commands are stored on ~/.bash_history 
+
+$ echo $HISTFILESIZE $HISTSIZE
+$ echo $HISTFILESIZE 
+2000
+$ echo $HISTSIZE
+1000
+
+Default -> display all history entries to standard output
+
+to display n last lines: $ history n
+$ history 10
+$ history | less
+to clear the history: $ history -c
+
+to re-execute a command use: !##### 
+$ !2135
+$ ps -ef | grep session-2.scope
+
+or relative location number: !-n
+ 2135  ps -ef | grep session-2.scope
+ 2136  history 10
+
+or search and executing combined with a string - <<-O-J-O->> con el string que este buscando - USAR CON CUIDADO - 
+$ !sys
+$ !cl
+
+$ !-2
+$ ps -ef | grep session-2.scope
+hadoop    5902  3201  0 15:12 pts/1    00:00:00 grep --color=auto session-2.scope
+
+Repeat LAST command
+$ !!
+$ ps -ef | grep session-2.scope
+
+Search a command
+$ Ctrl+r and type something to repeat Ctrl+r again
+
+
+The default command-line editing mode IN "bash" IS "emac"
+To switch between two modes: 
+$ set -o vi
+$ set -o emacs
+
+To set the editing mode by using the EDITOR or VISUAL shell variables:
+$ export EDITOR=/bin/vim
+$ export VISUAL=/bin/vim
+
+File Name Completion: "Tab key" ó "Esc+=" ó "Tab key" twice
+
+The default initialization files that are defined in the /etc and they will apply to all the users on that system
+
+User Files for bash shell when is invoked 
+if exists this files:
+
+1. execute commands from /etc/profile -> Global file - Administrator
+2. execute commands from ~/.bash_profile
+3. execute commands from ~/.bash_login -> Its a special file that only intialize the login shell
+4. execute commands from ~/.bashrc -> personal initialization file for configuring the user environment
+
+if the login shell exist execute commands from ~/.bash_logout -> used to clean up the environment before exit
+
+if NO exists then: 
+
+5. execute commands from ~/.profile
+
+Configure the ~/.bashrc File, is a personal initialization file for configuring the user environment., before the changes you just need to re-executed this file.
+$ source ~/.bashrc or
+if you are in $HOME path then: $ source .bashrc or
+$ . ~/.bashrc or
+$ exit
+
+to use the emacs editor for editing the command history you can change this with set -o
+
+You can define global definitions like this:
+ex:
+if [ -f /etc/bahrc ]; then
+        . /etc/bashrc
+fi
+
+$ ls -n
+-rw-r--r-- 1 1001 1001 184781 ene 24 17:00 'Unix and Linux Essentials.txt'
+
+- -> file type
+rw-r--r-- -> permissions user, group, other
+1 -> link count
+1001 -> UID
+1001 -> GID
+184781 -> size 
+ene 24 17:00 -> Last modification Data Time
+'Unix and Linux Essentials.txt' -> File o Directory name
+
+
+standard set of access permissions - (ACL) - Access Control List
+user name and user identification number - (UID)
+group name and group identification number - (GID)
+
+user's umask configuration: umask
+
+file type
+d: directory
+-: file
+
+rw-r--r-- <-> permissions - chmod 644 
+
+Primer grupo: Owner (u) user: rw-
+Segundo grupo: Group (g) user: r-- 
+Tercer grupo: Other (o) user: r-- 
+Readble: r (4)
+Writeable: w (2)
+Executable: x (1)
+No permission: -
+
+s instead of x for user or group permission, 
+t instead of x for other permissions. 
+
+chmod -R 775 filename -> -R recursive
+
+provide some special permissions for specific files or directories
+
+system administrator maintains groups in /etc/group
+
+Permissions		File				Directory
+
+Readble: r		Display content			List the contents ls
+
+Writeable: w		Modify content but		Modify content and deleted (rm) a file
+			Only with (r) permissions 	Borrar only with (x) permissions
+
+Executable: x 		Execute a executable file	Use cd commands
+ 			Execute a script Only with	ls (rx) permissions
+			(rx) permissions
+
+A directory of general use at least (rx) permissions
+A file or directory can belong to ONLY one group at a time.
+
+1 -> Link count -> hard links to the file or directory
+
+1001 -> UID propietario del archivo ó directorio
+1001 -> GID grupo de usuarios propietarios del archivo o directorio
+
+There are two types of groups users Primary and Secondary
+Primary Group  — is created when user account is created and the user is automatically added to it. 
+                 the files created by the user automatically belongs to the user group
+	         is stored in the /etc/passwd file 
+
+Secondary Group  — This group is not required and only there to give users access to other resources 
+		   they’re don’t already have access to.. 
+		   Users can belong to none or as many secondary groups 
+		   listed in the /etc/group
+
+find the groups a user belongs to
+$ groups
+hadoop sudo
+
+List and Display los grupos que existen en el system
+$ less /etc/group
+$ cat /etc/group
+
+$ cat /etc/group | grep "sudo"
+sudo:x:27:hadoop
+
+$ cat /etc/group | grep "hadoop"
+sudo:x:27:hadoop
+hadoop:x:1001:
+
+Display los grupos que tiene el group "hadoop"
+$ groups hadoop
+hadoop : hadoop sudo
+
+Display los usuarios que existen en el system
+$ users
+hadoop
+
+Display el id del user "hadoop"
+$ id hadoop
+uid=1001(hadoop) gid=1001(hadoop) groups=1001(hadoop),27(sudo)
+
+Display the members of a particular group
+$ getent group cdrom
+cdrom:x:24:
+
+Determining permissions
+
+if (UID of user == UID of file or directory){ 
+    USE user/owner permissions
+   } 
+    else if (GID of user == GID of directory ){
+             USE group permissions
+            } else {
+                    USE other permissions
+            }
+   
+
+endif
+
+chown used to change username and group ownership 
+chgrp used to change ONLY group ownership
+
+show the UID and GID numbers 
+$ ls -n
+-rw-r--r-- 1 1001 1001 185669 ene 24 17:46 'Unix and Linux Essentials.txt'
+
+show the username and the group 
+$ ls -l
+-rw-r--r-- 1 hadoop hadoop 185669 ene 24 17:46 'Unix and Linux Essentials.txt'
+
+$ chown hadoop:hadoop Unix\ and\ Linux\ Essentials.txt 
+a User can change the ownership ONLY for objects that user own
+a root user can change the ownership of ANY object
+<<-O-J-O>> 
+BE CAREFUL when give away the ownership because it wont be always very easy to get it back you need help from the system administrator
+
+$ chgrp hadoop Unix\ and\ Linux\ Essentials.txt 
+a User can change the group ONLY if user is own of object
+
+- chmod Symbolic mode: letters and symbols to add or remove permissions for each permission group
+ $ chmod symbolic_mode filename
+ who
+	u User
+        g Group
+        o Other
+        a (ALL) - User, Group, Other
+ op
+        + Add permissions
+        - Remove permissions
+        = Assign Permissions Absolutely
+
+ permissions
+	r Read
+	w Write
+	x Execute
+
+ [ugoa][+-=][rwx]
+
+ chmod g+x filename => Group, Add, Execute then Executable permissions is added to the Group to the file or directory
+ chmod o-r filename => Other, Remove, Read then Read permissions are removed to the Other to the file or directory
+ chmod g-r filename => Group, Remove, Read then Read permissions are removed to the Group to the file or directory
+
+ ex: $ chmod g+rw mytextfile => Group, Add, Read and Write permissions is added to the Group to the file or directory
+
+ Special file permissions Setuid, Setgid, Stick Bit [st]
+ When special file permissions are set on executable files, 
+ the user who runs that executable file executes it with the permissions of the UIDor GID. 
+ who has the "s" inplace of the "x" for executables privileges.
+
+ search for the user/owner permissions that has "s" inplace of "x" 
+ $ find /usr/bin -perm -4000 -exec ls -l {} \;
+ ex:
+-rwsr-xr-x 1 root root 59640 mar 22  2019 /usr/bin/passwd
+
+ search for the group permissions that has "s" inplace of "x" 
+ $ find /usr/bin -perm -2000 -exec ls -l {} \;
+ ex:
+-rwxr-sr-x 1 root crontab 39352 nov 16  2017 /usr/bin/crontab
+
+ $ ls -l /usr/bin/passwd
+-rwsr-xr-x 1 root root 59640 mar 22  2019 /usr/bin/passwd
+
+ $ sudo ls -l /etc/shadow
+-rw-r----- 1 root shadow 1534 ene 12 21:51 /etc/shadow
+ $ sudo ls -n /etc/shadow
+-rw-r----- 1 0 42 1534 ene 12 21:51 /etc/shadow
+ 
+ Stick Bit [st] - t flag
+ Protects the files whitin a directory from being delete by anyone, except the user who owns the file
+ the owner of the directory or the root user
+ who has the "t" inplace of the "x" which makes it world readable and world writable
+ drwxrwxrwt  16 root root      69632 ene 24 18:32 tmp
+
+ search in (directories) for the other permissions that has "t" inplace of "x" 
+ $ find / type d -perm -1000 -exec ls -l {} \;
+ ex:
+-rw------T 1 hadoop hadoop 263 ago 19 15:25 kernel-fd535bf5d144.json
+
+- chmod Octal mode or absolute mode: octal numbers to represente each permission group
+ $ chmod octal_mode filename
+ consist of three octal numbers 4,2,1 that represent a combination (sum) of the permissions from 0-7 for the file directory
+ Read - 4
+ Write - 2
+ Execute - 1
+ 
+ 7 - rwx - 111(4+2+1) - all permissions
+ 6 - rw- - 110(4+2+0) - read and write permissions
+ 5 - r-x - 101(4+0+1) - read and execute permissions
+ 4 - r-- - 100(4+0+0) - only read permissions
+ THERE ARE NOT USEFUL because w+x also need r
+ 3 - -wx - 011(0+2+1)
+ 2 - -w- - 010(0+2+0)
+ 1 - --x - 001(0+0+1)
+ 0 - --- - 000(0+0+0) - no permissions
+
+ 640 - rw-r-----
+ 644 - rw-r--r--
+ 666 - rw-rw-rw- -> MAX - default permissions to a file
+ 750 - rwxr-x---
+ 751 - rwxr-x--x => NOT USEFUL because w+x also need r
+ 755 - rwxr-xr-x -> group and others read and execute only
+ 775 - rwxrwxr-x -> owner and group to include write access
+ 777 - rwxrwxrwx -> MAX - default permissions to a directory
+ 
+ 555 - r-xr-xr-x 
+ 44  - ---r--r-- = 044 all missing digits are fills by 0
+
+ set the user's mask to an user on bashrc file or initialization file
+ $ umask
+ 0022
+
+ default oracle linux umask = 0002 (002)
+ default oracle solaris umask = 0022 (022)
+ 
+ umask affects for files and directories when are created (4digit octal)
+ 
+   the first digit determines the Setuid or Setgid
+   the second digit determines default user/owner
+   the third digit determines default group
+   the fourth digit determines default others 
+
+ Permissions umask octal value
+ Value 	- File 	- Directory
+ 0 	- rw-   - rwx
+ 1 	- rw-   - rw-
+ 2 	- r--   - r-x
+ 3 	- r--   - r--
+ THERE ARE NOT USEFUL because w+x also need r
+ 4 	- -w-   - -wx
+ 5 	- -w-   - -w-
+ 6 	- ---   - --x
+ 7 	- ---   - ---
+
+ 666 - rw-rw-rw- -> MAX - default permissions to a file
+ 777 - rwxrwxrwx -> MAX - default permissions to a directory
+ 
+ Then umask to change the default permissions = difference between default values and values you want to set
+ ex:
+ if you want to change the default permissions for files to 644 - rw-r--r-- = 666 - 644 = 0022
+ if you want to change the default permissions for directories to 644 - rw-r--r-- = 777 - 644 = 0133
+
+ To set the default permissions in a user initialization file to rw-rw-rw-: $ umask 0000
+ 
+ Applying the umask value
+
+ Files
+ Octal     
+ 420420420 - 666 - rw-rw-rw- -> MAX - default permissions to a file
+ 420400400 - 644 - rw-r--r-- 
+ Diferencia -----
+ 000020020 - 022 - ----w--w- -> utility value to be removed -> umask
+
+ Directories
+ Octal     
+ 421421421 - 777 - rwxrwxrwx -> MAX - default permissions to a directory
+ 421401401 - 755 - rwxr-xr-x 
+ Diferencia -----
+ 000020020 - 022 - ----w--w- -> utility value to be removed -> umask
+
+A Process = A Task = PID (Process ID) 
+Each Process ID to control has a PPID (Parent Process ID)
+Is asociated with a UID and GID normally are the same as the user who started the process 
+A process consist of an address space and a metadata object.
+The process space pertains to all the memory and swap space a process consumes.
+The process metadata is just an entry in the kernel's process table and stores all other information about a process
+
+Process States: (ps command) s, stat and state output describe the state of a process
+ D: Uninterruptible sleep (usually IO)
+ R: Running or runnable (on run queue)
+ S: Interruptible sleep (waiting for an event to complete)
+ T: Stopped, either by a job control signal or because it is being traced
+ Z: Defunct ("zombie") process, terminated but not reaped by its parent
+ when the stat keyword is used
+ <: High-priority(not nice to other users)
+ N: Low-priority(nice to other users)
+ L: Has pages locked into memory(for real time and customIO)
+ s: Is a session leader
+ l: ls multi-threaded
+ +: ls in the foreground process group
+
+ nice is a useful program that is used to decrease or increase the scheduling priority of a process or batch processes. Users can assign nice values between -20 (most favorable), 0(no effect) and 19(least favorable). The higher the nice value, the lower the scheduling priority
+
+       To see every process on the system using standard syntax:
+          ps -e   - Prints info about every process currently running
+          ps -ef  - Generates a full listing
+          ps -eF
+          ps -ely - Long listing
+
+       To print a process tree:
+          ps -ejH
+          ps axjf
+
+          ps -eo format: Writes information according to the format specification given. Multiple -o options can be specified. 
+The format specification is interpreted as the space-character-separated concatenation of all the format option arguments.
+
+A process, as it runs, uses the resources of the various subsystems 
+         ------------------------
+         | Unix or Linux Kernel |
+         ------------------------
+
+Disk I/O    Network     Memory      CPU
+Subsystem   Subsystem   Subsystem   Subsystem
+
+Control     Controls    Controls    Controls 
+disk        the through the utili-  CPU
+utiliza-    put and     zation and  resources
+tion and    directional allocation  loading
+resour-     flow of     of physical and sche-
+cing as     data        virtual and duling
+well as     between     shared me-
+file        systems     mory
+system      over a 
+perfor-     network
+mance       connection
+
+         <-- Process Subsystem -->
+
+process status (ps) list the processes that are associated with your shell 
+$ ps -ef | less
+$ ps -ef
+
+for each process show: PID, TTY, TIME, CMD .etc..
+
+UID: The username of the owner of the process
+PID: The unique process identification number of the process 
+PPID: The parent process identification number of the process  
+C: Processor Utilization    
+SZ   
+RSS 
+PSR 
+STIME: The time the process started (hh:mm:ss) 
+TTY: The controlling terminal for the process.
+     (?) - started without the use of a terminal.
+TIME: The cumulative execution time for the process (hh:mm:ss) 
+CMD: The command name, options, and arguments
+
+$ pstree command list the running processes, rooted at either system or PID
+$ ps -f
+UID        PID  PPID  C STIME TTY          TIME CMD
+hadoop   26838 25200  0 20:18 pts/1    00:00:00 bash
+hadoop   27841 26838  0 21:12 pts/1    00:00:00 ps -f
+
+$ pstree 25200
+gnome-terminal-─┬─bash───vi
+                ├─bash───pstree
+                └─3*[{gnome-terminal-}]
+
+Terminating a Process kill or stop any process that you own
+send signals to processes directing them to terminate.
+each signal has a number/value, name, and an associated event.
+(Linux) man 7 signal
+(Solaris) man -s3c signal
+
+kill PID
+pkill -l
+
+       Signal     Value     Action   Comment
+       ───────────────────────────────────────────────────────────────────
+───
+       SIGHUP        1       Term    Hangup detected on controlling termin kill all subordinate child processes
+al
+                                     or death of controlling process
+       SIGINT        2       Term    Interrupt from keyboard = Ctrl+C
+       SIGQUIT       3       Core    Quit from keyboard = Ctrl+D
+       SIGTERM      15       Term    Termination signal in an orderly manner (default)
+       SIGILL        4       Core    Illegal Instruction
+       SIGABRT       6       Core    Abort signal from abort(3)
+       SIGFPE        8       Core    Floating-point exception
+       SIGSEGV      11       Core    Invalid memory reference
+       SIGPIPE      13       Term    Broken pipe: write to pipe with no
+                                     readers; see pipe(7)
+       SIGALRM      14       Term    Timer signal from alarm(2)
+       SIGKILL       9       Term    Kill signal - last resort
+       SIGTSTP   18,20,24    Stop    Stop typed at terminal suspend the foreground execution Ctrl+Z command-line command execution
+
+All command-line commands execute in the foreground unless they are submitted followed by an &(ampersand). 
+To Stop Ctrl+Z (SIGTSTP signal 19) to stop the foreground processing.
+Then use a bg %n command to resume the command in the foreground processing
+
+There are processes that should not be terminated, such as the scv.startd, init or systemd processes.
+
+root user can use kill command on any process
+
+ps or pgrep locate the PID of the process
+
+pgrep and pkill 
+
+To execute a process in the background: use "&": 
+$ sleep 500 &
+$ pgrep sleep
+$ pgrep -l sleep
+$ pkill sleep -> requires you to specify the ProcessName or a regex_pattern
+
+$ ps -e | wc -l
+
+$ gnome-calculator
+$ pkill gnome-calculator
+
+(Linux)
+$ bc <<<"236-192"
+44
+$ bc <<<"1+1"
+2
+
+If you’d rather have that as a function:
+$ c() { printf "%s\n" "$*" | bc }
+$ c 1+1
+2
+ 
+$ tty
+/dev/pts/1
+
+(Linux)
+$ pgrep -t pts/1
+26838
+$ kill 26838
+$ kill -9 26838
+$ kill -l -> list all options about kill 
+$ kill -l 9 -> list details options 9
+
+(Solaris)
+$ pgrep -t pts/1
+26838
+$ pkill 26838
+$ pkill -9 -t pts/1
+$ pkill -9 26838
+$ kill -l -> list all options about kill 
+$ kill -l 9 -> list details options 9
+
+$ sleep 500&
+[1] 1422
+$ ps
+  PID TTY          TIME CMD
+ 1103 pts/1    00:00:00 bash
+ 1422 pts/1    00:00:00 sleep
+ 1423 pts/1    00:00:00 ps
+$ pgrep -t pts/1
+1103
+1422
+$ kill 1422
+[1]+  Terminated              sleep 500
+
+$ sleep 500&
+[2] 1431
+$ ps
+  PID TTY          TIME CMD
+ 1103 pts/1    00:00:00 bash
+ 1428 pts/1    00:00:00 sleep
+ 1431 pts/1    00:00:00 sleep
+ 1436 pts/1    00:00:00 ps
+$ pstree -p 1103
+bash(1103)─┬─pstree(1441)
+           ├─sleep(1428)
+           └─sleep(1431)
+$ kill 1428
+[1]-  Terminated              sleep 500
+$ pstree -p 1103
+bash(1103)─┬─pstree(1445)
+           └─sleep(1431)
+
+There are three types of job statuses:
+
+- Foreground: When you enter a command terminal window, the command occupies that terminal window until it completes.
+- Background: When you enter (&) at the end of a command line, the commands run whitout occupying the terminal window. The shell is displayed inmmediately after you press Return
+- Stopped: Ctrl+Z while a foreground job is running or enter the stop command.
+
+Job control commands place jobs in the foreground or background and to start or stop jobs
+
+Option      Description
+
+Ctrl+Z      Stops the foreground job and places it in the background as a stopped job
+jobs        Lists all jobs and their job IDs
+bg [%n]     Places the current stopped job or the specified job ID in the background, where n is the job ID
+fg [%n]     Brings the current or specified job ID from the background to the foreground, where n is the job ID
+kill %n     Deletes the job from the background, where n is the job ID
+kill -19 %n Or, if signal 19(SIGSTOP - Ctrl+Z) is used, places the process associated with the job ID (n) in a stopped state
+
+The job control commands run a manage multiple jobs in a shell.
+However you can use the job control commands only in the shell where the job was started.
+
+There are two signals 19s, 
+Stop process (SIGSTOP signal 19) that is usually associated with "kill -19 PID" and 
+Stop typed at terminal (SIGTSTP signal 19) which is Ctrl+Z sent from the keyboard, both stop the process without killin it.
+Then using the two bash shell built-ins, bg(background) and fg(foreground) they send a signal Continue if stopped (SIGCONT signal 18) to continue processing either in the background or in the foreground.
+
+When a background job is complete and you press Return, the shell displays a messages:
+[1]+  Done sleep 600
+
+
+To run a job in the background = command + &
+$ sleep 600&
+[1] 1791
+
+List all jobs
+$ jobs
+[1]+  Running                 sleep 600 &
+
+Process States
+$ ps
+  PID TTY          TIME CMD
+ 1103 pts/1    00:00:00 bash
+ 1791 pts/1    00:00:00 sleep
+ 1793 pts/1    00:00:00 ps
+
+Brings the current job ID from the background to the foreground
+$ fg %1
+sleep 600
+
+$ sleep 600&
+[1] 5597
+
+$ jobs
+[1]+  Running                 sleep 600 &
+$ ^C
+$ 
+
+$ jobs
+[1]+  Running                 sleep 600 &
+$ bg %1
+bash: bg: job 1 already in background
+
+$ fg %1
+sleep 600
+^Z
+[1]+  Stopped                 sleep 600
+
+to terminate a job use kill 
+
+$ jobs
+[1]+  Stopped                 sleep 600
+
+$ sleep 500&
+[1] 2241
+
+$ jobs
+[1]+  Running                 sleep 500 &
+
+$ kill %1
+
+$ jobs
+[1]+  Terminated              sleep 500
+
+
+Alias to customize and abbreviate commands, no whitespaces on either side of the equal sign, command must be quoted, each command in a single alias must be separated by ;
+alias aliasname="command string"
+alias l='ls -CF'
+
+group several commands under a single aliasname
+alias info="uname -a; id; date"
+
+$ info
+Linux sc-HP-Compaq-2710p 5.4.0-65-generic #73~18.04.1-Ubuntu SMP Tue Jan 19 09:06:49 UTC 2021 i686 i686 i686 GNU/Linux
+uid=1000(sc) gid=1000(sc) groups=1000(sc),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),116(lpadmin),122(sambashare)
+mar ene 26 01:25:29 CET 2021
+
+Display both system and user defined aliases (Linux) provide several system-defined aliases Soraris No.
+
+$ alias
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias apps='cd /opt/'
+alias cp='cp -i'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias h='history'
+alias info='uname -a; id; date'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
+alias mv='mv -i'
+alias cls='clear'
+alias priv='cd /home/sc'
+alias rm='rm -i'
+
+# <<< ALIAS SCELIs <<<
+set -o vi
+alias apps='cd /opt/'
+alias priv='cd /home/sc'
+alias info="uname -a; id; date"
+alias h=history
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias cls='clear'
+alias ls='pwd; ls -ltsha'
+alias lf='pwd; ls -lF'
+# <<< ALIAS SCELIs <<<
+
+
+<<-O-J-O>> revisar
+###################### $ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+<<-O-J-O>> revisar
+
+Remove an Alias
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+$ unalias which
+
+Deactivating temporarily an Alias -> Utilizar el \ antes del nombre del alias -> \rm
+ex: 
+$ rm Unix\ and\ Linux\ Essentials.txt 
+rm: remove regular file 'Unix and Linux Essentials.txt'? no
+$ ls -l
+total 236
+-rw-r--r-- 1 hadoop hadoop 238810 ene 26 17:01 'Unix and Linux Essentials.txt'
+$ \rm Unix\ and\ Linux\ Essentials.txt 
+$ ls -l
+total 0
+
+alias cls='clear'
+$ cls
+
+Shell Functions: Group of commands organized by common functionality
+return a single value with no additional output
+- Defining the function: 
+	function fuctionname [()] {compound-command [redirections];}
+        ex:
+        total number of users current logged in to the system:
+        function num { who | wc -l ;}
+- Invoking the function
+	fuctionname [()]
+
+To display a list of all functions, use the following command: $ typeset -f
+
+- Los alias no toman argumentos como las funciones
+- Si un nombre de comando se define como función y alias, el alias tiene prioridad
+
+To display the name of all functions. use the following command: $ typeset -F
+
+To delete/remove a function use the following command: $ unset -f
+
+$ function num { who | wc -l ;}
+$ num
+1
+$ unset -f num
+$ num
+Command 'num' not found
+
+$ function list { ls -al | wc -l ;}
+$ list
+109
+
+$ unset -f info2
+$ typeset -f info2
+$ function info2 { pwd; whoami; who | wc -l; }
+$ typeset -f info2
+info2 () 
+{ 
+    pwd;
+    whoami;
+    wc -l;
+}
+$ info2
+
+Shell Options In the bash shell there are about 27 options (on or off)
+To show the current options settings: $ set -o ór $ set -o | more
+
+$ set -o | grep noclobber
+noclobber      	off
+
+To turn on an option: $ set -o optionname 
+$ set -o noclobber
+$ set -o | grep noclobber
+noclobber      	on
+
+To turn off an option: $ set +o optionname 
+$ set +o noclobber
+$ set -o | grep noclobber
+noclobber      	off
+
+Can change only a single option setting at a time
+
+Activating the noclobber Shell Option
+Clobbering is the process of overwriting existing data to prevent the shell supports a noclobber option
+When the noclobber option is set, the shell refuses to redirect standard output to the existing file and display an error message on the screen
+
+$ ps -ef > filenew
+$ cat /etc/passwd > filenew
+
+To ensure that the noclobber option is available to every shell invoked place set -o noclobber in .bashrc file
+
+Deactivate the noclobber option temporarily (>|) is ignored for this command line Only: $ ls -l >| filenew
+
+ls -l > filenew
+
+$ set -o 
+allexport      	off
+braceexpand    	on
+emacs          	on
+....
+
+$ set -o | grep noclobber
+noclobber      	off
+$ set -o noclobber 
+$ set -o | grep noclobber
+noclobber      	on
+$ ls -l > filenew
+bash: filenew: cannot overwrite existing file
+$ ls -l >| filenew
+
+Shell bash Script can be executed on the command line if it is made executable with the "chmod u+rx script-name" permission.
+Then if the script is not found in "echo $PATH", you will need to preface script with "./scriptname. 
+The "./" says look in the current working directory.
+Nonexecutable scripts can be executed by using the appropriate-script-interpreter script-name, for example, bash script-name.
+
+Determining the shell 
+
+The first line of a shell script identifies the shell program that interprets and executes the commands in the script
+The first line should always begin with the symbols (#! - shebang) folowed immediately by the absolute pathname of the shell program used to interpret the script
+
+#!/full-pathname-of-shell
+
+#!/usr/bin/bash
+
+Shell scripts are rarely compiled into binary form
+
+#!/usr/bin/bash
+# This is my first shell script
+echo "Hello World!"
+
+Can be directly keyed into the command-line interface:
+$ #!/usr/bin/bash << EOF
+> # This is my first shell script
+> echo "Hello World!"
+> EOF
+Hello World!
+$
+
+EOF - here document - ending/closing - encapsulate the code of the script
+You can use any delimiting string you want like "ThisIsTheEnd" although the delimiting string "EOF" is fairly common
+
+Executing a Shell Script the user must have write permissions: chmod u+rx myScript
+u User
++ Add permissions
+r Read
+w Write
+./myScript
+
+$ cat myScript 
+echo running myScript
+FMHOME=/usr/frame
+MYBIN=/export/home/oracle/bin
+echo $FMHOME
+
+$ ls -l myScript 
+-rw-rw-r-- 1 sc sc 83 ene 27 01:25 myScript
+
+$ ./myScript
+bash: ./myScript: Permission denied
+$ chmod u+rx myScript 
+
+$ ./myScript
+running myScript
+/usr/frame
+
+$ vi info.sh
+#!/bin/sh
+#info.sh
+# This script displays the date, time, username and the current directory.
+echo "Date and time: " 
+date
+echo
+echo "Your user name is: `whoami`"
+echo "Your current directory is: `pwd`"
+$ chmod +x info.sh
+$ ./info.sh
+
+$ vi greetings.sh
+#!/bin/sh
+#greetings.sh
+echo $1 $2 # echo the first two parameters passed
+$ chmod +x greetings.sh 
+$ ls greetings.sh
+$ ./greetings.sh Hello World
+Hello World
+
+FMHOME is not defined in the parent shell
+$ echo $FMHOME
+$ grep $FMHOME
+Usage: grep [OPTION]... PATTERN [FILE]...     - ("patron") -
+Try 'grep --help' for more information.
+
+The arguments that will be passed will be stored by the shell in an array are variables called Positional Parameters 
+After the script name into variable $1, $2, ... $9 $#-- this store the number of the arguments that were passed
+
+Exit status is a numeric value 
+zero = sucess
+nonzero = failure
+
+? is a variable read-only that contain the exit status: 
+$ echo $?
+2
+
+this exit status can be set in a shell script:
+exit=##
+
+
+$ grep hadoop /etc/group
+sudo:x:27:hadoop
+hadoop:x:1001:
+$ echo $?
+0
+
+$ grep hadoops /etc/group
+$ echo $?
+1
+
+$ ls -l myScript 
+-rwxr--r-- 1 hadoop hadoop 95 ene 27 14:21 myScript
+$ echo $?
+0
+
+$ ls -l some_bad_filename
+ls: cannot access 'some_bad_filename': No such file or directory
+$ echo $?
+
+The test command
+
+Used for testing conditions, can be written as a test expression or written using [expression] notation
+Using for evaluating expresions like variables values, file access permissions, file types.
+
+There are several types or categories of bash shell test comparation operators:
+- Integer/Arithmetic test comparison operators
+- String test comparison operators
+- File test comparison operators
+- And there are other test comparison operators 
+
+$ echo $LOGNAME
+hadoop
+
+$ test "$LOGNAME" = "oracle"
+$ echo $?
+1
+
+$ test "$LOGNAME" = "hadoop"
+$ echo $?
+0
+ 
+$ ["$LOGNAME" = "hadoop"]
+[hadoop: command not found
+
+$ [ "$LOGNAME" = "hadoop" ]
+$ echo $?
+0
+$ 
+
+- Integer/Arithmetic test comparison operators
+
+ Operator 		Meaning			Syntax
+
+	-eq 	Equal to			[ "$var1" -eq "$var2" ]
+	-nq 	Not equal to 			[ "$var1" -nq "$var2" ]
+	-le 	Less than or equal to		[ "$var1" -le "$var2" ]
+	-ge 	Greather than or equal to	[ "$var1" -ge "$var2" ]
+	-lt 	Less than 			[ "$var1" -lt "$var2" ]
+	-gt 	Greather than 			[ "$var1" -gt "$var2" ]
+
+
+$ int1=1; int2=2
+
+$ echo "int1 = '$int1' and int2 = '$int2' "
+int1 = '1' and int2 = '2' 
+
+$ echo $int1, $int2
+1, 2
+
+$ [ $int1 -eq $int2 ]
+$ echo $?
+1
+
+$ [ $int1 -ne $int2 ]
+$ echo $?
+0
+
+$ [ $int1 -le $int2 ]
+$ echo $?
+0
+
+$ [ $int1 -ge $int2 ]
+$ echo $?
+1
+
+$ [ $int1 -lt $int2 ]
+$ echo $?
+0
+
+$ [ $int1 -gt $int2 ]
+$ echo $?
+1
+
+$ [ $int1 -eq "1" ]
+$ echo $?
+0
+
+$ [ $int2 -eq "2" ]
+$ echo $?
+0
+
+$ [ $int1 -eq 1 ]
+$ echo $?
+0
+
+$ [ $int2 -eq 2 ]
+$ echo $?
+0
+
+- Integer/Arithmetic test comparison operators
+
+ Operator 		Meaning			Syntax
+
+	= ór ==	Equal to			[ "$strA" == "$strB" ]
+	!= 	Not equal to 			[ "$strA" != "$strB" ]
+	-z 	String is null, zero length	[ "$strA" -z "$strB" ] ???
+	-n 	String is not null       	[ "$strA" -n "$strB" ] ???
+	< 	Sorts before			[ "$strA" < "$strB" ]
+	> 	Sorts after			[ "$strA" > "$strB" ] ???
+
+$ strA=abc
+$ strB=def
+
+$ echo "strA = $strA and strB = $strB"
+strA = abc and strB = def
+
+$ [ $strA == "abc" ]
+$ echo $?
+0
+
+$ [ $strB == "def" ]
+$ echo $?
+0
+
+$ [ $strA == $strB ]
+$ echo $?
+1
+
+$ test "$strA" == "$strB"
+$ echo $?
+1
+
+$ [ $strA != $strB ]
+$ echo $?
+0
+
+$ [ "$strA" > "$strB" ]
+$ echo $?
+0
+
+$ test "$strA" < "$strB"
+$ echo $?
+0
+
+File test Comparison Operators
+
+ Operator 		Meaning			Syntax
+
+ -e or -a filename 	File exists			[ -e filename ]
+ -f filename		File is a regular file  	[ -f filename ]
+ -d filename		File is a directory		[ -d filename ]
+ -c filename		File is a character device 	[ -c filename ]
+ -b filename		File is a block device 		[ -b filename ]
+ -h or -L filename	File is a symbolic link		[ -b filename ]
+ -r filename		File is a readable 		[ -r filename ]
+ -w filename		File is a writeable 		[ -w filename ]
+ -x filename		File is a executable 		[ -x filename ]
+ -s filename		File size is bigger than zero 	[ -s filename ]
+			bytes (not empty)
+
+$ [ -e myScript ]
+$ echo $?
+1
+
+$ cd IFCD17\ FUNDAMENTOS\ Y\ ADMINISTRACIÓN\ DE\ ORACLE\ DATABASE_A.V._18_801/Oracle\ University\ Learning/
+$ [ -e myScript ] 
+$ echo $?
+0 : --> # si existe
+
+$ touch example
+$ ls -l ex*
+-rw-r--r-- 1 hadoop hadoop 0 ene 27 18:18 example
+$ [ -f example ]
+$ echo $?
+0 : --> # is a regular file
+
+ls -l 
+-rw-r--r--  1 hadoop hadoop      0 ene 27 18:18  example
+drwxr-xr-x  2 hadoop hadoop   4096 ene 27 18:21  examples
+
+$ [ -d examples ]
+$ echo $?
+0 : --> # is a directory
+
+Using test an if statement
+
+if test condition
+   then 
+   command...
+   ...
+fi
+	or
+if [ expression ]
+   then 
+   command...
+   ...
+fi
+
+$ if [ $LOGNAME == "hadoop" ]
+then 
+echo $?
+echo "Hello $LOGNAME"
+fi
+0
+Hello hadoop
+
+How to test/Debug a Shell Script
+-x described as a debugger
+-v described as a verbose
+-n described as a syntax checker
+ 
+$ cat myScript 
+   echo running myScript
+   FMHOME=/usr/frame
+   MYBIN=/export/home/oracle/bin
+   echo $FMHOME
+
+$ bash -x myScript 
++ echo running myScript
+running myScript
++ FMHOME=/usr/frame
++ MYBIN=/export/home/oracle/bin
++ echo /usr/frame
+/usr/frame
+
+$ bash -v myScript 
+   echo running myScript
+running myScript
+   FMHOME=/usr/frame
+   MYBIN=/export/home/oracle/bin
+   echo $FMHOME
+/usr/frame
+
+$ bash -n myScript 
+
+$ bash -xv myScript 
+   echo running myScript
++ echo running myScript
+running myScript
+   FMHOME=/usr/frame
++ FMHOME=/usr/frame
+   MYBIN=/export/home/oracle/bin
++ MYBIN=/export/home/oracle/bin
+   echo $FMHOME
++ echo /usr/frame
+/usr/frame
+
+$ bash -xn myScript 
+$ 
+
+$ cat myScript 
+   #!/usr/bin/bash -xv
+   echo running myScript
+   FMHOME=/usr/frame
+   MYBIN=/export/home/oracle/bin
+   echo $FMHOME
+
+
+   #!/usr/bin/bash << EOF
+   #!/usr/bin/bash -xv << EOF
+   echo running myScript
+   FMHOME=/usr/frame
+   MYBIN=/export/home/oracle/bin
+   echo $FMHOME
+   >> EOF
+
+
+Conditional Expressions
+
+The && operator: ensures that the second command is run only if the preceding command succeeds, both command succeed
+$ mkdir $HOME/newdir && cd $HOME/newdir
+$ pwd
+/home/hadoop/newdir
+
+$ mkdir $HOME/newdir && cd $HOME/newdir
+mkdir: cannot create directory ‘/home/hadoop/newdir’: File exists
+
+The || operator: ensures that the second command is run only if the preceding command fails
+$ pwd
+/home/hadoop
+$ mkdir $HOME/newdir || cd $HOME/newdir
+mkdir: cannot create directory ‘/home/hadoop/newdir’: File exists
+$ pwd
+/home/hadoop/newdir
+
+The if statement: evaluates the exit status of a command and initiates additional actions based on the return value
+if [ command | test ];
+   then 		# on true execute when exit status is zero 
+   command1..
+   ...
+else
+   command2..           # on false execute when exit status is nonzero 
+   ...
+fi
+
+$ id
+uid=1001(hadoop) gid=1001(hadoop) groups=1001(hadoop),27(sudo)
+$ if test $LOGNAME = root
+then
+echo Hello System Administrator
+else
+echo $?
+echo "Hello " $LOGNAME
+fi
+1
+Hello  hadoop
+
+
+if [ command1 | test1 ];
+   then 			# on true execute when exit status is zero 
+   	commandn..              # on true execute
+   	...
+   elif [ command2 | test2 ];   # on false run a second nested test
+        then
+	     commandn           # on true from the second nested test
+   	     ...
+        else
+             commandn..         # on false from the second nestead test
+             ...
+fi
+
+$ whoami
+hadoop
+$ if [ $LOGNAME == root ]
+  then 
+    echo Hello System Administrator
+  elif [ $LOGNAME == hadoop ] 
+    then
+      echo $?
+      echo "Hello " $LOGNAME
+    else
+      echo "Don't know LOGNAME"
+  fi
+0
+Hello  hadoop
+
+The case statement: compares a single value against other values, 
+and runs a command or group of commands when a match is found
+
+$ case value in
+  pat1)
+  command1
+  ...
+  ;;
+  patn)
+  commandn
+  ...
+  ;;
+  *)
+  echo "Usage: $0 ( pat1 | patn )"
+  exit 3
+  ;;
+  esac 
+
+After a match is found for start or stop and the respective commands are run,
+no other patterns are checked
+
+#!/sbin/sh
+case "$1" in
+'start')
+  if [ -f /etc/vold.conf -a -f /usr/sbin/vold-a \ 
+  "${_INIT_ZONENAME:=`/sbin/zonename`}" = "global" ]; then
+  echo 'volume management starting.'
+  /usr/sbin/vold >/dev/msglog 2>&1 &
+  fi
+  ;;
+'stop')
+ /usr/bin/pkill -x -u 0 vold
+ ;;
+*)
+ echo "Usage: $0 { start | stop }"
+ exit 1
+ ;;
+esac
+
+Looping Constructs Many programming/scripting languages provide structures 
+to iterate through a list of objects.
+
+The bash shell provides the following three loop structure
+
+- for loop statement
+
+  Evalua the exit status of the in operation: 
+  if es zero any instructions are run, command or test is rerun and the exit status is re-checked
+  if is nonzero, the loop terminates.
+
+  for arg in []
+  do
+    commandn
+    ...
+  done
+
+  ex:
+
+  $ for (( i=1 ; i<=5 ; i++ ))
+    do
+      echo $i
+    done
+  1
+  2
+  3
+  4
+  5
+
+  $ for (( i=5 ; i>=1 ; i-- )); do   echo $i; done
+  5
+  4
+  3
+  2
+  1
+
+  Shifting Positional Parameters in a Loop
+  While passing command-line arguments, the Bourne (sh) shell accepts only a single number after the $sign ($0-$9).
+  An attempt to access the value in the tenth argument using the notation $10 results in the value of $1 followed by a zero (0)
+  Both the Korn (ksh) Shell and Bash shell can access the 10th parameter directly whith the value of the 10th argument ${10}. 
+  However, that could become very cumbersome in a loop.
+  The shift command enables you to shift your positional parameter values back by one position 
+  when processing the positional parameters in a loop.
+       The value of the $2 parameter becomes assigned to the $1 parameter 
+       Therefore, there is no limit on the number of positional parameters that can be passed to a shell script 
+
+  Use the set command to assign values for six positional arguments:
+
+  $ set 5 4 3 2 1 Blastoff
+  $ echo $@
+  5 4 3 2 1 Blastoff
+  $ for arg in $@
+	do
+          (( i = i + 1 ))
+	  echo "Parameter $1 the loop $i"
+   	  shift
+        done 
+
+- while (true) loop statement
+
+  repeat a command or group of commands in a loop
+
+  Evalua the exit status of the command or test command:
+  if is zero, any instructions follow the do statement are run
+     command or test is rerun and the exit status is re-checked
+  if nonzero, the loop terminates.
+
+  while [ command | test ]
+  command or test is rerun, and the exit status rechecked
+    do
+      commandn
+      ...
+    done
+   
+  $ set this is a while loop
+  $ echo $@
+  this is a while loop 
+  $ while [ $# -gt 0 ] 
+    do 
+      echo $1
+      shift
+    done
+
+- until (true) loop statement
+
+  repeat a command or group of commands in a loop - At least run ONCE
+
+  Evalua the exit status of the command or test command:
+  if is NONzero, any instructions follow the do statement are run
+     command or test is rerun and the exit status is re-checked
+  if is zero, the loop terminates.
+
+  until [ command | test ]
+    do
+      commandn
+      ...
+    done
+
+  $ set this is an UNTIL loop
+  $ echo $@
+  this is an UNTIL loop
+  $ until [ $# -le 0 ]
+    do
+      echo $1
+      shift
+    done
+
+<<-O-J-O>> probar
+
+#!/bin/sh
+#leaptest.sh (biciesto)
+# This shell check if a year is a leap year or not
+
+year=`date +%Y`
+
+echo "The year is: $year"
+
+if [ $[$year % 400] -eq "0" ]; then 
+     echo "This is an leap year: February has 29 days"
+elif [ $[$year % 4] -eq 0 ]; then 
+       if [ $[$year % 100] -ne 0 ]; then 
+            echo "This is an leap year: February has 29 days"
+       else
+            echo "This is NOT an leap year: February has 28 days"
+       fi      
+else
+     echo "This is NOY an leap year: February has 28 days"
+fi
+
+<<-O-J-O>> probar
+
+File Archival
+
+cpio is yet another archival program. Unlike tar, which automatically recurses
+subdirectories, cpio reads a list of files and directories from stdin, creates the archive, and writes
+the archive to stdout
+
+Tar command create, add, delete, list or extracts files in a tape archive file: $ man tar ór tar --help
+
+$ tar [options] archivefile filenames
+
+The output of using a tar command is a tar file
+The default output location for a tar file in UNIX and Linux is stdout
+
+Option	Description
+------	-----------
+  c	Create un nuevo tar file
+  t	List the table of contents of the tar file
+  x	Extracts files from the tar file
+  f	Specifies the archieve file or tape device the output will be redirected 
+  v	Executes in verbose mode; generate information about the operations that are executed; writes to the standard output
+  h	Follows symbolic links as standard files or directories
+  z 	Compresses and extracts files and directories by using gzip
+  j 	Compresses and extracts files and directories by using bzip2
+
+  c	Create un nuevo tar file - optional [-] - at the beginning of the output shows "a" that a file has been added to the archive 
+
+ - tar multiple files(file?) into an archive file(files.tar): $ tar [-]cvf files.tar file1 file2 file3
+
+	$ tar cvf file.tar file?
+	file1
+	file2
+	file3
+	file4
+	file5
+
+	$ ls -lF file*.tar
+	/home/hadoop/newdir
+	12K -rw-r--r-- 1 hadoop hadoop 10K feb  5 01:56 file.tar
+
+ - tar home directory on a disk: $ tar [-]cvf /dev/rmt/0 .
+ 
+ Basic Device Names for Backup Devices 
+
+  Tape: /dev/rmt/n
+  Diskette: /vol/dev/rdiskette0/unlabeled 
+
+  t	List the table of contents of the tar file - optional [-]
+
+	$ tar tvf file.tar
+	-rw-r--r-- hadoop/hadoop     6 2021-02-05 01:54 file1
+	-rw-r--r-- hadoop/hadoop     6 2021-02-05 01:55 file2
+	-rw-r--r-- hadoop/hadoop     6 2021-02-05 01:55 file3
+	-rw-r--r-- hadoop/hadoop     6 2021-02-05 01:55 file4
+	-rw-r--r-- hadoop/hadoop     6 2021-02-05 01:55 file5
+
+ 
+ - to view the table of contents of Oracle's home directory on the disk: $ tar [-]tf /dev/rmt/0
+
+ - to view the verbose content of the file(files.tar): $ tar [-]tvf files.tar
+
+  x	Extracts files from the tar file - optional [-] - at the beginning of the output shows "x" that a copy of the file was extracted
+
+	$ tar xvf ../file.tar
+	file1
+	file2
+	file3
+	file4
+	file5
+	$ ls -lF
+	/home/hadoop/newdir/retrieve
+	total 28K
+	4,0K drwxr-xr-x 2 hadoop hadoop 4,0K feb  5 02:06 ./
+	4,0K drwxr-xr-x 3 hadoop hadoop 4,0K feb  5 02:06 ../
+	4,0K -rw-r--r-- 1 hadoop hadoop    6 feb  5 01:55 file5
+	4,0K -rw-r--r-- 1 hadoop hadoop    6 feb  5 01:55 file4
+	4,0K -rw-r--r-- 1 hadoop hadoop    6 feb  5 01:55 file3
+	4,0K -rw-r--r-- 1 hadoop hadoop    6 feb  5 01:55 file2
+	4,0K -rw-r--r-- 1 hadoop hadoop    6 feb  5 01:54 file1
+
+ - to retrieve all the files from the disk archieve: $ tar [-]xvf /dev/rmt/0
+
+ - to extract or restore a single file from the files.tar: $ tar [-]xvf files.tar file1 
+
+  ex: $ tar -xf file.tgz
+
+ Compressing a File: gzip command: gzip [options] filename(s)
+ - to compress a set of files: $ gzip file1 file2 file3 file4 file5
+   ls *.gz
+
+	$ gzip file1 file2 file3 file4
+	$ ls -l
+	/home/hadoop/newdir
+	total 44K
+	4,0K drwxr-xr-x  3 hadoop hadoop 4,0K feb  5 02:20 .
+	4,0K drwxr-xr-x  2 hadoop hadoop 4,0K feb  5 02:06 retrieve
+	 12K -rw-r--r--  1 hadoop hadoop  10K feb  5 01:56 file.tar
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:55 file5
+	4,0K -rw-r--r--  1 hadoop hadoop   32 feb  5 01:55 file4.gz
+	4,0K -rw-r--r--  1 hadoop hadoop   32 feb  5 01:55 file3.gz
+	4,0K -rw-r--r--  1 hadoop hadoop   32 feb  5 01:55 file2.gz
+	4,0K -rw-r--r--  1 hadoop hadoop   32 feb  5 01:54 file1.gz
+	4,0K drwxr-xr-x 72 hadoop hadoop 4,0K feb  4 23:50 ..
+
+
+ Uncompressing a File: gzip command: gzip [options] filename
+ - to uncompress a file1: $ gzip -d file1.gz
+
+ Uncompressing a File: gunzip command: gunzip [options] filename
+ - to uncompress a file1: $ gunzip file1.gz
+	$ gunzip file?.gz
+	(base) hadoop@sc-ubuntu-18-04-5-lts:~/newdir$ ls -lF
+	/home/hadoop/newdir
+	total 44K
+	4,0K drwxr-xr-x  3 hadoop hadoop 4,0K feb  5 02:38 ./
+	4,0K drwxr-xr-x  2 hadoop hadoop 4,0K feb  5 02:06 retrieve/
+	 12K -rw-r--r--  1 hadoop hadoop  10K feb  5 01:56 file.tar
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:55 file5
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:55 file4
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:55 file3
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:55 file2
+	4,0K -rw-r--r--  1 hadoop hadoop    6 feb  5 01:54 file1
+	4,0K drwxr-xr-x 72 hadoop hadoop 4,0K feb  4 23:50 ../
+
+ 
+ Viewing a Compressed File: zcat command: zcat [options] filename
+ - view the content of the file file1.gz: $ zcat file1.gz | less
+	$ zcat file?.gz
+	file1
+	file2
+	file3
+	file4
+	$ zcat file1.gz
+	file1
+
+ Viewing a Compressed File with the gzip command: gzcat command: gzcat [options] filename
+ - view the content of the file file1.gz: $ gzcat file1.gz
+
+ Compressing multiple files into a single archive file, and is compatible with files created with pkzip: 
+   zip command: zip [options] archivefile filename(s)
+ - to compress file2 and file3 into a file.zip: $ zip file.zip file2 file3
+   ls *.zip
+
+	$ zip myfiles.zip file*
+  	adding: file1 (stored 0%)
+  	adding: file2 (stored 0%)
+  	adding: file3 (stored 0%)
+  	adding: file4 (stored 0%)
+  	adding: file5 (stored 0%)
+  	adding: file.tar (deflated 98%)
+
+	$ ls -l myfiles.zip
+	/home/hadoop/newdir
+	4,0K -rw-r--r-- 1 hadoop hadoop 1,1K feb  5 02:47 myfiles.zip
+
+ ex: $ zip myfiles.zip *
+
+ Viewing and Uncompressing Archive Files: unzip command: unzip [options] archivefile
+ - to uncompress the file.zip archive file: $ unzip file.zip
+
+	$ mkdir unzip
+	$ cd unzip/
+	$ unzip -l ../myfiles.zip 
+	Archive:  ../myfiles.zip
+	  Length      Date    Time    Name
+	---------  ---------- -----   ----
+	        6  2021-02-05 01:54   file1
+	        6  2021-02-05 01:55   file2
+	        6  2021-02-05 01:55   file3
+	        6  2021-02-05 01:55   file4
+	        6  2021-02-05 01:55   file5
+	    10240  2021-02-05 01:56   file.tar
+	---------                     -------
+	    10270                     6 files
+
+	$ unzip ../myfiles.zip 
+	Archive:  ../myfiles.zip
+	replace file1? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
+	 extracting: file1                   
+	 extracting: file2                   
+	 extracting: file3                   
+	 extracting: file4                   
+	 extracting: file5                   
+	  inflating: file.tar  
+
+ Compressing a File: bzip2 command: bzip2 [options] filename(s)
+ - to compress a set of files, file1, file2, file3, and file4: $ bzip2 file1 file2 file3 file4 
+   ls *.bz2
+
+ Uncompressing a File: bunzip2 command: that has been compressed with the bzip2 command: bunzip2 [options] filename
+ - to uncompress the file1.bz2: $ bunzip2 file1.bz2
+
+ Viewing a Compressed File: bzcat command: bzcat [options] filename
+ - to view the content of the file1.bz2: $ bzcat file1.bz2 | less
+
+ Computer Networking 
+
+OpenSSH and Remote Network Connections - OpenBSD Secure Shell - security utilities using the Secure Shell (SSH) network protocol.
+
+- sshd: (secure shell server daemon) secure end-to-end encrypted connection in an unsecure network
+- ssh: (secure shell) which connects a client to a server 
+- scp: (secure copy) which copies files securely
+- sftp: (secure ftp) which provides a secure file transfer protocol connection
+
+Remote login network connections can occur between a client machine and a server running sshd and between one server 
+to another server running sshd.
+
+Each new connection/session is authenticated with a username and password.
+
+Once the session is authenticated and established, both the local and remote hosts communicate with each other via the 
+Secure Shell (SSH) network protocol
+
+To generate public and private key pairs for authentication when connecting in Oracle's Cloud Environment: 
+	$ ssh-keygen -t [ rsa1 | dsa | ecdsa | rsa ] 
+
+the type of key pairs being generated depends on the version of OpenSSH: 
+"rsa1"  Version1 and 
+"dsa", "ecdsa", "rsa" Version2
+
+- ssh: (secure shell) provides a secure encrypted communication between two untrusted host over an unsecure network
+  allows you to connect and log in to a specified remote host
+
+  $ ssh [options] [-l login_name | username@]hostname [command]
+
+  ssh can use public-key encryption to authenticate a remote login session.
+      In public-key encryption, the ssh-keygen command generates a public-key that can 
+      be copied to all hosts that intend to communicate with the holder of the matching private-key
+
+	$ ssh hadoop@192.168.1.155
+	Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 5.4.0-64-generic x86_64)
+
+	 * Documentation:  https://help.ubuntu.com
+	 * Management:     https://landscape.canonical.com
+	 * Support:        https://ubuntu.com/advantage
+
+	 * Canonical Livepatch is available for installation.
+	   - Reduce system reboots and improve kernel security. Activate at:
+	     https://ubuntu.com/livepatch
+
+	0 packages can be updated.
+	0 of these updates are security updates.
+
+	New release '20.04.2 LTS' available.
+	Run 'do-release-upgrade' to upgrade to it.
+
+	Your Hardware Enablement Stack (HWE) is supported until April 2023.
+	Last login: Thu May 28 19:21:07 2020 from ::1
+
+	$ uname -n
+	sc-ubuntu-18-04-5-lts
+	$ ps -ef | grep whatever proccess on the remote machine
+	$ kill xxxxx whatever proccess on the remote machine
+        $ exit
+	$ uname -n
+
+  enable X11 forwarding: $ ssh -X username@hostname
+
+  users know that you can connect to a Linux server quite easily using a variety of SSH (Secure Shell) clients. 
+  That's all well and good but what about if you need to use some tool that has a GUI? The answer is to use X11 forwarding. 
+  X11 forwarding is a mechanism that allows a user to start up remote applications 
+  but forward the application display to your local Windows machine.
+
+  PuTTY: select SSH, X11 and tick the box X11 forwarding. 
+         The xdisplay location should also be set to localhost:0, 
+         which is basically the display you are working on currently
+
+  The best practice is to set SSH to not permitted for root user because any user would be able to su - into root.
+  This provides a layer of protection for the root user.
+
+- scp: (secure copy) which copies files and directories both ways securely between a Local and Remote Host.
+     $ scp [options] SourceFile [username@]hostname:/directory/TargetFile 
+     $ scp localFile remoteHost:/tmp
+
+     	$ scp 'Screenshot from 2020-12-31 14-17-51.png' hadoop@192.168.1.155:/home/hadoop/newdir
+	Welcome to Remote Login!
+	Screenshot from 2020-12-31 14-17-51.png                    100%  169KB  86.2MB/s   00:00    
+	$ 
+	$ ls -l /home/hadoop/newdir
+	/home/hadoop/Pictures
+	total 224K
+	172K -rw-rw-r--  1 hadoop hadoop 170K feb  6 00:19 'Screenshot from 2020-12-31 14-17-51.png'
+
+  The [username@] syntax is needed only when connecting as a different user other than the logged in user 
+  and requires you know that user's password.
+
+  Reversing the direction and copying Files from a Remote Host to a Local Host
+     $ scp [username@]hostname:/directory/SourceFile TargetFile 
+     $ scp remoteHost:/tmp/remoteFile /localFile 
+
+	$ scp hadoop@192.168.1.155:/home/hadoop/newdir/myfiles.zip .
+	Welcome to Remote Login!
+	myfiles.zip                                                 100% 1072    33.7KB/s   00:00    
+	$ ls -l myfiles.zip 
+	/home/hadoop/newdir
+	4,0K -rw-r--r-- 1 hadoop hadoop 1,1K feb  6 00:29 myfiles.zip
+
+  Copying Local Directories to and from a Remote Host
+  -r option recursively copies entire directories to and from another system 
+     $ scp -r ~/localFile remoteHost:/tmp
+     $ scp -r remoteHost:/tmp ~/localFile 
+  
+  File Transfer Protocol (FTP): exchanging files over a TCP/IP protocol, user-based password authentication.
+  also allows anonymous user access, where the password is usually a valid email address
+  sftp securely to access a remote server for exchanging files
+  sftp only uses the binary transfer mode which is a byte-for-byte transfer mode.
+
+  - $ sftp [options] [username@]hostname
+
+  <>
+
+  ftp userspace command: refers to all of the code in an operating system that lives outside of the kernel. 
+  Most Unix-like operating systems (including Linux) come pre-packaged with all kinds of utilities, programming languages, and graphical tools
+  - these are user space applications. We often refer to this as “userland.”
+
+  ls and cd commands are available at the sftp> prompt. 
+
+  $ sftp hadoop@192.168.1.155
+  Connected to 192.168.1.155.
+  sftp> ls
+  sftp> pwd
+  Remote working directory: /home/hadoop
+
+	$ sftp hadoop@192.168.1.155
+	Welcome to Remote Login!
+	Connected to 192.168.1.155.
+	sftp> pwd
+	Remote working directory: /home/hadoop
+	sftp> get newdir/file.tar 
+	Fetching /home/hadoop/newdir/file.tar to file.tar
+	/home/hadoop/newdir/file.tar                                               0%    0     0.0KB/s   --:-- ETA
+	sftp> lls
+	file1  file2  file3  file4  file5  file.tar  myfiles.zip  retrieve  unzip
+	sftp> pwd
+	Remote working directory: /home/hadoop
+	sftp> 
+	sftp> pwd
+	Remote working directory: /home/hadoop
+	sftp> mget newdir/file* 
+	Fetching /home/hadoop/newdir/file.tar to file.tar
+	Fetching /home/hadoop/newdir/file1 to file1
+	/home/hadoop/newdir/file1                                                   0%    0     0.0KB/s   --:-- ETA
+	Fetching /home/hadoop/newdir/file2 to file2
+	/home/hadoop/newdir/file2                                                   0%    0     0.0KB/s   --:-- ETA
+	Fetching /home/hadoop/newdir/file3 to file3
+	/home/hadoop/newdir/file3                                                   0%    0     0.0KB/s   --:-- ETA
+	Fetching /home/hadoop/newdir/file4 to file4
+	/home/hadoop/newdir/file4                                                   0%    0     0.0KB/s   --:-- ETA
+	Fetching /home/hadoop/newdir/file5 to file5
+	/home/hadoop/newdir/file5                                                   0%    0     0.0KB/s   --:-- ETA
+	sftp> pwd
+	Remote working directory: /home/hadoop
+	sftp> 
+	sftp> put newdir/file.tar
+	sftp> mput newdir/file* 
+
+  sftp> ?
+  sftp> help
+  Available commands:
+  bye                                Quit sftp
+  cd path                            Change remote directory to 'path' - on the remote machine
+  chgrp grp path                     Change group of file 'path' to 'grp'
+  chmod mode path                    Change permissions of file 'path' to 'mode'
+  chown own path                     Change owner of file 'path' to 'own'
+  df [-hi] [path]                    Display statistics for current directory or
+                                     filesystem containing 'path'
+  exit                               Quit sftp
+  get [-afPpRr] remote [local]       Download file - from remote to local			$ get filename
+  reget [-fPpRr] remote [local]      Resume download file
+  reput [-fPpRr] [local] remote      Resume upload file
+  help                               Display this help text
+  lcd path                           Change local directory to 'path'
+  lls [ls-options [path]]            Display local directory listing
+  lmkdir path                        Create local directory
+  ln [-s] oldpath newpath            Link remote file (-s for symlink)
+  lpwd                               Print local working directory
+  lrmdir path                        Remove local directory
+  ls [-1afhlnrSt] [path]             Display remote directory listing
+  lumask umask                       Set local umask to 'umask'
+  mkdir path                         Create remote directory
+  progress                           Toggle display of progress meter
+  put [-afPpRr] local [remote]       Upload file - from local to remote
+  pwd                                Display remote working directory
+  quit                               Quit sftp
+  rename oldpath newpath             Rename remote file
+  rm path                            Delete remote file
+  rmdir path                         Remove remote directory
+  symlink oldpath newpath            Symlink remote file
+  version                            Show SFTP version
+  !command                           Execute 'command' in local shell
+  !                                  Escape to local shell
+  ?                                  Synonym for help
+  sftp> 
+  
+  open				     Opens a connection to another computer on the network
+  mget				     Transfers multiple files from the remote to the local 	$ mget filename
+  mput 				     Transfers multiple files from local on the remote 
+
+  $ ftp hadoop@192.168.1.155
+  ftp: hadoop@192.168.1.155: Name or service not known
+  ftp> help
+  ftp> ?
+  Commands may be abbreviated.  Commands are:
+  !		dir		mdelete		qc		site
+  $		disconnect	mdir		sendport	size
+  account	exit		mget		put		status
+  append	form		mkdir		pwd		struct
+  ascii		get		mls		quit		system
+  bell		glob		mode		quote		sunique
+  binary	hash		modtime		recv		tenex
+  bye		help		mput		reget		tick
+  case		idle		newer		rstatus		trace
+  cd		image		nmap		rhelp		type
+  cdup		ipany		nlist		rename		user
+  chmod		ipv4		ntrans		reset		umask
+  close		ipv6		open		restart		verbose
+  cr		lcd		prompt		rmdir		?
+  delete	ls		passive		runique
+  debug		macdef		proxy		send
+  Command
+
+  The symbol that is used to represent the end-of-line or newline:
+
+  Mac pre OS X --> uses CR(a single character -- carriage return)
+  Mac OS X, UNIX and Linux --> ^M (a single character -- Ctrl-M)
+  Microsoft --> uses CRLF(a double character -- carriage return plus line feed)
+
+  Using dos2unix or unix2dos - the original file is overwritten
+  Commands to convert the file's format based on the destination to which the file is being transferred.
+
+  from Microsoft to UNIX, Linux or MAC: $ dos2unix filename
+  from UNIX, Linux or MAC to Microsoft: $ unix2dos filename 
+
+ Service models in Cloud Computing
+
+ * Infrastructure as a Service (IaaS): Infrastructure services over the internet
+   Users can access: Computer processors, Storage, Networks, Other infrastructure resources
+   Their applications and data from anywhere, compute capacity, network bandwidth, strore capacity
+   Providing hardware, maintenance, cloud infrastructure up to the virtualization level
+   Create virtual machines and decide operating system and apps to use
+
+ * Software as a Service (SaaS): Software services over the internet
+   Users has access: only to the applications provided by the SaaS provider. (email provider)
+   The provider has full control of the entire infrastructure including applications
+  
+   
+ * Platform as a Service (PaaS): Platform services over the internet
+   Users is able: Deploy applications using programs and tools provided by the provider who has full control of 
+   the infrastructure up to the point where users are able to modify their applications and environment.
+   (a web hosting provider that offers tools and programs to deploy a website)
+ 
+ Oracle Private Cloud Appliance = (IaaS + PaaS), is a highly scalable integrated system that makes it easy 
+ for customers to deploy and manage diverse workloads. 
+ Full-stack performance optimizations allow customers to optimize the performance of containerized, 
+ cloud-native applications and enterprise applications running on multiple operating systems.
+ https://www.oracle.com/engineered-systems/private-cloud-appliance/
+ https://www.oracle.com/servers/private-cloud-appliance/
+
+ Oracle OpenStack (IaaS): Offers the ability to deploy different deployment configurations depending on the
+ demand. As an IaaS cloud management platform, it centralizes enterprises' cloud operations for 
+ OpenStack operators to manage and deploy resourses within an IT network environment.
+ Oracle OpenStack is a software-defined network (SDN) solution in deploying VMs and virtual networks 
+ abstracted from the physical infrastructure of a data center. Optimized for Oracle Linux,
+ Oracle OpenStack securely steamlines the deployment of compute resources while decreasing the
+ time to deploy applications.
+ http://www.oracle.com/openstack
+
+ Oracle Cloud Infrastructure Services 
+
+<<-O-J-O>> probar
+<<-O-J-O>> probar
+<<-O-J-O>> probar
+# check user and group names also against this regular expression.
+#NAME_REGEX="^[a-z][-a-z0-9_]*\$"
+
+to see the ip $ ip a
+inet 192.168.1.155/24
+
+para instalar aplicaciones windows on ubuntu use wine app
+configurar wine: winecfg 
+Before using Wine, it is necessary to create the fake C: drive where your Windows applications will be installed. To do this, enter the following command into the terminal: You may find the terminal by going to Applications -> Accessories -> Terminal
+
+winecfg
+
+You also have the option of configuring Wine via the Configure Wine option in the Applications-> Wine menu.
+
+This will create a hidden folder (.wine) in your home directory containing the fake C: drive as well as registry files similar to those used in Windows. Once this directory is created, the Wine Configuration Window will appear. This window will allow you to customize a variety of settings for Wine, including which Windows Version that is emulated, drive mappings, DLL overrides, as well as application specific settings. Click 

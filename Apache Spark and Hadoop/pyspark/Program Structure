@@ -1,0 +1,207 @@
+#------------------
+#Hands-On Exercise: Program Structure
+#-----------------
+
+#named function:
+def mayorque(s):
+    return len(s) > 7
+
+s = "1234567"
+print(mayorque(s))
+
+s = "12345678"
+print(mayorque(s))
+
+s = ("Sorrento", "Madrid")
+
+print(mayorque(s))
+
+print(mayorque(s[1]))
+
+print(mayorque(s[0]))
+
+print(mayorque(line_tuple[1]))
+
+#named function:
+def mayorque(s):
+    result = len(s[1]) > 7
+    return result
+
+s = line_tuple
+result = mayorque(s)
+
+#print("s: ", s)
+print("type(s): ", type(s))         #   type(s):  <class 'tuple'>
+
+result = mayorque(s)
+type(result)
+print(result)
+
+#single-line named function:
+def mayorque(s): return len(s[1]) > 7
+result = mayorque(s)
+type(result)
+print(result)
+count = 0
+for i in result:
+    count = count + 1
+    print(i)
+    
+print(count)
+
+print(len(result))
+
+#Lambda Functions
+
+lambda function:
+filter(lambda s: len(s[1]) > 7, s)
+
+result = filter(lambda s: len(s[1]) > 7, s)
+type(result)
+
+print(result)
+
+for i in result:
+    print(i)
+
+result = filter(mayorque, s)
+
+print(result)
+
+type(result)
+
+for i in result:
+    print(i)
+
+print(len(result))
+
+#Python Map and Reduce
+
+list= [ ]
+temp_tuple= ( )
+record  = [ ]
+
+lines = [ ]
+filename = 'files/loudacre.log'
+file = open(filename, 'rt')
+lines = file.readlines()
+file.close()
+
+list_temp = [ ]
+for line in lines:
+    record  = line.split(',')
+    list_temp.append(int(record[3]))
+    #list_temp.append(record[4])
+
+
+print("Number of records: ", len(list_temp))
+print("Type is a ", type(list_temp))
+print(list_temp)
+
+Number of records:  500
+
+s = tuple(list_temp)
+
+len(s)
+
+temp2 = map(lambda s: (9/5 * (s) + 32), s)
+type(temp2)
+#from functools import reduce            # 
+mayor = reduce(lambda x,y: x if(x>y) else y, temp2)
+print("reduce: ", mayor)
+
+#mi propuesta: no funciona en principio porque esta mal escrita.. hahah
+# reduce(lambda temp2: sum(temp2)/len(temp2), temp2)
+
+# pero la propuesta del manual tampoco
+# -- Part 2: use reduce() to find the average temp
+average = reduce(lambda x,y: x+y, temp2)/float(len(temp2))
+print "average:",average
+
+#Whole number in sequence: 951
+#Sum of the digits: 9 + 5 + 1 = 15
+
+#Ratio of the whole to the sum of the digits: 951/15 = 63.4
+
+
+#/* idea inicial */
+#definir un for desde 0 hasta el maxnum y dentro de el generar la lista
+maxnum = 501
+list_num = []
+c=d=u=0
+for c in range(0,5):
+    for d in range(0,10):
+        for u in range(0,10):
+            tuple_num = set ()
+            x = str(c) + str(d) + str(u)
+            print(str(c) + str(d) + str(u))
+            y = (c+d+u)
+            print(c+d+u)
+            if y == 0:
+               ratio = 0
+            else:
+               ratio = int(x)/float(y)
+            tuple_num.add(x)
+            tuple_num.add(ratio)
+            list_num.append(tuple_num)
+
+ini = 1
+fin = 500
+def crea_serie(ini,fin):
+   lista_num = []
+   tupla_num = ()
+   numero = 0
+   for num in range (ini, fin):
+       # convierte el numero en string
+       str_num = str(num)
+       # print('str_num: ', str_num)
+       sum = 0
+       # print("len(str_num): ", len(str_num))
+       # suma los numeros entre sí 
+       for i in range(0, len(str_num)):
+           sum += int(str_num[i])
+       # calcula el ratio
+       ratio = float(num) / float(sum)
+       # crea la tupla
+       tupla_num = (num, ratio)
+       # print("type(tupla_num): ", type(tupla_num))
+       # print("tupla_num: ", tupla_num)
+       lista_num.append(tupla_num)
+   return lista_num 
+
+
+lista_num = crea_serie(1,500)
+for i in lista_num:
+   print("lista_num: ", lista_num) 
+
+def crea_serie(ini,fin):
+   global tupla_num
+   lista_num = []
+   numero = 0
+   for num in range (ini, fin):
+       # convierte el numero en string
+       str_num = str(num)
+       # print('str_num: ', str_num)
+       sum = 0
+       # print("len(str_num): ", len(str_num))
+       # suma los numeros entre sí 
+       for i in range(0, len(str_num)):
+           sum += int(str_num[i])
+       # calcula el ratio
+       ratio = float(num) / float(sum)
+       # crea la tupla
+       tupla_num = (num, ratio)
+       # print("type(tupla_num): ", type(tupla_num))
+       # print("tupla_num: ", tupla_num)
+       lista_num.append(tupla_num)
+       yield
+       
+ini = 1
+fin = 500
+tupla_num = set()
+generador_num = crea_serie(ini, fin)
+print("type(generador_num): ", type(generador_num))
+
+for num in range(ini, fin):
+    print("num: ", num, " tupla_num: ", tupla_num)
+    next(generador_num)

@@ -1,0 +1,64 @@
+
+#export PYSPARK_DRIVER_PYTHON=ipython
+#PYSPARK_DRIVER_PYTHON_OPTS=ipython
+#pyspark
+
+myDF = spark.sql("SELECT * FROM devsh.accounts")
+myDF.printSchema()
+myDF.show(5)
+
+"""
+DataFrame API
+"""
+myDF2 = myDF.select("first_name","last_name")
+myDF2.printSchema()
+myDF2.show(5)
+
+myDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice")
+myDF.printSchema()
+
+spark.catalog.setCurrentDatabase("devsh")
+
+for i in spark.catalog.listDatabases(): print(i)
+for i in spark.catalog.listTables("devsh"): print(i)
+for i in spark.catalog.listColumns("accounts", "devsh"): print(i)
+
+myDF = spark.sql("SELECT * FROM account_dev LIMIT 5")
+myDF.createOrReplaceTempView("account_dev")
+myDF.show()
+
+for i in spark.catalog.listDatabases(): print(i)
+for i in spark.catalog.listTables("devsh"): print(i)
+
+myDF = spark.sql("SELECT acct_num, first_name, last_name, account_device_id FROM devsh.accounts JOIN account_dev ON acct_num = account_id")
+myDF.show()
+
+
+##Esto da error:
+for i in spark.catalog.listColumns("account_dev"): print(i)
+for i in spark.catalog.listColumns("account_dev", "devsh"): print(i)
+for i in spark.catalog.listColumns("account_dev", "default"): print(i)
+
+"""
+write a hive
+scelisdev02@cca175-m:~$ hdfs dfs -ls /devsh_loudacre/name_dev
+"""
+myDF.write.mode("overwrite").option("path","/devsh_loudacre/name_dev").saveAsTable("name_dev")
+myDF.write.mode("append").option("path","/devsh_loudacre/name_dev").saveAsTable("name_dev")
+
+# Use the Catalog API to confirm that the table was created correctly with the right schema.
+for i in spark.catalog.listTables("devsh"): print(i)
+spark.sql("DESCRIBE devsh.name_dev").show()
+spark.sql("SELECT * FROM name_dev LIMIT 5").show()
+
+
+"""
+write a parquet
+scelisdev02@cca175-m:~$ hdfs dfs -ls /devsh_loudacre/name_dev_parquet
+"""
+myDF.write.mode("overwrite").save("/devsh_loudacre/name_dev_parquet")
+
+#confirm that the parquet file was created correctly with the right schema.
+myDFparquet = spark.read.parquet("/devsh_loudacre/name_dev_parquet")
+myDFparquet.printSchema()
+myDFparquet.show()

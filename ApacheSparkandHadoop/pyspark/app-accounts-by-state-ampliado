@@ -1,0 +1,56 @@
+# Python application 
+"""
+to execute:
+scelisdev03@cluster-cca175-m:~$ vi app-accounts-by-state.py
+
+si lo ejecutas sin argumentos te dará un error:
+scelisdev03@cluster-cca175-m:~$ spark-submit app-accounts-by-state.py
+<_io.TextIOWrapper name='<stderr>' mode='w' encoding='utf-8'> Usage: accounts-by-state.py <state-code>
+
+scelisdev03@cluster-cca175-m:~$ spark-submit app-accounts-by-state.py CA
+"""
+"""
+definition
+The Spark application will take a single argument—a state code (such as CA). 
+The program should read the data from the devsh.accounts Hive table and save the rows whose state column value matches the specified state code. 
+Write the results to /devsh_loudacre/accounts_by_state/state-code (such as accounts_by_state/CA).
+"""
+import sys
+
+from pyspark.sql import SparkSession
+
+if __name__ == "__main__":
+
+  # Create a SparkSession object
+  spark = SparkSession.builder.appName("Accounts by State Amplliado py").getOrCreate()
+
+  # Change the application log level from INFO (the default) to WARN
+  spark.sparkContext.setLogLevel("WARN")
+
+  # Leer la tabla Hive
+  # accountsDF = spark.read.table("devsh.accounts")
+  accountsDF = spark.read.table("devsh.accounts").persist()
+
+  # Obtener una colección que contenga los estados distintos que hay en las cuentas.
+  statesDict = ( accountsDF.  select( "state" ).  distinct().  collect() )
+  states = map ( lambda i: i[0], statesDict )
+
+  for i in states:
+      print( i )
+      # seleccionar los registros que coincidan con el state
+      stateAccountsDF = accountsDF. where( accountsDF. state == i )
+      # save el resultado
+      stateAccountsDF. write. mode( "overwrite" ). save( "/devsh_loudacre/accounts_by_state/" + i )
+
+  #stop the Spark session:
+  spark.stop()
+
+"""
+Revisar los ficheros en:
+"""
+#hdfs dfs -ls /devsh_loudacre/
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state/
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state/AZ
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state/OR
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state/NV
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state/CA

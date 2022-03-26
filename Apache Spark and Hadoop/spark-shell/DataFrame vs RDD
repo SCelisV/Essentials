@@ -1,0 +1,54 @@
+/*
+DataFrame vs RDD
+
+scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ vi rrhh.csv
+scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ hdfs dfs -put rrhh.csv /devsh_loudacre/
+scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ cat rrhh.csv
+id,nombre,departamento,edad
+1,lucas,finanzas,45
+2,juana,recursos humanos,44
+3,albertina,marketing,48
+4,vega,finanzas,45
+5,hugo,recursos humanos,44
+6,paloma,marketing,48
+7,ian,recursos humanos,68
+8,marta,marketing,33
+9,gonzalo,finanzas,29
+10,alejandro,recursos humanos,49
+11,alejandra,marketing,38
+12,ramiro,finanzas,25
+13,mariano,recursos humanos,50
+14,rebeca,marketing,60
+15,aitor,finanzas,55
+*/
+
+# Por cada departamento, hay que averiguar la edad media de sus empleados.
+
+val rrhhDF = spark.read.options(Map ( "inferSchema" -> "true", "header" -> "true" ) ).csv( "/devsh_loudacre/rrhh.csv" )
+rrhhDF.printSchema
+
+import org.apache.spark.sql.SparkSession
+val avgdptoDF = rrhhDF.groupBy("departamento").agg(avg("edad"))
+avgdptoDF.show()
+
+
+val file = ("/devsh_loudacre/rrhh.csv")
+val rdd = sc.textFile(file)
+val header = rdd.first
+val rrhhRDD = ( rdd.filter( i => i != header ).
+            map( i => i.split(',') ).
+            map( i => ( i(2), ( i(3).toInt, 1 ) ) ).
+
+ // Como hacerlo sin la funcion ???
+( tup1: (Int, Int), tup2: (Int, Int ) ) : (Int, Int ) = 
+{
+  val (edad1, contador1) = tup1
+  val (edad2, contador2) = tup2
+  (edad1+edad2, contador1+contador2)
+}
+
+            mapValues ( i => i._1 / i._2.toDouble )
+)
+
+rrhhList = rrhhRDD.collect ()
+for i in rrhhList: print(i)

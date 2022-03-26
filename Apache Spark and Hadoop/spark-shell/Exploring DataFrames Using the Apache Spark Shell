@@ -1,0 +1,29 @@
+//------------------
+//Hands-On Exercise: Exploring DataFrames Using the Apache Spark Shell
+//------------------
+
+//spark-shell
+spark
+//spark.
+//cat $DEVDATA/devices.json
+
+//hdfs dfs -put $DEVDATA/devices.json /devsh_loudacre/
+
+val devDF = spark.read.json("/devsh_loudacre/devices.json")
+
+devDF.printSchema
+
+devDF.show(5)
+
+val rows = devDF.take(5)
+rows.foreach(println)
+
+devDF.count
+
+val makeModelDF = devDF.select("make","model")
+
+makeModelDF.printSchema
+makeModelDF.count
+makeModelDF.show
+makeModelDF.select("make","model").where("make = 'Ronin'").show()
+devDF.select("devnum","make","model").where("make = 'Ronin'").show()

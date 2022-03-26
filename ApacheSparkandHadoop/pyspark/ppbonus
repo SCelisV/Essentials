@@ -1,0 +1,9 @@
+# cargar el fichero en python --> :load ssbonus
+sc
+filename = "/user/hive/warehouse/devsh.db/accounts"
+bonusRDD = sc.textFile(filename). map(lambda x : x.split(',')) . keyBy(lambda x : x[8])
+bonusRDD2 = bonusRDD.mapValues(lambda x: x[4] + ',' + x[3]) .groupByKey()
+#for i in bonusRDD2.take(10) : print(i)
+for (x, y) in bonusRDD2.sortByKey().take(5):
+   print ("\n---") ,x
+   for i in y: print(i)

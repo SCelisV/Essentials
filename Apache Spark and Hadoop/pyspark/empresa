@@ -1,0 +1,17 @@
+
+#export PYSPARK_DRIVER_PYTHON=ipython
+#PYSPARK_DRIVER_PYTHON_OPTS=ipython
+#pyspark
+
+spark
+empresaDF = spark.read.option("inferSchema", "true").option("header", "true").csv("/devsh_loudacre/empresa.csv")
+empresaDF.printSchema()
+empresaDF.show()
+
+# 
+from pyspark.sql.functions import *
+empresaDF.groupBy("department").agg(max("age"), sum("expense")).withColumnRenamed("max(age)", "max. edad").withColumnRenamed("sum(expense)", "suma gastos").show()   
+
+# para evitar confilicto en las functions
+from pyspark.sql import functions as f
+empresaDF.groupBy("department").agg(f.max("age"), f.sum("expense")).withColumnRenamed("max(age)", "max. edad").withColumnRenamed("sum(expense)", "suma gastos").show()

@@ -1,0 +1,38 @@
+//------------------
+//-O-J-O- sin hacer - revisar -Hands-On Exercise: Working with Libraries in Scala
+//------------------
+//------------------
+
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ ls *Log*
+
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ cat LogUtils.scala 
+
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ scalac LogUtils.scala
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ ls com/loudacre/utilslib/
+
+val record = "2014-03-15:10:10:31, Titanic 4000, 1882b564-c7e0-4315-aa24-228c0155ee1b, 58, 36, 39, 31, 15, 0, TRUE, enabled, enabled, 37.819722, -122.478611"
+
+
+import com.loudacre.LogUtils
+val record = "2014-03-15:10:10:31, Titanic 4000, 1882b564-c7e0-4315-aa24-228c0155ee1b, 58, 36, 39, 31, 15, 0, TRUE, enabled, enabled, 37.819722, -122.478611" 
+LogUtils.getDevId(record)
+LogUtils.getDevModel(record)
+
+import com.loudacre.LogUtils
+val record = "2014-03-15:10:10:31, Titanic 4000, 1882b564-c7e0-4315-aa24-228c0155ee1b, 58, 36, 39, 31, 15, 0, TRUE, enabled, enabled, 37.819722, -122.478611"
+import com.loudacre.Phone
+val p = new Phone("my-id", "my-device-model")
+val p = new Phone(LogUtils.getDevId(record), LogUtils.getDevModel(record))
+
+//$ scala PhoneInfoFormatter
+/*
+Definición de un Scala Objeto
+object nameObject{
+  def main(args: Array[String]) {
+
+  }
+}
+class nameClass(argumentos) {
+
+}
+*/

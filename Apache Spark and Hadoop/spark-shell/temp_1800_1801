@@ -1,0 +1,116 @@
+
+spark
+
+val tempDF = spark.read.option("inferSchema", "true").csv("/user/scelisdev03/1800_1801.csv") 
+tempDF.show
+tempDF.printSchema
+
+import org.apache.spark.sql.types._
+
+val devColumns = List(
+StructField("estacion",StringType),
+StructField("fecha",StringType),
+StructField("tipo",StringType),
+StructField("temperatura",DoubleType))
+
+val devSchema = StructType(devColumns)
+
+val temp01DF = spark.read.schema(devSchema).csv("/user/scelisdev03/1800_1801.csv")
+temp01DF.printSchema()
+temp01DF.show()
+
+
+// sólo en este caso porque nos dan los grados centigrados múltiplicado por 100, por lo tanto tenemos que dividir por 10
+def CtoF(celsius: Double) = 0.01 * (celsius * 9 / 5 ) + 32
+
+val fnCol = temp01DF("tipo")
+val tminCol = (fnCol === "TMIN")    
+tminCol.desc
+
+temp01DF.select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").show()
+
+
+temp01DF.where(tminCol).  select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").show()
+
+val temp02DF = temp01DF.where(tminCol). select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").
+groupBy( $"estacion", $"anyo").min("temperatura").
+withColumnRenamed("min(temperatura)", "min_temp")
+
+temp02DF.select( $"estacion", $"anyo", $"min_temp" ).
+show()
+
+temp02DF.select( $"estacion", $"anyo", $"min_temp" * 0.01 * (9.0 / 5.0) + 32.0 ).
+withColumnRenamed("(((min_temp * 0.01) * 1.8) + 32.0)", "minima").
+show()
+
+temp02DF.select( $"estacion", $"anyo", format_number( $"min_temp" * 0.01 * (9.0 / 5.0) + 32.0, 2) ).
+withColumnRenamed("format_number((((min_temp * 0.01) * 1.8) + 32.0), 2)", "minima").
+show()
+
+// en una sóla línea sería:
+
+
+import org.apache.spark.sql.types._
+
+val devColumns = List(
+StructField("estacion",StringType),
+StructField("fecha",StringType),
+StructField("tipo",StringType),
+StructField("temperatura",DoubleType))
+
+val devSchema = StructType(devColumns)
+
+val temp01DF = spark.read.schema(devSchema).csv("/user/scelisdev03/1800_1801.csv")
+temp01DF.printSchema()
+temp01DF.show(5)   
+
+
+val schema = """
+  estacion string,
+  fecha string,
+  tipo string,
+  temperatura double
+  """
+
+val temp01DF = spark.read.schema(schema).csv("/user/scelisdev03/1800_1801.csv")
+temp01DF.printSchema()
+temp01DF.show(5)   
+
+val fnCol = temp01DF("tipo")
+val tminCol = (fnCol === "TMIN")   
+
+// or
+
+temp01DF.
+where(tminCol).
+select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").
+groupBy( $"estacion", $"anyo").
+min("temperatura").
+withColumnRenamed("min(temperatura)", "min_temp").
+select( $"estacion", $"min_temp" * 0.01 * (9.0 / 5.0) + 32.0 ).
+withColumnRenamed("(((min_temp * 0.01) * 1.8) + 32.0)", "minima").
+show() 
+
+// or
+
+temp01DF.
+where($"tipo" === "TMIN").
+select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").
+groupBy( $"estacion", $"anyo").
+min("temperatura").
+withColumnRenamed("min(temperatura)", "min_temp").
+select( $"estacion", format_number($"min_temp" * 0.01 * (9.0 / 5.0) + 32.0, 2)).
+withColumnRenamed("format_number((((min_temp * 0.01) * 1.8) + 32.0), 2)", "minima").
+show() 
+
+// or
+
+temp01DF.
+where($"tipo" === "TMIN").
+select( $"estacion", $"fecha".substr(0, 4).alias("anyo"), $"temperatura").
+groupBy( $"estacion", $"anyo").
+min("temperatura").
+withColumnRenamed("min(temperatura)", "min_temp").
+select( $"estacion", ($"min_temp" * 0.01 * (9.0 / 5.0) + 32.0).alias("minima") ).
+sort( $"anyo".desc, $"estacion").
+show() 

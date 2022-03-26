@@ -1,0 +1,45 @@
+sql.txt
+
+-- SQL -- instalación mysql - problemas - problems
+
+sudo service --status-all | grep mysql
+service --status-all
+sudo systemctl status mysql
+sudo service mysql stop
+sudo service mysql start
+
+sudo apt upgrade
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl status mysql
+
+sudo find / -type s
+socket=/var/lib/mysql/mysql.sock
+
+service mysqld stop
+/etc/init.d/mysqld stop
+mysqladmin -u root -p shutdown
+  pkill -9 mysqld
+  pgrep mysql
+  ps aux | grep mysql | grep -v grep
+  kill -9 xxx
+
+pid file in /var/run/mysqld/ and delete it
+chmod 777 /var/run/mysqld/mysqld.sock
+
+ps -A|grep mysql
+sudo pkill mysql
+ps -A|grep mysqld
+sudo pkill mysqld
+service mysql restart
+mysql -u root -p
+
+Remove mySQL
+sudo apt-get remove --purge mysql-server mysql-client mysql-common -y
+sudo apt-get autoremove -y
+sudo apt-get autoclean
+sudo rm -rf /etc/mysql
+sudo find / -iname 'mysql*' -exec rm -rf {} \;
+apt-get --purge remove "mysql*"
+
+sudo mysql -u root

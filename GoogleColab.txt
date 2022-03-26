@@ -1,0 +1,36 @@
+Google Colab
+
+
+Importar ficheros:
+
+- from GDrive:
+
+from google.colab import drive
+drive.mount('/content/gdrive')
+
+- from instancia S3 de amazon - cargar el data set flower_data.
+
+!wget -cq https://s3.amazonaws.com/content.udacity-data.com/courses/nd188/flower_data.zip
+!unzip -qq flower_data.zipi
+
+- from LocalDisk 
+
+Dar al botón subir, que esta en el margen superior izquierdo de la pestaña de archivos.
+Buscar el archivo que queremos subir, desde el directorio del disco duro local.
+
+Con los archivos cargados,  podremos realizar una operativa similar a la que haríamos desde una consola de linux. Se usan los mismos comandos, pero poniendo el símbolo de admiración delante. Así, podremos:
+
+Listar con !ls
+Ver el contenido de un archivo con !head, !tail o !cat
+Mover con !mv
+Copiar con !cp
+Borrar con !rm
+Además de muchas otras cosas que pueden hacerse desde una consola de Linux
+
+
+
+
+
+
+
+

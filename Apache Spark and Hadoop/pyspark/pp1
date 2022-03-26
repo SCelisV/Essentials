@@ -1,0 +1,6 @@
+in_dir = "dataset/retail_db/orders_parquet"
+out_dir = "dataset/solutions/scq05"
+
+DFIn = (spark. read. parquet( in_dir ))
+DFIn.printSchema()
+DFIn.show()

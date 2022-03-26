@@ -1,0 +1,21 @@
+#export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH
+  
+#DFs
+#spark
+#hdfs dfs -put filename /user/scelisdev02/ filename    --> por default
+#
+xDF = spark.read.json("/devsh_loudacre/devices.json").show(5)
+x1DF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice").show(5)
+
+#RDDs - ok - spark context
+spark
+xRDD = spark.sparkContext.textFile("purplecow.txt")
+print(type(xRDD))
+for i in xRDD.take(2): print(i)
+
+#RDDs - ok - sc context
+sc
+x1RDD = sc.textFile("people-no-pcode.csv")
+print(type(x1RDD))
+x1RDD
+for i in x1RDD.take(2): print(i)

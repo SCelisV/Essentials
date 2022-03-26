@@ -1,0 +1,46 @@
+**********************************************************************************************
+* Errores - 
+**********************************************************************************************
+
++--------------------------------------------------------------------------------------------+
+* GCP
+* scelisdev02@cca175-m:~/training_materials/devsh/scripts$ hive -f create-accounts.sql 
++ FAILED: SemanticException [Error 10071]: Database does not exist: devsh                    
++--------------------------------------------------------------------------------------------+
+ - Crear la database
+
+hive> create database devsh
+
++--------------------------------------------------------------------------------------------+
+* Pycharm - Python
+* Ejecutando el fichero pandas.py
+* AttributeError: module 'pandas' has no attribute 'DataFrame'
+
++--------------------------------------------------------------------------------------------+
+- Renombar el fichero
+
+Rename file pandas.py pandas1.py
+Refactor
+
++--------------------------------------------------------------------------------------------+
+
+Length of values (6) does not match length of index (7)
+Series deben tener la misma longitud
+
++--------------------------------------------------------------------------------------------+
+se puede acceder a una serie con dot notation o con corchetes
+pero si el índice es númerico, no.
+1.0    A
+3.0    B
+...
+dtype: object
+
+No se puede acceder una serie con notation dot (.) 
+print("s.1.0: ", s.1.0)     #   SyntaxError: invalid syntax
+
++--------------------------------------------------------------------------------------------+
+
+Py4JJavaError
+
+
++--------------------------------------------------------------------------------------------+

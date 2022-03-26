@@ -1,0 +1,47 @@
+// hdfs dfs -put $HOME/18* /user/scelisdev03/
+
+import org.apache.spark.sql.SparkSession
+
+import org.apache.spark.sql.types._
+
+// org.apache.spark.sql.types.StructType
+val devColumns = StructType( List(
+StructField("estacion",StringType),
+StructField("fecha",StringType),
+StructField("tipo",StringType),
+StructField("temperatura",DoubleType)) )
+
+// org.apache.spark.sql.types.StructType
+val devSchema = StructType(devColumns)
+
+
+spark.catalog.listDatabases.show
+spark.catalog.listTables.show
+
+// org.apache.spark.sql.DataFrame
+val myDF = spark.read.schema(devSchema) .csv("/user/scelisdev03/1800_1801.csv") 
+myDF.show(5)
+myDF.printSchema
+myDF.createOrReplaceTempView("v_1800_1801")
+
+
+spark.catalog.listDatabases.show
+spark.catalog.listTables.show
+
+# v_1800_1801|    null|       null|TEMPORARY|       true|
+
+spark.catalog.listColumns( "v_1800_1801" ).show
+
+spark.sql(" DESCRIBE v_1800_1801 ").show
+
+spark.sql(
+  """
+  SELECT estacion, substring(fecha, 1, 4 ) as anyo,
+    format_number( MIN( temperatura ) * 0.1 * 9.0 / 5.0 + 32.0 , 2 ) as min
+  FROM v_1800_1801
+  WHERE tipo = 'TMIN'
+  GROUP BY estacion, substring(fecha, 1, 4 )
+  ORDER BY anyo DESC, estacion
+  """).show
+
+spark.catalog.dropTempView ("v_1800_1801")

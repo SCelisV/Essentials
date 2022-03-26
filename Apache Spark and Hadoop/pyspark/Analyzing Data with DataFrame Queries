@@ -1,0 +1,121 @@
+#------------------
+#Hands-On Exercise: Analyzing Data with DataFrame Queries
+#------------------
+
+#export PYSPARK_DRIVER_PYTHON=ipython
+#PYSPARK_DRIVER_PYTHON_OPTS=ipython
+#pyspark
+
+spark
+
+accountsDF = spark.read.table("devsh.accounts")
+accountsDF.select(accountsDF["first_name"]).show()
+accountsDF.select(accountsDF.first_name).show()
+
+fnCol = accountsDF.first_name
+#fnCol. + <TAB>
+
+lucyCol = (fnCol == "Lucy")
+
+accountsDF.printSchema()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).show()
+
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(lucyCol).show()
+
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(accountsDF.first_name == "Lucy").show()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(fnCol == "Lucy").show()
+accountsDF.where(fnCol == "Lucy").show()
+
+accountsDF.select("city", "state", accountsDF.phone_number.substr(1,3)).show(5)
+
+accountsDF.select("city", "state", accountsDF.phone_number.substr(1,3).alias("area_code")).show(5)
+
+accountsDF.where(accountsDF.first_name.substr(1,2) == accountsDF.last_name.substr(1,2)).select("first_name","last_name").show(5)
+
+accountsDF.groupBy("last_name").count().show(5)
+accountsDF.groupBy("last_name","first_name").count().show(5)
+
+## [training@dev ~]$ parquet-tools schema $DEVDATA/base_stations.parquet
+##message spark_schema{
+##  optional int32 id;
+##  optional binary zip (UTF8);
+##  optional binary city (UTF8);
+##  optional binary state (UTF8);
+##  optional double lat;
+##  optional double lon;
+##}
+
+##[training@dev ~]$ parquet-tools head $DEVDATA/base_stations.parquet
+
+baseDF = spark.read.parquet("/devsh_loudacre/base_stations.parquet")
+baseDF.printSchema()
+
+accountsDF.select("acct_num","first_name","last_name","zipcode").join(baseDF, baseDF.zip == accountsDF.zipcode).show()
+
+accountDeviceDF = spark.read.csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.printSchema()
+accountDeviceDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.printSchema()
+
+activeAccountsDF = accountsDF.where(accountsDF.acct_close_dt.isNull())
+
+activeAccountsDF.printSchema()
+accountDeviceDF.printSchema()
+
+activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt").join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).show()
+activeAcctDevsDF = activeAccountsDF.join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).select("device_id")
+activeAcctDevsDF.show()
+accountDeviceDF.printSchema()
+
+devDF = spark.read.json("/devsh_loudacre/devices.json")
+devDF.printSchema()                                                         
+
+accountDeviceDF.select("id", "account_id", "device_id", "activation_date", "account_device_id").join(devDF, devDF.devnum == accountDeviceDF.device_id).show()
+activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt").join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).join(devDF, devDF.devnum == accountDeviceDF.device_id).show()
+sumDevicesDF = activeAcctDevsDF.groupBy("device_id").count().withColumnRenamed("count", "active_num")
+sumDevicesDF.show()
+orderDevicesDF = sumDevicesDF.orderBy(sumDevicesDF.active_num.desc())
+orderDevicesDF.show()
+devDF = spark.read.json("/devsh_loudacre/devices.json")
+devDF.show()
+joinDevicesDF = orderDevicesDF.join(devDF, sumDevicesDF.device_id == devDF.devnum)
+joinDevicesDF.show()
+joinDevicesDF.select("device_id", "make", "model", joinDevicesDF.active_num).show()
+joinDevicesDF.select("device_id", "make", "model", joinDevicesDF.active_num).write.mode("overwrite").save("/devsh_loudacre/top_devices")
+
+##[training@dev ~]$ parquet-tools head /tmp/top_devices
+##device_id = 6
+##make = iFruit
+##model = 3
+##count = 2231
+
+from pyspark.sql.functions import *
+spark
+peopleDF = spark.read.option("inferSchema", "true").option("header", "true").csv("/user/scelisdev02/people.csv")
+peopleDF.printSchema()
+peopleDF.show()
+peopleDF.groupBy("pcode").agg(sum("age"), max("age"), min("age"), avg("age")).withColumnRenamed("sum(age)", "suma").show()
+
+#en este caso peopleDF.groupBy es de GroupeDataset
+peopleDF.groupBy("pcode")
+#<pyspark.sql.group.GroupedData at 0x7fdcd7093910>
+
+peopleDF.groupBy("pcode").agg(sum("age"), max("age"), min("age"), avg("age")).withColumnRenamed("sum(age)", "suma").  orderBy(col("suma").desc()). \
+show()
+
+
+from pyspark.sql import functions as f
+peopleDF.groupBy("pcode").agg(f.sum("age"), f.max("age"), f.min("age"), f.avg("age")).show()
+
+
+#esto da un error porque el método desc pertenece a col
+peopleDF.groupBy("pcode").agg(sum("age"), max("age"), min("age"), avg("age")).withColumnRenamed("sum(age)", "suma").  orderBy(("suma").desc()). \
+show()
+
+# aquí busca una columna llamada suma
+peopleDF.groupBy("pcode").agg(sum("age"), max("age"), min("age"), avg("age")).withColumnRenamed("sum(age)", "suma").  orderBy(("suma")). \
+show())
+
+# se puede ordenar por varias columnas
+peopleDF.groupBy("pcode").agg(sum("age"), max("age"), min("age"), avg("age")).withColumnRenamed("sum(age)", "suma"). orderBy(col("suma").desc(), col("max(age)")). \
+show()

@@ -1,0 +1,233 @@
+Programación Basada en Flujos [fbp]. 
+
+Un sistema fácil de usar, potente y fiable para procesar y distribuir datos.  https://nifi.apache.org/
+Apache NiFi soporta gráficos dirigidos potentes y escalables de enrutamiento de datos, transformación y lógica de mediación del sistema. 
+El flujo puede modificarse en tiempo de ejecución
+Seguimiento del flujo de datos de principio a fin
+SSL, SSH, HTTPS, contenido cifrado, etc.
+Autorización multi-inquilino y gestión interna de autorizaciones/políticas
+
+https://nifi.apache.org/docs.html
+
+https://nifi.apache.org/download.html
+
+1.15.0
+
+    Released November 7th, 2021
+    Sources:
+        nifi-1.15.0-source-release.zip ( asc, sha256, sha512 )
+    Binaries
+        nifi-1.15.0-bin.tar.gz ( asc, sha256, sha512 )
+
+Descargas: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi
+
+https://downloads.apache.org/nifi/
+
+[   ] KEYS                         2021-06-01 10:57  108K  
+
+https://downloads.apache.org/nifi/1.15.0/
+
+[   ] nifi-1.15.0-source-release.zip                 2021-11-03 19:27   81M         -->  version
+[TXT] nifi-1.15.0-source-release.zip.asc             2021-11-03 19:27  488          -->  firma 
+[TXT] nifi-1.15.0-source-release.zip.sha256          2021-11-03 19:27   65          -->  the 256 cheksum
+[TXT] nifi-1.15.0-source-release.zip.sha512          2021-11-03 19:27  129          -->  the 512 checksum
+
+https://www.apache.org/info/verification.html
+
+https://downloads.apache.org/nifi/KEYS
+
+
+$ gpg --import KEYS
+$ gpg --verify nifi-1.15.0-source-release.zip.asc nifi-1.15.0-source-release.zip 
+$ gpg --print-md SHA512 nifi-1.15.0-source-release.zip
+$ gpg --print-md SHA256 nifi-1.15.0-source-release.zip
+$ gpg --print-md MD5 nifi-1.15.0-source-release.zip
+
+
+$ sha512sum nifi-1.15.0-source-release.zip
+$ md5sum nifi-1.15.0-source-release.zip
+
+comparar la salida con el contenido de los ficheros descargados
+
+------
+notas sobre la verificación
+
+1. comprobar que un archivo se ha descargado correctamente. checksum.  Two files are (only) equal if their checksums are equal.
+   algoritmos conocidos: SHA-256 y SHA-512. MD5 y SHA-1 , Unix y macOS: md5sum or shasum ... etc
+   SHA-256	
+   Windows: certUtil -hashfile file SHA256 	
+   Linux: sha256sum file 	
+   MacOS: shasum -a 256 file 	
+   compare with: file.sha256
+   
+
+   SHA-512	
+   Windows: certUtil -hashfile file SHA512 	
+   Linux: sha512sum file 	
+   MacOs: shasum -a 512 file 	
+   compare with: file.sha512
+
+
+$ cat nifi-1.15.0-source-release.zip.sha512
+63f10d9127cf1613c29bf2306be3d7a5b931b31304920706e0df5ea2fe87b58c410efed6ac37afc38d12c65e69f14aec7afb926000fc90cc13f15c738cd15c7f
+
+$ sha512sum nifi-1.15.0-source-release.zip
+63f10d9127cf1613c29bf2306be3d7a5b931b31304920706e0df5ea2fe87b58c410efed6ac37afc38d12c65e69f14aec7afb926000fc90cc13f15c738cd15c7f  nifi-1.15.0-source-release.zip
+
+2. Comprobación de las firmas - cualquier programa OpenPGP vale.
+
+The GNU Privacy Guard. - gpg - 
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Sources/ $ gpg --import KEYS
+
+nos puede suceder que:
+
+-- $ gpg --verify nifi-1.15.0-source-release.zip.asc nifi-1.15.0-source-release.zip
+
+gpg: Signature made mié 03 nov 2021 17:31:19 CET
+gpg:                using RSA key D2F24B809FFAB1E21AEA02839093BF854F811A1A
+gpg: Can't check signature: No public key
+
+Esto significa que no tenemos la clave pública del gestor de versiones (DE885DD3) en nuestro sistema local. 
+podemos obtenerla desde MIT PGP Public Key Server --> http://pgpkeys.mit.edu/
+
+En este caso no, porque tenemos el fichero KEYS que hemos importado
+
+gpg --keyserver pgpkeys.mit.edu --recv-key DE885DD3
+
+nos puede suceder que:
+
+-- $ gpg --verify nifi-1.15.0-source-release.zip.asc nifi-1.15.0-source-release.zip
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Sources$ gpg --verify nifi-1.15.0-source-release.zip.asc nifi-1.15.0-source-release.zip
+gpg: Signature made mié 03 nov 2021 17:31:19 CET
+gpg:                using RSA key D2F24B809FFAB1E21AEA02839093BF854F811A1A
+gpg: Good signature from "Joseph Witt <joe.witt@gmail.com>" [unknown]
+gpg:                 aka "Joseph Witt <joewitt@apache.org>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: D2F2 4B80 9FFA B1E2 1AEA  0283 9093 BF85 4F81 1A1A
+
+en este punto, la firma es buena (desarrolladores del proyecto Apache, todas las claves están en el archivo KEYS), pero no confiamos en esta clave. 
+
+El paso crucial para la validación es confirmar la huella digital de la clave pública
+es necesario verificar adicionalmente que la clave fue creada por el verdadero "Joseph Witt"
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Sources/nifi-1.15.0$ gpg --fingerprint 9093BF854F811A1A
+pub   rsa2048 2014-08-26 [SC]
+      D2F2 4B80 9FFA B1E2 1AEA  0283 9093 BF85 4F81 1A1A
+uid           [ unknown] Joseph Witt <joe.witt@gmail.com>
+uid           [ unknown] Joseph Witt <joewitt@apache.org>
+sub   rsa2048 2014-08-26 [E]
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Sources$ gpg --verify nifi-1.15.0-source-release.zip.asc nifi-1.15.0-source-release.zip
+
+------
+
+[eip] Enterprise Integration Patterns
+[soa] Service Oriented Architecture
+[api] Application Programming Interface
+[iot] Internet of Things
+[bigdata] Big Data, Macrodatos
+[fbp] Flow Based Programming
+[seda] Scalable Internet Services
+[edi] Electronic Data Interchange
+[dataflow] Flujo de datos
+
+A menudo no es posible ni siquiera acercarse a replicar los entornos de producción en el laboratorio.
+
+FlowFile --> Information packet --> representa cada objeto que se mueve a través del sistema
+FlowFile Processor --> Black Box --> procesadores tienen acceso a los atributos de un determinado FlowFile
+Connection --> Bounded Buffer --> enlace real entre los procesadores
+Flow Controller --> Scheduler --> mantiene el conocimiento de cómo se conectan los procesos y gestiona los hilos y las asignaciones de los mismos que utilizan todos los procesos.
+actúa como intermediario facilitando el intercambio de FlowFiles entre procesadores.
+Process Group --> subred --> es un conjunto específico de procesos y sus conexiones, que pueden recibir datos a través de puertos de entrada y enviar datos a través de puertos de salida. 
+
+Running the application - Ejecutando la app
+
+Binaries: nifi-1.15.0-bin.tar.gz
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ 
+
+bin/nifi.sh <command> where
+<command> is one of:
+
+start: starts NiFi in the background
+stop: stops NiFi that is running in the background
+status: provides the current status of NiFi
+run: runs NiFi in the foreground and waits to receive a Ctrl-C, which then shuts down NiFi.
+install: (available in Linux only, not OSX): installs NiFi as a service that can then be controlled via service nifi start, service nifi stop, service nifi status.
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ cd bin
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/bin$ . nifi.sh start
+bash: JAVA_HOME not set; results may vary
+
+Java home: 
+NiFi home: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0
+
+Bootstrap Config File: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/conf/bootstrap.conf
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/bin$ . nifi.sh status
+
+Java home: 
+NiFi home: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0
+
+Bootstrap Config File: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/conf/bootstrap.conf
+
+2021-12-06 13:00:09,883 INFO [main] org.apache.nifi.bootstrap.Command Apache NiFi is currently running, listening to Bootstrap on port 37989, PID=99407
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/logs$ cat nifi-app.log
+
+---
+en el fichero logs: logs/nifi-app.log --> vemos la dirección en la que esta ejecutandose el servicio
+The following log message should indicate the web UI is ready for use:
+INFO [main] org.apache.nifi.web.server.JettyServer NiFi has started. The UI is available at the following URLs:
+
+2021-12-06 13:02:17,326 INFO [main] org.apache.nifi.web.server.JettyServer NiFi has started. The UI is available at the following URLs:
+2021-12-06 13:02:17,326 INFO [main] org.apache.nifi.web.server.JettyServer https://127.0.0.1:8443/nifi
+
+podemos ver también el username y password generados
+
+Generated Username [90386a43-e0e0-49ba-9b8a-502de1bdf770]
+Generated Password [T+ImazS6IrsqpV4DMtmLGRjZyLIO6vDd]
+
+Generar un username y password
+Generated Username [USERNAME] and Generated Password [PASSWORD]
+$ ./bin/nifi.sh set-single-user-credentials <username> <password>
+---
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ ./bin/nifi.sh set-single-user-credentials scelis SoniaCelisNifi01*
+nifi.sh: JAVA_HOME not set; results may vary
+
+Java home: 
+NiFi home: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0
+
+Bootstrap Config File: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/conf/bootstrap.conf
+
+Login Identity Providers Processed [/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/./conf/login-identity-providers.xml]
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ cd bin
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/bin$ . nifi.sh stop
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ bin/nifi.sh start
+nifi.sh: JAVA_HOME not set; results may vary
+
+Java home: 
+NiFi home: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0
+
+Bootstrap Config File: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/conf/bootstrap.conf
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ bin/nifi.sh status
+nifi.sh: JAVA_HOME not set; results may vary
+
+Java home: 
+NiFi home: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0
+
+Bootstrap Config File: /home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0/conf/bootstrap.conf
+
+2021-12-06 13:13:18,446 INFO [main] org.apache.nifi.bootstrap.Command Apache NiFi is currently running, listening to Bootstrap on port 39049, PID=100633
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/NiFi/Binaries/nifi-1.14.0$ 
+
+https://127.0.0.1:8443/nifi/login
+

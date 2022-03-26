@@ -1,0 +1,214 @@
+//------------------
+//Hands-On Exercise: Iterating through Data Efficiently
+//------------------
+
+def mAh(percent: Double) = (percent/100) * 5400
+
+val phoneBattery = List(82.3, 31.6, 72.5, 64.7)
+
+for (i <- 0 until phoneBattery.length)
+
+for (percent <- phoneBattery) println(percent + "% = " + mAh(percent) + " mAh")
+
+val phoneBattery = List(82.3, 31.6, 72.5, 64.7)
+
+val myList = for (percent <- phoneBattery) yield mAh(percent)
+
+myList.getClass
+
+println(myList)
+
+myList.foreach(println)
+
+val myListMap = phoneBattery.map(percent => mAh(percent))
+
+myListMap.getClass
+
+myListMap.foreach(println)
+
+val myListMapAnyName = phoneBattery.map(anyName => mAh(anyName))
+
+myListMapAnyName.foreach(println)
+val myListMapPlaceHolder = phoneBattery.map(mAh(_))
+
+myListMapPlaceHolder.getClass
+
+myListMapPlaceHolder.foreach(println)
+
+ val myListShortCut = phoneBattery.map(mAh)
+
+myListShortCut.getClass
+
+myListShortCut.foreach(println)
+
+val myListAnonymousFunc = phoneBattery.map(percent => percent / 100 * 5400)
+
+myListAnonymousFunc.foreach(println)
+
+myListAnonymousFunc.getClass
+
+val myListAnonymousFuncPlaceHolder = phoneBattery.map(_ / 100 * 5400)
+
+myListAnonymousFuncPlaceHolder.getClass
+
+myListAnonymousFuncPlaceHolder.foreach(println)
+
+val myBrands = List("iFruit", "MeToo", "Titanic", "Ronin", "Sorrento")
+
+var myIt = myBrands.toIterator
+
+myIt.hasNext
+
+while(myIt.hasNext) println(myIt.next)
+
+while(myIt.hasNext) println(myIt.next)
+
+myIt.hasNext
+
+while(myIt.hasNext) println(myIt.next)
+
+val myIt = myBrands.toIterator
+
+myIt.hasNext
+
+while( myIt.hasNext ){ println(myIt.next) }
+
+while( myIt.hasNext ){ println(myIt.next) }
+
+myIt.size
+
+myIt.hasNext
+
+import scala.io.Source
+
+val fname = "files/loudacre.log"
+
+var fsource = Source.fromFile(fname)
+
+fsource.getClass
+
+for (x <- 1 to 500) print(fsource.next)
+
+for (x <- 1 to 500) print(fsource.next)
+
+for (x <- 1 to 500) print(fsource.next)
+
+var flines = Source.fromFile(fname).getLines
+
+println(flines)
+
+flines.getClass
+
+println(flines.next)
+
+println(flines.next)
+
+println(flines.next)
+
+for(line <- flines) {println(line)}
+
+while( flines.hasNext ){ println(flines.next) }
+
+println(flines.next)
+
+val record = "2014-03-15:10:10:31, Titanic 4000, 1882b564-c7e0-4315-aa24-228c0155ee1b, 58, 36, 39, 31, 15, 0, TRUE, enabled, enabled, 37.819722, -122.478611"
+record.getClass
+
+record.size
+
+record.length
+
+val fields = record.split(',')
+
+fields.getClass
+
+fields.length
+
+fields.size
+
+//Split.scala:
+/*
+import scala.io.Source
+object Split{
+  def main(args: Array[String]) {
+      val fname = "../files/loudacre.log"
+      var flines = Source.fromFile(fname).getLines
+      var device_ID = " "
+      for(line <- flines) {
+          var line_string: String = line                                // Use line to populate a String
+          var line_split = line_string.split(",")                       // Buffer the results of split
+          device_ID = (line_split(2))                                   // Print out field 2, the Unique ID
+          println("Device ID: " + device_ID)                            // Device ID: 1882b564-c7e0-4315-aa24-228c0155ee1b
+     }
+  }
+}
+
+import scala.io.Source
+object Split{
+  def main(args: Array[String]) {
+      val fname = "../files/loudacre.log"
+      var flines = Source.fromFile(fname).getLines
+      var device_ID = " "
+      for(line <- flines) {
+          // println("flines is:" + flines.getClass)                       // flines is:class scala.io.BufferedSource$BufferedLineIterator
+          // println("line is:" + line.getClass)                           // line is:class java.lang.String
+          var line_string: String = line                                // Use line to populate a String
+          // println("line_string is: " + line_string.getClass)            // line_string is: class java.lang.String
+          var line_split = line_string.split(",")                       // Buffer the results of split
+          // println("line_split is: " + line_split.getClass)              // line_split is: class [Ljava.lang.String;
+          device_ID = (line_split(2))                                   // Print out field 2, the Unique ID
+          // println("device_ID is: " + device_ID.getClass)                // device_ID is: class java.lang.String 
+          println("Device ID: " + device_ID)                            // Device ID: 1882b564-c7e0-4315-aa24-228c0155ee1b
+     }
+  }
+}
+*/
+/*
+import scala.io.Source
+object Filter{
+  def main(args: Array[String]) {
+      val fname = "../files/loudacre.log"
+      var flines = Source.fromFile(fname).getLines.filter(_ contains "4000")
+      var device_ID = " "
+      var Model = " "
+      for(line <- flines) {
+          var line_string: String = line      				// Use line to populate a String
+          var line_split = line_string.split(",")      			// Buffer the results of split
+          device_ID = (line_split(2))             			// Print out field 2, the Unique ID
+          println("Device ID: " + device_ID)                            // Device ID: 1882b564-c7e0-4315-aa24-228c0155ee1b
+          Model = (line_split(1))             				// Print out field 1, Model name and number
+          println("Model: " + Model)                                   
+     }
+  }
+}
+*/
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ scala Filter
+
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ cat Filter2.scala
+/*
+import scala.io.Source
+object Filter2{
+  def main(args: Array[String]) {
+      val fname = "../files/loudacre.log"
+      var flines = Source.fromFile(fname).getLines.filter(_ contains "4000")
+      var device_ID = " "
+      var Model = " "
+      for(line <- flines) {
+          // println("flines is:" + flines.getClass)                       // flines is:class scala.io.BufferedSource$BufferedLineIterator
+          // println("line is:" + line.getClass)                           // line is:class java.lang.String
+          var line_string: String = line      				// Use line to populate a String
+          if( line_string.contains("4000") ) { 
+	  // println("line_string is: " + line_string.getClass)            // line_string is: class java.lang.String
+              var line_split = line_string.split(",")      			// Buffer the results of split
+	  // println("line_split is: " + line_split.getClass)              // line_split is: class [Ljava.lang.String;
+              device_ID = (line_split(2))             			// Print out field 2, the Unique ID
+	  // println("device_ID is: " + device_ID.getClass)                // device_ID is: class java.lang.String 
+              println("Device ID: " + device_ID)                            // Device ID: 1882b564-c7e0-4315-aa24-228c0155ee1b
+              Model = (line_split(1))             				// Print out field 1, Model name and number
+              println("Model: " + Model)         
+          }                          
+     }
+  }
+}
+*/
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ scala Filter2

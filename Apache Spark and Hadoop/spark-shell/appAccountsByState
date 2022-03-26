@@ -1,0 +1,73 @@
+/*
+
+Scala application 
+
+$ sudo apt install maven
+
+cd /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/scala/SC.Code/pue-cca175/accounts-by-state_project
+
+scelisdev03@cluster-cca175-m:~/accounts-by-state_project$ mvn package -e
+
+to execute:
+scelisdev03@cluster-cca175-m:~/accounts-by-state_project$ mvn package
+
+scelisdev03@cluster-cca175-m:~/accounts-by-state_project$ spark-submit --class stubs.AccountsByState target/accounts-by-state-1.0.jar CA
+
+scelisdev03@cluster-cca175-m:~/accounts-by-state_project$ spark-submit --class solution.AccountsByState target/accounts-by-state-1.0.jar CA
+
+definition
+The Spark application will take a single argument—a state code (such as CA). 
+The program should read the data from the devsh.accounts Hive table and save the rows whose state column value matches the specified state code. 
+
+Write the results to /devsh_loudacre/accounts_by_state/state-code (such as accounts_by_state/CA).
+
+*/
+
+package stubs 
+
+import org.apache.spark.sql.SparkSession
+
+object AccountsByState {
+  def main(args: Array[String]) {
+    if (args.length < 1) {
+      System.err.println("Usage: stubs.AccountByState <state-code>")
+      System.exit(1)
+    }
+ 
+    val stateCode = args(0)
+  
+    // Create a SparkSession object
+    val spark = SparkSession.builder.getOrCreate()
+
+    // Change the application log level from INFO (the default) to WARN
+    spark.sparkContext.setLogLevel("WARN")
+  
+    // Leer la tabla Hive
+    val accountsDF = spark.read.table("devsh.accounts")
+
+    // seleccionar los registros que coincidan con el argumento pasado
+    // save el resultado
+    // hdfs dfs -rm -R /devsh_loudacre/accounts_by_stateCA/
+
+    accountsDF.where(accountsDF("state") === stateCode).write.mode("overwrite").save("/devsh_loudacre/accounts_by_state" + stateCode)
+
+    // Otra forma
+    /*
+    val stateAccountsDF = accountsDF.where(accountsDF("state") === stateCode)
+    stateAccountsDF.write.mode("overwrite").save("/devsh_loudacre/accounts_by_state/" + stateCode)
+    */
+
+    //stop the Spark session:
+    spark.stop()
+
+  }
+}
+
+/*
+Revisar los ficheros en:
+
+#hdfs dfs -ls /devsh_loudacre/
+#hdfs dfs -ls /devsh_loudacre/accounts_by_state + stateCode
+#hdfs dfs -ls /devsh_loudacre/accounts_by_stateCA/
+
+*/

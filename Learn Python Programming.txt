@@ -1,0 +1,3259 @@
+Learn Python Programming.txt
+ISBN 978-1-78899-666-2
+
+Is REPL: Read – Evaluate – Print – Loop
+– When you enter an expression, Python immediately evaluates it, assigns the value to an implicit variable, and prints it to the console
+– REPL is excellent for interactive code exploration
++=============================+
+| IMPORTANTE - virtualenv     |
+| grep -n "Pythonic form" *.* |
++=============================+
+
+virtualenv es una herramienta que permite crear un entorno virtual. En otras palabras, es una herramienta
+herramienta para crear entornos Python aislados, cada uno de los cuales es una carpeta que contiene todos los
+ejecutables necesarios para utilizar los paquetes que un proyecto Python necesitaría
+
+It is very easy to create a virtual environment, but according to how your system is configured and 
+which Python version you want the virtual environment to run, you need to run the command properly. 
+
+Another thing you will need to do with virtualenv, when you want to work with it, is to activate it. 
+
+Activating virtualenv basically produces some path juggling behind the scenes so that when you call the Python interpreter, you're actually calling the active virtual environment one, instead of the mere system one.
+
+La activación de virtualenv básicamente es un cambio de rutas, de modo que cuando se llama al intérprete de Python, en realidad se está llamando al entorno virtual activo
+
+To call all virtual environments using the same name (for example, .venv ). 
+Can run scripts against any virtualenv by just knowing the name of the project they dwell in(donde habita el proyecto).
+
+https://docs.python-guide.org
+
+https://www.python.org/
+https://docs.python.org/3/library/tk.htm
+https://docs.python.org/3/faq/gui.html
+https://docs.python.org/3/glossary.html
+https://docs.python.org/3/library/tk.html
+https:/​/docs.python.​org/​3/​reference/​datamodel.​html
+
+https://docs.python.org/3.8/library/itertools.html
+https://docs.python.org/3.8/library/pdb.html?highlight=help#pdbcommand-help
+https://docs.python.org/3.8/tutorial/
+
+http://pythontutor.com/
+
+Manual de referencia:
+https://docs.python.org/3.8/reference/
+
+when you save a file with the extension .py , that file is said to be a Python module.
+(with the extension .pyc ), which is then run by the Python interpreter
+
++----------------------------------------------------------------------------------------------------------------+
+
+OJO - siempre crear un entorno virtual cuando se inicia un nuevo proyecto.
+(un "entorno con sus librerias y versiones" carpeta para cada proyecto)
+Para instalar virtualenv 
+https://virtualenv.pypa.io/en/latest/installation.html
+$ sudo apt-get install python-virtualenv
+
+sudo apt install python3-virtualenv
+virtualenv --help
+> 3.5 
+help> venv
+Help on package venv:
+
+--O-J-O-- virtualenv - steps - pasos
+
+# step 1 - create folder
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code$ mkdir newProyectname.pp
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code$ cd newProyectname.pp/
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ pwd
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp
+
+
+# step 2 - create virtual environment
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ which python3.8
+/home/hadoop/anaconda3/bin/python3.8
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ virtualenv -p /home/hadoop/anaconda3/bin/python3.8 newProyectNamepp
+
+created virtual environment CPython3.8.8.final.0-64 in 997ms
+  creator CPython3Posix(dest=/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp/newProyectNamepp, clear=False, global=False)
+  seeder FromAppData(download=False, pip=latest, setuptools=latest, wheel=latest, pkg_resources=latest, via=copy, app_data_dir=/home/hadoop/.local/share/virtualenv/seed-app-data/v1.0.1.debian.1)
+  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ 
+
+# step 3 - activate virtual environment
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ source newProyectNamepp/bin/activate
+
+(newProyectNamepp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ 
+
+# step 4 - verify which Python
+
+(newProyectNamepp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ which python
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp/newProyectNamepp/bin/python
+
+(newProyectNamepp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ python
+Python 3.8.8 (default, Apr 13 2021, 19:58:26) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exit()
+
+# step 5 - deactivate
+(newProyectNamepp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ deactivate
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/newProyectname.pp$ 
+
++----------------------------------------------------------------------------------------------------------------+
+Entorno para este libro
+
+mkdir learn.pp
+cd learn.pp
+create/active/deactive a virtual environment: (- learnpp - venv)
+De esta manera se puede ejecutar scripts contra cualquier virtualenv con sólo saber el nombre del proyecto en el que habitan.
+which python3.8
+/home/hadoop/anaconda3/bin/python3.8
+virtualenv -p /home/hadoop/anaconda3/bin/python3.8 learnpp
+or 
+$ virtualenv -p $( which python3.8 ) learnpp
+# we need to run the /bin/activate script - 
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp$ source learnpp/bin/activate
+
+(learnpp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp$ which python
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/bin/python
+
+(learnpp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp$
+deactivate
+
+(learnpp) (base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp$ tree -v 
+.
+├── SkillAssessments
+├── any.py
+├── bike.py
+├── bin
+│   ├── activate
+
+--O-J-O--
+
+Un package no es más que una carpeta, que debe contener un archivo especial,
+__init__.py, no contiene ningún código pero dice a Python que la carpeta no es un paquete 
+
+$ tree -v files_only
+
+functions: every time we need to repeat the logic inside it.
+library is a collection of functions and objects that provide functionalities that enrich the abilities of a language.
+
++----------------------------------------------------------------------------------------------------------------+
+
+Some libraries: #/home/hadoop/anaconda3/lib/python3.8/
+
+datetime
+--------
+#/home/hadoop/anaconda3/lib/python3.8/datetyme.py
+from datetime import date, timedelta
+
+math
+----
+import math
+from math import factorial
+from library.second_floor.section_x.row_three import book
+
+this
+----
+import this                      
+The Zen of Python, by Tim Peters
+
+sys
+---
+import sys
+sys.float_info                          # how floating point numbers will behave on your system.
+
+fractions
+---------
+from fractions import Fraction
+
+functools - Funciones de orden superior y operaciones sobre objetos invocables
+            funciones que actúan o devuelven otras funciones. 
+            Cualquier objeto invocable puede ser tratado como una función a efectos de este módulo
+---------
+from functools import reduce            # 
+
+
+decimal
+-------
+from decimal import Decimal
+decimal.getcontext().prec               # Get and set the precision
+
+operator - Standard operators as functions
+--------
+from operator import itemgetter         # the sorted method
+from operator import mul
+
+collections
+-----------
+from collections import namedtuple      # subclase de tupla - refactorización
+from collections import defaultdict     # Evitar comprobar si una clave está en un diccionario simplemente insertándola en el primer intento de acceso, con un valor por defecto cuyo tipo se pasa en la creación. 
+from collections import ChainMap        # enlazar un número de mapeos para que puedan ser tratados como una sola unidad
+
+enum
+----
+from enum import Enum                   # Enumeraciones
+
+itertools
+---------
+implements a number of iterator building blocks inspired by constructs from APL, Haskell, and SML.
+El módulo estandariza un conjunto básico de herramientas rápidas y eficientes en memoria que son útiles por sí mismas
+o en combinación. 
+Juntas, forman un "álgebra de iteradores" que permite construir herramientas especializadas en Python
+Proporciona tres amplias categorías de iteradores
+
+from itertools import count
+from itertools import compress
+from itertools import permutations
+
+NumPy
+-----
+Biblioteca de matemáticas para trabajar con arreglos de n-dimensiones.
+(para trabajar con arreglos, diccionarios, funciones, tipos de datos y trabajar con imagenes).
+
+SciPy
+-----
+Algoritmos númericos y herramientas de dominio especifico, incluyen procesamiento de señales, optimización, estadistica, computación cientifica de alto rendimiento.
+
+matplotlib
+----------
+Proporciona 2D plotting and 3D plotting.
+
+pandas
+------
+estructuras de datos de alto rendimiento fáciles de utilizar. Importación, manipulación y análisis de datos.
+en particular manipular tablas númericas y series de tiempo
+
+scikit-learn
+------------
+Coleccion de Algoritmos y herramientas para ML.
+- Free software ML for Python
+- Mayoría de Algoritmos de clasificación, regresión y agrupamiento.
+- trabajar con Bibliotecas númericas y cientificas de Python, NumPy, SciPy.
+preprocesamiento de datos, seleccion de caracteristicas, extracción de caracteristicas, división de entrenamiento y prueba, definición de Algoritmos, modelos de ajuste, parametros de ajuste, predicciones, evaluación y exportación del modelo.
+
+pdb - The Python Debugger
+---
+
+
++----------------------------------------------------------------------------------------------------------------+
+
+Python's execution model.
+
+n = 3
+3
+
+address = "221b Baker Street, NW1 6XE, London"
+address
+'221b Baker Street, NW1 6XE, London'
+
+employee = {
+'age': 45,
+'role': 'CTO',
+'SSN': 'AB1234567' }
+employee
+{'age': 45, 'role': 'CTO', 'SSN': 'AB1234567'}
+type(employee)
+dict
+
+--O-J-O--
+A namespace is therefore a mapping from names to objects. 
+the global names in a module
+the local names in a function 
+
+Scopes - Alcances - local, enclosing, global, built-in (LEGB).
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp (scope1, scope2, scope3)
+https://docs.python.org/3/tutorial/classes.html
+
+is a textual region of a Python program, where a namespace is directly accessible
+
+when you're looking for an unqualified reference to a name, Python tries to find it in the namespace.
+Scopes are determined statically, but actually, during runtime, they are used dynamically
+
+El ámbito local,-local scope que es el más interno y contiene los nombres locales.
+El ámbito envolvente,-enclosing scope, es decir, el ámbito de cualquier función envolvente. = nombres no
+locales y no globales.
+El ámbito global, global scope, contiene los nombres globales.
+Funciones que puedes utilizar de forma estándar, como print , all , abs , etc. Viven en el ámbito incorporado. built-in scope
+
+OOP - 
+# /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp (bike.py)
+Everything in Python is an object, infact numbers, strings (data structures that hold text), 
+containers, collections, even functions. 
+You can think of them as if they were boxes with at least three features: 
+an ID (unique), a type, and a value.
+
+Objects are, in fact, instances of classes. 
+the most advanced concepts of this language: metaclasses. 
+An abstract set of features and characteristics that together for something
+
+Python Enhancement Proposal (PEP 8) process.
+https://www.python.org/dev/peps/pep-0008/
+
+differents objects int inmutables 
+
+age = 42
+id(age)
+Out[8]: 94142950904416
+
+age = 43
+id(age)
+Out[10]: 94142950904448
+
+Custom objects in Python are mutable (unless you code them not to be).
+
+class Person():
+    def __init__(self, age):
+        self.age = age
+        
+# when create this object is Person (a custom class) which age is 42
+spc = Person(age=42)
+
+spc.age
+42
+id(spc)
+140466101096352
+id(spc.age)
+94142950904416
+
+Creo otro objetos de Person pero le asigno otro valor age is 52 
+El objeto es el mismo pero ha mutado spc.age es un objeto diferente.
+
+spc.age = 52
+id(spc)
+140466101096352
+id(spc.age)
+94142950904736
+
+Numbers are immutable objects.
+
+a = 14
+b = 3
+
+a + b                                   # addition
+17
+
+a - b                                   # subtraction
+11
+
+a * b                                   # multiplication
+42
+
+a / b                                   # true division
+4.666666666666667
+
+a // b                                  # integer division
+4
+
+a % b                                   # modulo operation (reminder of division)
+2
+
+Pythonic form
+There are divmod function, which is called with a number and a divisor, 
+and returns a tuple with the result of the integer division and its remainder. 
+For example, divmod(13, 5) would return (2, 3) , and indeed 5 * 2 + 3 = 13
+
+a ** b                                  # power operation
+2744
+
+--O-J-O--
+
+The result of an integer division in Python is always rounded towards minus infinity. 
+If, instead of quotient, you want to truncate a number to an integer
+
+7 / 4                                   # true division
+1.75
+
+7 // 4                                  # integer division, truncation returns 1
+1
+
+Integer (int) 
+int(1.75)
+1
+
+----------
+
+-7 / 4                                  # true division again, result is opposite of previous
+-1.75
+
+-7 // 4                                 # integer div., result not the opposite of previous
+-2
+
+int(-1.75)                              # Notice that the truncation is done toward 0 .
+-1
+
+==========
+
+– There is no bin, oct, or hex type in Python
+– hex(num), oct(num), bin(num) all return type str strings
+
+print(hex(13552))
+> "0x34f0"
+
+--O-J-O-- Python 3.6 --> add underscores within number literals (between digits or base specifiers, but not leading or trailing). 
+
+n = 1_024
+
+n
+1024
+
+hex(n)
+'0x400'
+
+hex_n = 0x_4_0_0        
+hex_n
+1024
+
+# 0x400 == 1024
+0x400
+1024
+
+Booleans (bool) True or False are a subclass of integers, respectively 1 and 0 .
+
+int(True)                               # True behaves like 1
+1
+
+int(False)                              # False behaves like 0
+0
+
+bool(1)                                 # 1 evaluates to True in a boolean context
+True
+
+bool(0)                                 # 0 evaluates to False
+False
+
+bool(-42)                               # and so does every non-zero number
+True
+
+not True
+False
+
+True and True
+True
+
+False or True
+True
+
+1 + True
+2
+
+False + 42
+42
+
+7 - True
+6
+
+type(7-True)
+int
+
+Upcasting  de una subclass a su padre. 
+
+Real numbers, or floating point numbers are stored in 64 bits of information 
+divided into three sections: sign, exponent, and mantissa.
+
+--O-J-O-- Python supports only the double format is better use decimal type
+single(up 32 bits)  and double (64 bits)
+
+(64 bits): max and epsilon values for the float numbers
+2 ** 64 == 18,446,744,073,709,551,616 numbers with that amount of bits.
+
+sys.float_info(max=1.7976931348623157e+308, max_exp=1024, max_10_exp=308, min=2.2250738585072014e-308, min_exp=-1021, min_10_exp=-307, dig=15, mant_dig=53, epsilon=2.220446049250313e-16, radix=2, rounds=1)
+
+pi = 3.1415926536
+radius = 4.5
+area = pi * (radius ** 2)
+area
+63.617251235400005
+
+0.3 - 0.1 * 3       # this should be 0!!!
+-5.551115123125783e-17
+
+0.1 * 3
+0.30000000000000004
+
+Complex numbers
+a + ib 
+where a and b are real numbers, and 
+i or j is the imaginary unit, 
+
+that is, the square root of -1. a and b are called, respectively, the real and imaginary part of the number.
+
+c = 3.14 + 2.73j
+
+c.real                                  # real part
+3.14
+
+c.imag                                  # imaginary part
+2.73
+
+c.conjugate()                           # conjugate of A + Bj is A - Bj
+(3.14-2.73j)
+
+c * 2                                   # multiplication is allowed
+(6.28+5.46j)
+
+c ** 2                                  # power operation as well
+(2.4067000000000007+17.1444j)
+
+d = 1 + 1j                              # addition and subtraction as well
+
+d
+(1+1j)
+
+c
+(3.14+2.73j)
+
+c - d
+(2.14+1.73j)
+
+Fractions and decimals
+Fractions hold a rational numerator and denominator in their lowest forms. 
+
+from fractions import Fraction
+
+Fraction(10, 6)
+
+f = Fraction(10, 6)
+f.numerator
+5
+f.denominator
+3
+
+f1 = Fraction(5, 3)
+f1.numerator
+5
+f1.denominator
+3
+
+f = Fraction(1, 3) + Fraction(2, 3)     #  Fraction(1,1)
+f.numerator
+1
+f.denominator
+1
+
+f0 = Fraction(1, 1)
+f0.numerator
+1
+f0.denominator
+1
+
+f1 = Fraction(1, 3)
+f1.numerator
+1
+f1.denominator
+3
+
+f2 = Fraction(2, 3)
+f2.numerator
+2
+f2.denominator
+3
+
+decimal numbers come Python interpreter much more work - rendimiento
+decimal.getcontext().prec
+
+from decimal import Decimal
+Decimal(3.14)                                   # pi, from float, problemas de aproximación
+Decimal('3.140000000000000124344978758017532527446746826171875')
+
+Decimal('3.14')                                 # pi, from a string, No hay problemas de aproximación
+Decimal('3.14')
+
+Decimal(0.1) * Decimal(3) - Decimal(0.3)        # from float, problemas de aproximación
+Decimal('2.775557561565156540423631668E-17')
+
+Decimal('0.1') * Decimal(3) - Decimal('0.3')    # from string, all perfect
+Decimal('0.0')
+
+Decimal('1.4').as_integer_ratio()               # 7/5 = 1.4 
+(7, 5)
+
+7/5
+1.4
+
+cuando introducimos un int o una cadena en el constructor el cálculo no tiene un comportamiento peculiar.
+
+Immutable sequences: strings, tuples, and bytes.
+
+The result of an encoding produces a bytes object, whose syntax and behavior is similar to that of strings.
+
+Strings (str) and bytes
+
+--O-J-O-- Python, doesn't have a char type, so a single character is rendered simply by a string of length 1
+String literals are written in Python using single, double, or triple quotes (both single or double).
+
+# 4 ways to make a string
+
+str1 = 'This is a string. We built it with single quotes.'
+str1
+This is a string. We built it with single quotes.'
+
+str2 = "This is also a string, but built with double quotes."
+str2
+'This is also a string, but built with double quotes.'
+
+str3 = '''This is built using triple quotes,
+so it can span multiple lines.'''
+str3
+'This is built using triple quotes,\nso it can span multiple lines.'
+
+str4 = """This too
+is a multiline one
+built with triple double-quotes."""
+str4
+'This too\nis a multiline one\nbuilt with triple double-quotes.'
+
+str4                                    # print str4 implicitly
+'This too\nis a multiline one\nbuilt with triple double-quotes.'
+
+print(str4)                             # print str4 explicitly using the print function
+This too
+is a multiline one
+built with triple double-quotes.
+
+len(str4)
+60
+
+Encoding and decoding strings, codificar cadenas Unicode y decodificar bytes objetos. - UTF-8 Web
+
+s = "This is üŋíc0de"
+s
+'This is üŋíc0de'
+
+type(s)
+str
+
+encoded_s = s.encode('utf-8')           #   crear un objeto bytes
+encoded_s
+b'This is \xc3\xbc\xc5\x8b\xc3\xadc0de'
+
+type(encoded_s)
+bytes
+
+encoded_s.decode('utf-8')               # let's revert to the original
+'This is üŋíc0de'
+
+bytes_obj = b"A bytes object"           # a bytes object
+bytes_obj
+b'A bytes object'
+
+type(bytes_obj)
+bytes
+
+--O-J-O-- Indexing and slicing-slice strings- si son inmutables SON read-only.
+se aplica a una secuencia: tuplas, listas, cadenas, etc. 
+En el caso de las listas, el corte también se puede utilizar para asignación.
+posicion exacta (indexing), un acceso a cualquier posicion basado en cero
+obtener una (subsecuencia/substring" (slicing-slice). [start:stop:step] 
+start will be the start of the string, 
+stop will be the end of the string, and 
+step will be the default 1
+
+s= "The trouble is you think you have time."
+s[0]                                    # indexing at position 0, which is the first char
+'T'
+s[5]                                    # indexing at position 5, which is the sixth char
+'r'
+s[:4]                                   # slicing, we specify only the stop position
+'The '
+s[4:]                                   # slicing, we specify only the start position
+'trouble is you think you have time.'
+s[2:14]                                 # slicing, both start and stop positions
+'e trouble is'
+s[2:14:3]                               # slicing, start, stop and step (every 3 chars)
+'erb '
+s[:]                                    # quick way of making a copy
+'The trouble is you think you have time.'
+
+String formatting
+
+Hi = "Hola %s"                          # % operator, is deprecated and shouldn't be used any more.
+Hi % "Sonia"
+
+Hi_positional = 'Hello {} {}!'          # lugares donde colocar las cadenas
+Hi_positional.format("Sonia", "Celis")
+'Hello Sonia Celis!'
+
+format using keyword arguments instead of positional ones
+Hi_positional_idx = 'This is {0}! {1} loves {0}!'
+Hi_positional_idx.format('Python', 'Sonia')
+'This is Python! Sonia loves Python!'
+
+Hi_positional_idx.format('Coffee', 'Sonia')
+'This is Coffee! Sonia loves Coffee!'
+
+keyword = 'Hello, my name is {name} {last_name}'
+keyword.format(name='Sonia', last_name='Celis')
+'Hello, my name is Sonia Celis'
+
+formatted string literals
+name = 'Sonia'
+age = 52
+f"Hello! My name is {name} and I'm {age}"
+"Hello! My name is Sonia and I'm 52"
+
+from math import pi
+f"No arguing with {pi}, it's irrational..."
+"No arguing with 3.141592653589793, it's irrational..."
+
+Tuples INMUTABLE A tuple is a sequence of arbitrary Python objects that closely represent a mathematical vector
+Ex(set up multiple variables on one line, or to allow a function to return multiple different objects)
+Tuples usually contain an heterogeneous sequence of elements,
+tuples are normally accessed via unpacking or indexing
+
+print id(object)
+t=()
+type(t)
+tuple
+
+one_element_tuple = (52, )              # you need the comma!
+
+three_elements_tuple = (1, 3, 5)        # three_elements_tuple = 1, 3, 5 braces are optional
+3 in three_elements_tuple               # membership test
+True
+
+a, b, c = 1, 2, 3                       # tuple for multiple assignment
+a, b, c                                 # implicit tuple to print with one instruction
+(1, 2, 3)
+
+
+Casting a tuple into a list, modifying it, and then Casting it back into a tuple is called unfreezing and freezing
+
+type(t)
+> <type 'tuple'>
+mylist = list(t)    # unfreezing
+t = tuple(mylist)   # freezing
+
+- When you explicitly cast a dic+onary to any other collec+on, you get the keys, not the values
+- Use the values() method to get the values
+
+--O-J-O-- IN can also be used with lists, strings, dictionaries, and, in general, with collection and sequence objects.
+
+Para intercambiar el valor de dos variables necesitamos una temporal 
+a, b = 1, 2
+c = a                                   # we need three lines and a temporary var c
+a = b
+b = c
+a, b                                    # a and b have been swapped(intercambiadas)
+(2, 1)
+
+Pyton lo hace así de fácil
+a, b = 0, 1
+a, b = b, a                             # Pythonic form
+a, b
+(1, 0)
+
+Listas an byte arrays Mutable sequences
+Mutable sequences they can be changed after creation. 
+
+Lists MUTABLE storing collections and contain elements homogeneous
+lists are usually iterated over.
+
+[]                                      # empty list
+type([])
+list
+list()                                  # same as []
+type(list())
+list
+
+[1, 2, 3]                               # as with tuples, items are comma separated
+
+[x + 5 for x in [2, 3, 4]]              # Python is magic
+[7, 8, 9]
+
+list((1, 3, 5, 7, 9))                   # list from a tuple
+[1, 3, 5, 7, 9]
+
+list('hello')                           # list from a string
+['h', 'e', 'l', 'l', 'o']
+
+a = [1, 2, 1, 3]
+
+a.append(13)                            # we can append anything at the end
+a
+[1, 2, 1, 3, 13]
+
+a.count(1)                              # how many `1` are there in the list?
+2
+
+a.extend([5, 7])                        # extend the list by another (or sequence)
+a
+[1, 2, 1, 3, 13, 5, 7]
+
+a.index(13)                             # position of `13` in the list (0-based indexing)
+4
+
+a.insert(0, 17)                         # insert `17` at position 0
+a
+[17, 1, 2, 1, 3, 13, 5, 7]
+
+a.pop()                                 # pop (remove and return) last element
+7
+a
+[17, 1, 2, 1, 3, 13, 5]
+
+a.pop(3)                                # pop element at position 3
+1
+a
+[17, 1, 2, 3, 13, 5]
+a.count(1)
+1
+
+a.remove(17)                            # remove `17` from the list
+a
+[1, 2, 3, 13, 5]
+
+a.reverse()                             # reverse the order of the elements in the list
+a
+[5, 13, 3, 2, 1]
+
+a.sort()                                # sort the list --O-J-O-- sorted
+a
+[1, 2, 3, 5, 13]
+
+a.clear()                               # remove all elements from the list
+a
+[]
+
+
+a = list('hello')                       # makes a list from a string
+a
+['h', 'e', 'l', 'l', 'o']
+ 
+a.append(100)                           # append 100, heterogeneous type
+a
+['h', 'e', 'l', 'l', 'o', 100]
+
+a.extend((1, 2, 3))                     # extend using tuple
+a
+['h', 'e', 'l', 'l', 'o', 100, 1, 2, 3]
+
+a.extend('...')                         # extend using string
+a
+['h', 'e', 'l', 'l', 'o', 100, 1, 2, 3, '.', '.', '.']
+
+
+# operations
+a = [1, 3, 5, 7]
+
+min(a)                                  # minimum value in the list
+1
+
+max(a)                                  # maximum value in the list
+7
+
+sum(a)                                  # sum of all values in the list
+16
+
+len(a)                                  # number of elements in the list
+
+b = [6, 7, 8]
+
+a + b                                   # `+` with list means concatenation - overloading - sobrecarga
+
+a * 2                                   # `*` to concatenate the list to itself - overloading - sobrecarga
+[1, 3, 5, 7, 1, 3, 5, 7]
+
+That operators such as + , - . * , % , and so on, may represent different operations according to the context they are used in. 
+
+--O-J-O-- sort (Tim Peters Timsort) - when multiple records have the same key, their original order
+is preserved
+
+from operator import itemgetter                 # sorted method
+a = [(5, 3), (1, 3), (1, 2), (2, -1), (4, 9)]
+
+sorted(a)
+[(1, 2), (1, 3), (2, -1), (4, 9), (5, 3)]       # sorting on the first item in the tuple, and on the second when the first one is the same.
+
+sorted(a, key=itemgetter(0))
+[(1, 3), (1, 2), (2, -1), (4, 9), (5, 3)]       # The sorting is done only on the first element of each tuple (which is the one at position 0)
+
+sorted(a, key=itemgetter(0, 1))
+[(1, 2), (1, 3), (2, -1), (4, 9), (5, 3)]       # like sorted(a)
+
+sorted(a, key=itemgetter(1))
+[(2, -1), (1, 2), (5, 3), (1, 3), (4, 9)]       # sorting only on the elements at position 1
+
+sorted(a, key=itemgetter(1), reverse=True)      # sorting only on the elements at position 1 in reverse order
+[(4, 9), (5, 3), (1, 3), (1, 2), (2, -1)]
+
+b = sorted(a, key=itemgetter(0), reverse=True)    
+[(5, 3), (4, 9), (2, -1), (1, 2), (1, 3)]
+b
+[(5, 3), (4, 9), (2, -1), (1, 2), (1, 3)]
+
+a
+[(1, 2), (1, 3), (2, -1), (4, 9), (5, 3)]
+
+Byte arrays MUTABLE represent the mutable version of bytes objects. 
+(al recibir datos a través de un socket, eliminan la necesidad de concatenar los datos durante el sondeo)
+Items are integers in the range [0, 256).
+Los elementos de un tipo bytearray son enteros entre 0 y 256; 
+0 está incluido, 256 no.
+
+Cuando se trata de intervalos, la notación estándar para rangos abiertos/cerrados es:  
+Un corchete "]", en un extremo significa que el valor está incluido, 
+mientras que un corchete redondo ")", significa que está excluido.
+
+La granularidad se suele inferir por el tipo de los elementos del borde, 
+por ejemplo, 
+el intervalo [3, 7] significa todos los enteros entre 3 y 7, ambos inclusive, es decir, 3, 4, 5, 6, 7.
+el intervalo (3, 7) significa todos los enteros entre 3 y 7, ambos exclusive, es decir, 4, 5 y 6. 
+
+
+Si dividimos un intervalo [a, b) en N intervalos consecutivos, 
+podemos representar fácilmente el original como una concatenación como ésta:
+[a,k 1 )+[k 1 ,k 2 )+[k 2 ,k 3 )+...+[k N-1 ,b)
+
+Los puntos intermedios (k i ) que 
+se excluyen en un extremo y 
+se incluyen en el otro extremo,
+permiten una fácil concatenación y división en el código.
+
+bytearray()                             # empty bytearray object
+bytearray(b'')
+bytearray(10)                           # zero-filled instance with given length
+bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+bytearray(range(5))                     # bytearray from iterable of integers
+bytearray(b'\x00\x01\x02\x03\x04')
+
+name = bytearray(b'Lina')               # bytearray from bytes - 
+name.replace(b'L', b'l')                # bytearray expone métodos tanto de secuencias y cadenas - "as mutable strings".
+bytearray(b'lina')
+name.endswith(b'na')
+True
+name.upper()
+bytearray(b'LINA')
+name.count(b'L')
+1
+
+
+Set types (Conjuntos) - sin duplicados - set result won't have any duplicate
+set(mutable - An unordered collection of unique objects) y frozenset(immutable ordered collection of unique objects).
+sorted(set)
+
+You can create a set from a tuple or a list using set()
+
+Un objeto es hashable si tiene un valor hash que nunca cambia durante su vida, y puede ser comparado con otros objetos.
+La hashabilidad hace que un objeto sea utilizable como clave de diccionario y como miembro de un conjunto
+--O-J-O--
+Todos los objetos inmutables de Python son hashables.-
+
+creates an empty set and then adds elements one at a time.
+small_primes = set()                    # empty set
+small_primes.add(2)                     # adding one element at a time
+small_primes.add(3)
+small_primes.add(5)
+small_primes
+{2, 3, 5}
+
+small_primes.add(1)                     # 1 is not a prime!
+small_primes
+{1, 2, 3, 5}
+small_primes.remove(1)                  # so let's remove it
+
+3 in small_primes                       # membership test
+True
+
+4 in small_primes
+False
+
+4 not in small_primes                   # negated membership test
+True
+
+7 in small_primes
+False
+
+7 not in small_primes
+True
+
+3 in small_primes
+True
+small_primes.add(3)                     # trying to add 3 again
+small_primes
+{2, 3, 5}                               # no change, duplication is not allowed
+
+
+creates the set using a list of numbers as an argument to the constructor
+
+bigger_primes = set([5, 7, 11, 13])     # faster creation, from a list or tuple (or any iterable: are objects you can iterate on in a direction.)
+bigger_primes
+{5, 7, 11, 13}
+
+small_primes | bigger_primes            # union operator `|`
+{2, 3, 5, 7, 11, 13}
+
+small_primes & bigger_primes            # intersection operator `&`
+{5}
+
+small_primes - bigger_primes            # difference operator `-`
+{2, 3}
+
+Another way of creating a set is by simply using the curly braces notation, like this:
+
+small_primes = {2, 3, 5, 5, 3}
+small_primes
+{2, 3, 5}
+
+type(small_primes)
+set
+
+immutable counterpart of the set type, frozenset :
+frozenset son bastante limitados respecto a los set mutable.
+eficaces para las operaciones de comprobación de pertenencia, unión, intersección y diferencia
+
+small_primes = frozenset([2, 3, 5, 7])
+small_primes
+frozenset({2, 3, 5, 7})
+type (small_primes)
+frozenset
+
+bigger_primes = frozenset([5, 7, 11])
+bigger_primes
+frozenset({5, 7, 11})
+type(bigger_primes)
+frozenset
+
+small_primes.add(11)                    # we cannot add - 'frozenset' object has no attribute 'add'
+AttributeError: 'frozenset' object has no attribute 'add'
+
+
+small_primes.remove(2)                  # neither we can remove - 'frozenset' object has no attribute 'remove'
+AttributeError: 'frozenset' object has no attribute 'remove'
+
+small_primes & bigger_primes            # intersect, union, etc. allowed
+frozenset({5, 7})
+
+small_primes | bigger_primes
+frozenset({2, 3, 5, 7, 11})
+
+small_primes -  bigger_primes
+frozenset({2, 3})
+
+--O-J-O-- Mapping types – dictionaries - MUTABLE
+
+a = dict(A=1, Z=-1)
+a
+{'A': 1, 'Z': -1}
+type(a)
+dict
+
+b = {'A': 1, 'Z': -1}
+b
+{'A': 1, 'Z': -1}
+type(b)
+dict
+
+c = dict(zip(['A', 'Z'], [1, -1]))
+c
+{'A': 1, 'Z': -1}
+type(c)
+dict
+
+d = dict([('A', 1), ('Z', -1)])
+d
+{'A': 1, 'Z': -1}
+type(d)
+dict
+
+e = dict({'Z': -1, 'A': 1})
+e
+{'Z': -1, 'A': 1}
+type(e)
+dict
+
+a == b == c == d == e                  # all they are the same
+True
+
+
+Assignment is done with one equal, (=)
+while to check whether an object is the same as another one (or five in one go, in this case), 
+we use double equals (==). compare objects
+
+compare objects (if they have the same ID, not just the value): is operator 
+
+zip . which glues together two things taking one element from each at a time. zip returns an iterator,
+if I want to see the result I need to exhaust that iterator into something for ex: a list 
+
+pega dos cosas tomando un elemento de cada una a la vez. zip devuelve un iterador,
+si quiero ver el resultado necesito volcar ese iterador en algo por ejemplo: una lista 
+
+acceso a las claves de un diccionario [] igual que las cadenas, las listas y las tuplas
+
+list(zip(['h', 'e', 'l', 'l', 'o'], [1, 2, 3, 4, 5]))
+[('h', 1), ('e', 2), ('l', 3), ('l', 4), ('o', 5)]
+
+list(zip('hello', range(1, 6)))         # equivalent, more Pythonic form
+[('h', 1), ('e', 2), ('l', 3), ('l', 4), ('o', 5)]
+
+d = {}
+type(d)
+dict
+
+d['a'] = 1                              # let's set a couple of (key, value) pairs
+d
+{'a': 1}
+
+d['b'] = 2
+d
+{'a': 1, 'b': 2}
+
+len(d)                                  # how many pairs?
+2
+
+d['a']                                  # what is the value of 'a' 
+1
+
+d['b']
+2
+
+del d['a']                              # let's remove `a`
+d
+{'b': 2}
+
+d['c'] = 3                              # let's add 'c': 3
+d
+{'b': 2, 'c': 3}
+
+'c' in d                                # membership is checked against the keys
+True
+
+3 in d                                  # not the values
+False
+
+'e' in d
+False
+
+d.clear()                               # let's clean everything from this dictionary
+d
+{}
+
+
+three special objects called dictionary (An ordered collec&on of unique key-value object pairs) - views: keys , values , and items .
+keys() returns all the keys in the dictionary, 
+values() returns all the values in the dictionary, and 
+items() returns all the (key, value) pairs in the dictionary.
+
+--O-J-O--
+Las claves y los valores se iteran en un orden arbitrario que no es aleatorio, 
+varía según las implementaciones de Python y depende del historial de inserciones y
+y eliminaciones del diccionario. 
+Si las vistas de las claves, los valores y los ítems se iteran sin que se produzcan
+modificaciones en el diccionario, el orden de los elementos se corresponderá directamente
+A dict is ordered if it remembers the order in which keys were first inserted.
+
+d = dict(zip('hello', range(5)))        # The string 'hello' has two 'l' characters inside, 
+                                        # and they are paired up with the values 2 and 3 by the zip function
+                                        # the second occurrence
+                                        # of the 'l' key (the one with value 3 ), 
+                                        # overwrites the first one (the one with value 2 ).
+d
+{'h': 0, 'e': 1, 'l': 3, 'o': 4}
+
+len(d)
+4
+
+d.keys()                                # the original order is now preserved
+dict_keys(['h', 'e', 'l', 'o'])
+
+d.values()                              # the original order is now preserved
+dict_values([0, 1, 3, 4])               
+
+d.items()                               # the original order is now preserved
+dict_items([('h', 0), ('e', 1), ('l', 3), ('o', 4)])
+
+3 in d.values()
+True
+
+"l" in d.keys()
+True
+
+('o', 4) in d.items()
+True
+
+d={'e': 1, 'h': 0, 'o': 4, 'l': 3}
+d
+{'e': 1, 'h': 0, 'o': 4, 'l': 3}
+type(d)
+dict
+
+d.popitem()                             # removes a random item (useful in algorithms)
+('l', 3)
+d
+{'e': 1, 'h': 0, 'o': 4}
+
+d.pop('h')
+0
+d
+{'e': 1, 'o': 4}
+
+
+d.pop(4)                                # remove a key not in dictionary: KeyError
+KeyError: 4
+
+d.pop('l')
+KeyError: 'l'
+
+d.pop('l', '3')                         # with a default value
+                                        # we get the default value
+'3'
+d
+{'e': 1, 'o': 4}
+                                                 
+d.update({'l': '3'})                    # we can update dict this way
+d
+{'e': 1, 'o': 4, 'l': '3'}
+d
+{'e': 1, 'o': 4, 'l': '3', 'another': 'value'}
+
+d.update(a=13)                          # or this way (like a function call)
+d
+{'e': 1, 'o': 4, 'l': '3', 'another': 'value', 'a': 13}
+
+
+d.get('a')                              # but if key is missing no KeyError
+13
+d['a']
+13
+
+d.get('h')                              # but if key is missing no KeyError
+d['h']
+KeyError: 'h'
+
+d.get('a', 177)                         # default value used if key is missing
+13
+
+d.get('b', 177)                         # like in this case
+177
+
+d.get('b')                              # key is not there, so None is returned
+
+--O-J-O--
+Every function in Python returns None , unless the return statement is explicitly used to return something else
+None is used to represent the absence of a value, 
+and it is quite commonly used as a default value for arguments in function declaration. 
+
+Both False and None evaluate to False in a Boolean context
+False means that we have information, and the information we have is False . 
+None means no information. And no information is very different from information that is False . 
+
+setdefault: se comporta como get, pero también establece la clave con el valor dado si no está allí. 
+
+d = {}
+d.setdefault('a', 1)                    # 'a' is missing, we get default value
+1
+d
+{'a': 1}                                # also, the key/value pair ('a', 1) has now been added
+
+
+d.setdefault('a', 5)                    # let's try to override the value
+1
+d
+{'a': 1}                                # no override, as expected
+
+
+d = {}
+d
+{}
+d.setdefault('a', {}).setdefault('b', []).append(1)
+d
+{'a': {'b': [1]}}
+
+d['b'] = 2
+d
+{'a': {'b': [1]}, 'b': 2}
+
+----------
+
+d = {}
+d.setdefault('a', {})
+{}
+d
+{'a': {}}
+
+d={}
+d.setdefault('b', [])
+[]
+d
+{'b': []}
+
+d = {}
+d.setdefault('a', {}).setdefault('b', [])
+[]
+d
+{'a': {'b': []}}
+
+d = {}
+d.setdefault('a', {}).setdefault('b', []).append((1,2))
+d
+{'a': {'b': [(1, 2)]}}
+
+The collections module
+
+https://docs.python.org/3.8/library/collections.html?highlight=defaultdict#module-collections
+When Python general purpose built-in containers ( tuple , list , set , and dict ) aren't enough, 
+we can find specialized container datatypes in the collections module.
+--------------------------------------------------------------------------------------------------
+|   Data type               |    Description
+--------------------------------------------------------------------------------------------------
+|   namedtuple()            |   Factory function for creating tuple subclasses with named fields
+--------------------------------------------------------------------------------------------------
+|   deque                   |   List-like container with fast appends and pops on either end
+--------------------------------------------------------------------------------------------------
+|   ChainMap                |   Dictionary-like class for creating a single view of multiple mappings
+--------------------------------------------------------------------------------------------------
+|   Counter                 |   Dictionary subclass for counting hashable objects
+--------------------------------------------------------------------------------------------------
+|   OrderedDict             |   Dictionary subclass that remembers the order entries were added
+--------------------------------------------------------------------------------------------------
+|   defaultdict             |   Dictionary subclass that calls a factory function to supply missing values
+--------------------------------------------------------------------------------------------------
+|   UserDict                |   Wrapper around dictionary objects for easier dictionary subclassing
+--------------------------------------------------------------------------------------------------
+|   UserList                |   Wrapper around list objects for easier list subclassing
+--------------------------------------------------------------------------------------------------
+|   UserString              |   Wrapper around string objects for easier string subclassing
+--------------------------------------------------------------------------------------------------
+
+namedtuple ()
+es un objeto similar a una tupla que tiene campos accesibles mediante la búsqueda de atributos, así como
+es indexable e iterable (subclase de tuple). 
+Se usa cuando existe la posibilidad de que los elementos de la tuple tengan que cambiar de posición después de la refactorización, 
+
+Tupla vision (left eye, right eye)
+
+vision = (9.5, 8.8)
+vision
+(9.5, 8.8)
+
+vision[0]                               # left eye (implicit positional reference)
+9.5
+
+vision[1]                               # right eye (implicit positional reference)
+8.8
+
+(left eye, combined, right eye)
+
+We have to refactor our code wherever we handle these objects, changing vision[1] to vision[2]
+
+from collections import namedtuple
+
+Vision = namedtuple('Vision', ['left', 'right'])
+vision = Vision(9.5, 8.8)
+vision
+Vision(left=9.5, right=8.8)
+
+vision[0]
+9.5
+vision.left
+9.5
+
+vision[1]
+8.8
+vision.right
+8.8
+
+Si antes nos referiamos a vision.left y vision.right, lo único que tenemos que hacer es cambiar la manera de crear las instancias.
+
+Vision = namedtuple('Vision', ['left', 'combined', 'right'])
+vision = Vision(9.5, 9.2, 8.8)
+vision.left                             # still correct
+9.5
+vision.right                            # still correct (though now is vision[2])
+8.8
+vision.combined                         # the new vision[1]
+9.2
+
+vision[0]
+9.5
+vision[1]
+9.2
+vision[2]
+8.8
+
+defaultdict
+Evitar comprobar si una clave está en un diccionario simplemente insertándola en el primer intento de acceso, con un valor por defecto cuyo tipo se pasa en la creación. 
+
+updating the value of age, by adding one year. 
+If age is not there, we assume it was 0 and we update it to 1 :
+
+d = {}
+d['age'] = d.get('age', 0) + 1          # age not there, we get 0 + 1
+d
+{'age': 1}
+
+d = {'age': 39}
+d['age'] = d.get('age', 0) + 1          # age is there, we get 40
+d
+{'age': 40}
+
+from collections import defaultdict
+dd = defaultdict(int)                   # int is the default type (0 the value)
+dd['age'] += 1                          # short for dd['age'] = dd['age'] + 1
+dd
+defaultdict(int, {'age': 1})            # indicandole int deberíamos obtendremos 0 , 
+                                        # que es el valor por defecto para el tipo int).
+                                        # 1, as expected
+--O-J-O--
+defaultdict(<class 'int'>, {'age': 1})
+simplemente definiendo el dd=defaultdict(int) y despues haciendo la operacion dd['age'] += 1   si la clave no existe le pondrá 1
+
+ChainMap
+"enlazar un número de mapeos para que puedan ser tratados como una sola unidad"
+Los mapeos subyacentes se almacenan en una lista. 
+Esa lista es pública y puede ser accedida o actualizada usando el atributo maps.
+Un caso de uso muy común es proporcionar valores por defecto
+
+from collections import ChainMap
+default_connection = {'host': 'localhost', 'port': 4567}
+default_connection
+{'host': 'localhost', 'port': 4567}
+
+connection = {'port': 5678}
+connection
+{'port': 5678}
+
+conn = ChainMap(connection, default_connection)    # map creation
+conn
+ChainMap({'port': 5678}, {'host': 'localhost', 'port': 4567})
+conn.maps                               # we can see the mapping objects
+[{'port': 5678}, {'host': 'localhost', 'port': 4567}]
+
+conn['port']                            # port is found in the first dictionary
+5678
+
+conn['host']                            # host is fetched from the second dictionary
+'localhost'
+
+conn['host'] = 'packtpub.com'           # let's add host
+conn
+ChainMap({'port': 5678, 'host': 'packtpub.com'}, {'host': 'localhost', 'port': 4567})
+conn.maps
+[{'port': 5678, 'host': 'packtpub.com'}, {'host': 'localhost', 'port': 4567}]
+
+del conn['port']                        # let's remove the port information
+conn.maps
+[{'host': 'packtpub.com'}, {'host': 'localhost', 'port': 4567}]
+
+conn['port']                            # now port is fetched from the second dictionary
+4567
+
+dict(conn)                              # easy to merge and convert to regular dictionary
+{'host': 'packtpub.com', 'port': 4567}
+
+Enums
+Una enumeración es un conjunto de nombres simbólicos (miembros), vinculados a valores únicos y constantes. 
+Dentro de una enumeración, los miembros se pueden comparar por identidad, y la enumeración misma puede ser iterada
+
+GREEN = 1
+YELLOW = 2
+RED = 4
+TRAFFIC_LIGHTS = (GREEN, YELLOW, RED)
+
+traffic_lights = {'GREEN': 1, 'YELLOW': 2, 'RED': 4}    # or with a dict
+
+from enum import Enum
+class TrafficLight(Enum):
+    GREEN = 1
+    YELLOW = 2
+    RED = 4
+TrafficLight.GREE
+<TrafficLight.GREEN: 1>
+
+TrafficLight.GREEN.name
+'GREEN'
+ 
+TrafficLight.GREEN.value
+1
+
+TrafficLight(1)
+<TrafficLight.GREEN: 1>
+
+TrafficLight(4)
+<TrafficLight.RED: 4>
+
+--O-J-O--
+Small values caching : Python caches short strings and small numbers 
+to avoid having many copies of them clogging up the system memory.
+Everything is handled properly under the hood so you don't need to worry a bit, 
+--O-J-O--, recordar este comportamiento si tu código necesita jugar con los IDs.
+
+a = 1000000
+b = 1000000
+id(a) == id(b)
+False
+
+a
+1000000
+
+b
+1000000
+
+id(a)
+140277268395440
+
+id(b)
+140277268397808
+
+a = 5
+b = 5
+id(a) == id(b)
+True
+
+a
+5
+
+b
+5
+
+id(a)
+94175121472960
+
+id(b)
+94175121472960
+
+How to choose data structures
+If you can answer the above questions then you will know what to choose. 
+What kind of access will I need? 
+What sort of operations will I have to perform on each of them, and how many times? 
+Will the collection change over time? 
+Will I need to modify the customer dictionaries in any way? 
+What is going to be the most frequent operation I will have to perform on the collection?
+
+if the collection never shrinks or grows (no necesitará añadir/borrar ningún objeto cliente
+después de la creación), then tuples are a possible choice. 
+
+En caso contrario, lists are a good candidate. 
+Every customer dictionary has a unique identifier though, so even a dictionary could work. 
+
+# example customer objects
+customer1 = {'id': 'abc123', 'full_name': 'Master Yoda'}
+customer2 = {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'}
+customer3 = {'id': 'ghi789', 'full_name': 'Anakin Skywalker'}
+
+# collect them in a tuple
+customers = (customer1, customer2, customer3)
+customers
+({'id': 'abc123', 'full_name': 'Master Yoda'},
+ {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'},
+ {'id': 'ghi789', 'full_name': 'Anakin Skywalker'})
+ 
+# or collect them in a list
+customers = [customer1, customer2, customer3]
+customers
+[{'id': 'abc123', 'full_name': 'Master Yoda'},
+ {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'},
+ {'id': 'ghi789', 'full_name': 'Anakin Skywalker'}]
+ 
+# or maybe within a dictionary, they have a unique id after all
+customers = {
+'abc123': customer1,
+'def456': customer2,
+'ghi789': customer3,
+}
+customers
+{'abc123': {'id': 'abc123', 'full_name': 'Master Yoda'},
+ 'def456': {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'},
+ 'ghi789': {'id': 'ghi789', 'full_name': 'Anakin Skywalker'}}
+
+customers.items()
+dict_items([('abc123', {'id': 'abc123', 'full_name': 'Master Yoda'}), 
+            ('def456', {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'}), 
+            ('ghi789', {'id': 'ghi789', 'full_name': 'Anakin Skywalker'})])
+
+customers.keys()
+dict_keys(['abc123', 'def456', 'ghi789'])
+
+customers.values()
+dict_values([{'id': 'abc123', 'full_name': 'Master Yoda'}, 
+             {'id': 'def456', 'full_name': 'Obi-Wan Kenobi'}, 
+             {'id': 'ghi789', 'full_name': 'Anakin Skywalker'}])
+             
+About indexing and slicing
+se aplica a una secuencia: tuplas, listas, cadenas, etc. 
+En el caso de las listas, el corte también se puede utilizar para asignación.
+
+indexación (diccionarios o conjuntos) - último elemento of a collection
+
+a = list(range(10))                     # `a` has 10 elements. Last one is 9.
+a
+1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+len(a)                                  # its length is 10 elements
+10
+a[len(a) - 1]                           # position of last one is len(a) - 1
+9
+a[-1]                                   # but we don't need len(a)! Python rocks!
+9
+a[-2]                                   # equivalent to len(a) - 2
+8
+a[-3]                                   # equivalent to len(a) - 3
+7
+
+If the list a has 10 elements, because of the 0-index positioning system of Python, 
+the first one is at position 0 and the last one is at position 9. 
+So, in order to fetch the last element, we need to know the length of the whole list 
+(or tuple, or string, and so on) and then subtract 1 . 
+
+Trying to address indexes greater than 9 or smaller than -10 will raise an IndexError , as
+expected.
+
+About the names
+los nombres de los datos deben ser sustantivos, y 
+los nombres de las funciones deben ser verbos.
+
+Clean Code: Meaningful Names of Clean Code, Robert C. Martin, Prentice Hall
+
+Iterating and Making Decisions
+"Insanity: doing the same thing over and over again and expecting different results."
+– Albert Einstein
+
+In computer science, control flow refers to the
+specification of the order in which the individual statements, 
+instructions or function calls of an imperative program are executed or evaluated.
+
+In order to control the flow of a program, we have two main weapons: 
+conditional programming (also known as branching - programación condicional) and
+looping - el bucle
+
+Conditional programming
+if statement
+it evaluates an expression and, based on the result, 
+chooses which part of the code to execute
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/conditional.1.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/conditional.2.py
+
+else – elif statement: elif clause, which is a contraction of else-if
+there are situations where you may have more than two paths to choose from,
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/taxes.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/taxes.2.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/errorsalert.py
+
+The ternary operator - short version of an if / else clause
+Cuando el valor de un nombre debe asignarse de acuerdo con alguna condición
+
+name = something if condition else something-else
+
+name is assigned something if condition evaluates to True, and 
+name is assigned something-else if condition evaluates to False
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/ternary.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/ternary.2.py
+
+Looping
+Looping means being able to repeat the execution of a code block more than once, 
+according to the loop parameters we're given
+These are the for and while statements.
+The for loop: looping over a sequence, such as a list, tuple, or a collection of objects.
+Iterating over a range
+use the for loop when you have to iterate over a finite amount of elements. 
+It can be a huge amount, but still, something that ends at some point.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/simple.for.py      # Pythonic form
+
+The range function is used extensively in Python programs when it comes to creating sequences: 
+you can call it by passing one value, which acts as stop (counting from 0 ), or
+you can pass two values ( start and stop ), or 
+even three ( start , stop , and step ).
+
+list(range(10))                     # one value: from 0 to value (excluded)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+list(range(3, 8))                   # two values: from start to stop (excluded)
+[3, 4, 5, 6, 7]
+
+list(range(-10, 10, 4))             # three values: step is added
+[-10, -6, -2, 2, 6]
+
+Iterating over a sequence
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/simple.for.2.py
+
+Pythonic form:
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/simple.for.3.py
+
+Enumerate gives back a two-tuple (position, surname) at each iteration,
+You can call enumerate with a start parameter, such as enumerate(iterable, start) ,
+and it will start from start , rather than 0 . 
+You can use a for loop to iterate over lists, tuples, and in general anything that Python calls iterable. 
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/simple.for.4.py
+
+Iterators and iterables
+https://docs.python.org/3/glossary.html
+an
+iterable is:
+An object capable of returning its members one at a time. Examples of iterables include all
+sequence types (such as list, str, and tuple) and some non-sequence types like dict, file
+objects, and objects of any classes you define with an __iter__() or __getitem__() method.
+Iterables can be used in a for loop and in many other places where a sequence is needed
+(zip(), map(), ...). 
+When an iterable object is passed as an argument to the built-in function
+iter(), it returns an iterator for the object. This iterator is good for one pass over the set of
+values. (Este iterador sirve para una sola pasada sobre el conjunto de
+valores) When using iterables, it is usually not necessary to call iter() or deal with iterator
+objects yourself. The for statement does that automatically for you, creating a temporary
+unnamed variable to hold the iterator for the duration of the loop 
+(La sentencia for lo hace automáticamente por usted, creando una variable temporal 
+sin nombre para mantener el iterador durante la duración del bucle)
+
+Python gives us the ability to iterate over iterables, using a type of object called
+an iterator.
+
+Las secuencias vacías darán lugar a cero ejecuciones del cuerpo
+
+an
+iterator is:
+An object representing a stream of data. Repeated calls to the iterator's __next__() method
+(or passing it to the built-in function next()) return successive items in the stream. When
+no more data are available a StopIteration exception is raised instead. At this point, the
+iterator object is exhausted and any further calls to its __next__() method just raise
+StopIteration again. Iterators are required to have an __iter__() method that returns the
+iterator object (que devuelva el objeto iterador) itself so every iterator 
+is also iterable and may be used in most places where other iterables are accepted.
+One notable exception is code which attempts multiple iteration passes. 
+A container object (such as a list) produces a fresh new iterator each time
+you pass it to the iter() function or use it in a for loop. Attempting this with an iterator
+will just return the same exhausted iterator object used in the previous iteration pass,
+making it appear like an empty container
+__iter__() 
+
+Iterating over multiple sequences
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.py
+
+Pythonic form
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.enumerate.py
+
+>>> people = ['Conrad', 'Deepak', 'Heinrich', 'Tom']
+>>> ages = [29, 30, 34, 36]
+>>> for position, person in enumerate(people):
+...     person = people[position]
+...     age = ages[position]
+...     print(person, age)
+... 
+Conrad 29
+Deepak 30
+Heinrich 34
+Tom 36
+
+Pythonic form
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.zip.py 
+Pythonic form
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.explicit.py 
+Pythonic form
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.implicit.py 
+
+The while loop: doesn't loop over a sequence
+use when you just need to loop until some condition is satisfied, 
+or even loop indefinitely until the application is stopped, 
+or maybe where we don't really have something to iterate on
+
+It loops as long as a certain condition is satisfied. 
+When the condition is no longer satisfied, the loop ends.
+
+If the condition never evaluates to False, the loop becomes a so-called infinite loop. bucle infinito.
+
+Los bucles infinitos se utilizan, por ejemplo, cuando se hace un sondeo de
+dispositivos de red: se pregunta al socket si hay algún dato, se hace algo con ellos si los hay, 
+luego se duerme durante un pequeño tiempo, y luego se le pregunta al socket de nuevo, una y otra vez, 
+sin detenerse nunca.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/binary.py      
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/binary.2.py    # Pythonic form
+
+the binary representation of a number, check out the bin function
+
+multiple.sequences.py - using the while logic
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/multiple.sequences.while.py
+
+The break and continue statements
+Puede saltarse una sola iteración (tantas veces como quiera), o puede salirse del
+el bucle por completo
+por ejemplo, cuando se está iterando sobre una lista de elementos y necesita trabajar en cada uno de ellos sólo si se verifica alguna condición.
+si se está iterando sobre una colección de elementos, y se ha encontrado uno de ellos que satisface alguna necesidad que tienes, 
+puedes decidir no continuar el bucle por completo y, por tanto, salir de él.
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/discount.py
+
+establecer una variable de bandera, y luego iniciar la inspección. 
+Si encuentra un elemento que coincida con sus criterios, 
+entonces actualizas la bandera y dejas de iterar. (break)
+Después de la iteración, se inspecciona la bandera y toma la acción correspondiente. La ejecución se produce:
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/any.py
+
+A special else clause
+else clauses after while and for loops
+If the loop ends normally, because of exhaustion of the iterator ( for loop) or 
+because the condition is finally not met ( while loop), then 
+the else suite (if present) is executed. 
+In case execution is interrupted by a break statement, 
+the else clause is not executed
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/for.no.else.py
+
+La excepción se lanza como parte de la lógica del bucle for
+porque el bucle for está comprobando alguna condición
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/for.else.py
+
+# Strategy:  Iterate over a copy
+for user, status in users.copy().items():
+    if status == 'inactive':
+        del users[user]
+
+En el vídeo Transforming Code into Beautiful, Idiomatic Python 
+by Raymond Hettinger sugiere un nombre mucho mejor para la sentencia else asociada 
+con un bucle for: nobreak 
+https://www.youtube.com/watch?v=anrOzOapJ2E
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/prime.py
+
+# primes.py
+primes = []                             # this will contain the primes in the end
+UPTO = 100                              # the limit, inclusive
+for n in range(2, UPTO + 1):
+    IS_PRIME = True                     # flag, new at each iteration of outer for
+    for divisor in range(2, n):         # cuando n es 2, el bucle más interno
+                                        # ni siquiera se ejecuta,
+                                        # range(2, 2) ==> [2, 2), 2 esta excluido
+        if n % divisor == 0:
+            IS_PRIME = False
+            break
+    if IS_PRIME:                        # check on flag
+        primes.append(n)
+print(primes)
+
+la iteración que se comporta
+diferente a todas las demás es la primera. 
+La razón es que en la primera iteración, n es 2 .
+Por lo tanto, el bucle for más interno ni siquiera se ejecutará, 
+porque es un bucle for que itera sobre range(2, 2) , y ¿qué es eso si no [2, 2)
+
+# este for (no hace nada), es para comprobar que no se ejecuta el for interior en primes.py, 
+# range(2, 2) ==> [2, 2) 
+for n in range(2, 2):
+    print(n)
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/prime_else.py
+
+switch / case , that in Python is missing but
+is perfectly capable of realizing such logic using if / elif / else statements.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/switch.py
+
+assigns a discount to customers based on their coupon value
+Pythonic form
+intentamos obtener algo del diccionario basado en un código
+(nuestro código_de_cupón ), y utilizando dict.get(key, default) ,
+nos aseguramos de que también se puede utilizar
+cuando el código no está en el diccionario y necesitamos un valor por defecto
+
+Pythonic form with  dictionaries
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/coupons.dict.py
+
+itertools module
+https://docs.python.org/3.8/library/itertools.html
+
+Infinite iterators
+Infinite iterators allow you to work with a for loop , such as if it were a while loop:
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/infinite.py
+for n in count(5, 3):                   # like range(5, 21, 3) = 5, 8, 11, 14, 17, 20
+
+Iterators terminating on the shortest input sequence
+
+crear un iterador basado en múltiples iteradores, combinando sus valores según alguna lógica. 
+entre iteradores, en caso de que alguno sea más corto que el resto, el iterador resultante no se romperá,
+simplemente se detendrá en cuanto se agote el iterador más corto.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/compress.py
+
+Combinatoric generators
+permutations
+A permutation, also called an "arrangement number" or "order", is a rearrangement of
+the elements of an ordered list S into a one-to-one correspondence with S itself.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/permutations.py
+
+4 Functions, the Building Blocks of Code
+
+Functions, Una función es una secuencia de instrucciones que realizan una tarea, agrupadas como una unidad. 
+Esta unidad puede ser importada y utilizada dondequiera que se necesite.
+
+                 ----------------
+Input (optional) |  function    |   Output (optional)
+                 ----------------
+
+Functions can accept input arguments and produce output values. Both of these are optional
+
+def name_of_the_function(which may or may not contain input parameters):
+    we find the body of the function, 
+    which is the set of instructions that the function will execute when called
+    (A function may or may not return an output)
+    because a function always returns something in Python, even if you don't explicitly use the return clause
+
+If the function has no return statement in its body, or no value is given to the return statement itself, 
+the function returns None . 
+
+Pythonic form 
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/functions.defining.py
+
+def do_report(data_source):
+    # fetch and prepare data
+    data = fetch_data(data_source)
+    parsed_data = parse_data(data)
+    filtered_data = filter_data(parsed_data)
+    polished_data = polish_data(filtered_data)
+    
+    
+# run algorithms on data
+final_data = analyse(polished_data)
+
+
+# create and return report
+report = Report(final_data)
+return report
+
+
+Pythonic form 
+Calcular el iva
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/vat.function.py
+
+Alcances (Scopes)
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.1.py
+
+nested scope - alcance anidado
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2a.py
+
+
+The global and nonlocal statements
+La sentencia nonlocal hace que los identificadores listados se refieran a variables previamente ligadas
+en el ámbito más cercano excluyendo las globales
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2.nonlocal.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2a.nonlocal.py
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2.global.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/scoping.level.2a.global.py
+
+Input parameters - parametros 
+Pasar argumentos es asignar un objeto a una variable local
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/argument.passing.py
+
+Asignar un objeto a un argumento dentro de una función no afecta al llamador
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/assignment.py
+
+Cambiar un argumento de un objeto mutable en una función afecta al que llama.
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/mutable.py
+
+-O-J-O - www.pythontutor.com
+
+Asignar un objeto a un argumento dentro de una función no afecta al llamador
+Cambiar un argumento de un objeto mutable en una función afecta al que llama.
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/mutable.assignment.py
+
+How to specify input parameters
+There are five different ways of specifying input parameters:
+
+1.- Positional arguments
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.positional.py
+
+2.- Keyword arguments
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.keyword.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.default.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.default.error.p
+
+3.- Variable positional arguments (*n) - (*args) - *argumentos - cantidad variable de argumentos posicionales (*)
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.variable.positional.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.variable.positional.unpacking.py
+
+4.- Variable keyword arguments -> similares a los argumentos posicionales - **  - dict
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.variable.keyword.py
+connect db - conexión db
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.variable.db.py
+
+5.- Keyword-only arguments - sus casos de uso no son tan frecuentes. 
+- ya sea después de los argumentos posicionales de las variables
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.keyword.only.py
+
+- después de un simple *
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.keyword.only2.py
+
+Combining input parameters - Combinación de parámetros de entrada
+
+Se pueden combinar los parámetros de entrada, siempre que se sigan las siguientes reglas de ordenación:
+
+Al definir una función, 
+- los positional arguments van primero ( name ), 
+- luego cualquier default arguments ( name=value ), 
+- luego los Variable positional arguments, ( *name or simply * )
+- luego cualquier keyword-only arguments, (cualquier name or name=value form )
+y luego cualquier variable keyword arguments ( **name )
+
+Por otro lado, cuando se llama a una función, los argumentos deben darse en el siguiente orden:
+- positional arguments first ( value ), 
+- luego cualquier combinación de keyword arguments ( name=value ), variable positional arguments ( *name ), 
+y luego variable keyword arguments ( **name ).
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
+arguments.all.py
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
+arguments.all.kwonly.py
+
+Additional unpacking generalizations - Generalizaciones adicionales de desempaquetado
+Ampliar los operadores de desempaquetado iterable ( * ) y 
+los operadores de desempaquetado de diccionarios ( ** ),
+para permitir el desempaquetado en más posiciones, un número arbitrario de veces, y en circunstancias adicionales. 
+
+https://www.python.org/dev/peps/pep-0448/
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/additional.unpacking.py
+
+Los valores por defecto se crean en el momento de la def,
+por lo tanto, las llamadas posteriores a la misma función posiblemente se comportarán de manera diferente según
+la mutabilidad de sus valores por defecto
+
+técnicas de memorización - Google
+afecta a las llamadas posteriores de la función
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.defaults.mutable.py
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
+arguments.defaults.mutable.intermediate.call.py
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/arguments.defaults.mutable.no.trap.py
+
+Return values - Valores de retorno
+
+Las funciones normalmente pueden devolver un objeto (un valor) pero, en Python
+puedes devolver una tupla, y esto implica que puedes devolver lo que quieras. 
+Para devolver algo de una función tenemos que usar la sentencia return, seguida de lo que queremos devolver. 
+puede haber tantas sentencias return como sean necesarias en el cuerpo de una función.
+
+Por otro lado, si dentro del cuerpo de una función no devolvemos nada, o invocamos
+una sentencia return desnuda, la función devolverá None . 
+
+(pass - cuando no tiene cuerpo y se requiere por sintaxis)
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/return.none.py
+
+dos return - retorna un valor único
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/return.single.value.py
+
+Pythonic form 
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/return.single.value.2.py
+
+Returning multiple values
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/return.multiple.py
+
+Las funciones deben hacer una cosa: Las funciones que hacen una cosa son fáciles de describir en una frase corta. 
+Las funciones que hacen varias cosas pueden dividirse en funciones más pequeñas funciones más pequeñas que hacen una cosa. 
+Estas funciones más pequeñas suelen ser más fáciles de leer y entender. 
+Las funciones deben ser pequeñas: Cuanto más pequeñas sean, más fácil será probarlas y escribirlas para que hagan una sola cosa.
+Cuantos menos parámetros de entrada, mejor: Las funciones que toman muchos argumentos rápidamente se vuelven más difíciles de manejar (entre otros problemas).
+Las funciones deben ser consistentes en sus valores de retorno: Devolver False o None no es lo mismo, incluso si dentro de un contexto booleano ambos se evalúan como Falso . 
+False significa que tenemos información ( False ), mientras que None significa que no hay información. 
+Intente escribir funciones que devuelvan de forma consistente, sin importar lo que ocurra en su cuerpo.
+Las funciones no deberían tener efectos secundarios. 
+
+Las funciones no deberían afectar a los valores con los que se las llama. 
+
+Los números no están ordenados por la función sorted, que en realidad devuelve una copia ordenada de numbers. 
+Por el contrario, el método list.sort() está actúa sobre el propio objeto numbers, y eso está bien porque es un método (una función que pertenece a un objeto y por lo tanto tiene derecho a modificarlo):
+
+>>> numbers = [4, 1, 7, 5]
+>>> sorted(numbers)                 #   no ordenará la lista original de `números`.
+[1, 4, 5, 7]
+>>> numbers
+[4, 1, 7, 5]                        #   sin tocar
+>>> numbers.sort()                  #   esto actuará en la lista
+>>> numbers
+[1, 4, 5, 7]
+>>> 
+
+Chapter 3, Functions in Clean Code by Robert C. Martin, Prentice Hall
+
+Pythonic form 
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
+
+------------------------------------------------------------------------------------------------------------------------------------------
+|                shell iPython
+------------------------------------------------------------------------------------------------------------------------------------------
+
+typing ipython
+– IPython is a separate project from Python
+– Provides programming features over the default shell
+– File system interaction, ls, pathname completion (tab)
+– Command completion on and suggestions (tab-tab)
+– Integrated Python help / documentation with help()
+– Run ﬁles from within the shell with run filename
+– Interrogate objects with ?object
+– Edit ﬁles with %ed
+– After editing the program, if you exit using [Esc]wq, the program will be run
+
+def name(parameters):
+    code-block
+    return variable         #   Optional return variable
+
+# Python has a 79-character line limit.
+# \ Line continuation
+
+months={1:'JAN',2:'FEB',3:'MAR',4:'APR',5:'MAY', \
+        6:'JUN',7:'JUL',8:'AUG',9:'SEP',10:'OCT', \
+        11:'NOV',12:'DEC'}
+
+Basic File I/O
+– Methods: open(), read(), readline(), and close()
+– File modes: r=read, w=write, a=append
+– File format: b=binary, t=text (default)
+
+– __ (double underscore) reserved for some built-in object methods
+
+– Convention:
+– Initial caps for classes, initial lowercase for instances
+
+Assignment
+ab = bc = 7
+ab, bc, cd = 8, 10, 43
+
+– There is no bin, oct, or hex type in Python
+– hex(num), oct(num), bin(num) all return type str strings
+
+print(hex(13552))
+> "0x34f0"
+
+Use the built-in print() functon
+– Basic printing of variables: print var1, var2, var3
+– Print formated string:
+– print formatstring %(var1, var2, var3)
+– Formatting: %d=integer, %r=real (ﬂoat), %s=string
+
+s = "Sorrento F41L"
+print (s)
+formatstring = "Device temperature %d to %r celsius"
+print (formatstring %(24, 31.24))
+
+– Strings are not implicitly converted to numeric variables
+– Explicit transformation functions provided
+– str(), hex(), oct(), bin()
+– int(), float() ← works appropriately for string type
+
+cast - hace casting a float porque el string esta en el formato correcto
+ab = "123.45"
+bc = float(ab)
+print (bc)
+
+cast - NO hace casting a int porque el string NO esta en el formato correcto
+ab = "123.45"
+bc = int(ab)
+> <Error>
+
+– Use the escape sequence (backslash) for literal characters
+– \t = tab, \n = newline, \b=backspace, \r = carriage return
+
+Style, Model = 'Sorrento', 'LVOZA'
+print(Style + " " + Model)              #   Sorrento LVOZA
+print(Style.join(Model))                #   'LSorrentoVSorrentoOSorrentoZSorrentoA'
+
+string.title()
+string.capitalize()
+string.lower()
+string.upper()
+string.swapcase()
+string.ljust(width,fillchar)
+string.rjust(width,fillchar)
+string.center(width,fillchar)
+string.strip(chars)
+string.rstrip(chars)
+string.lstrip(chars)
+string.expandtabs(tabsize)
+string.split('delimiter')
+string.partition('char')
+string.rpartition('char')
+string.splitlines(integer)
+string.replace(str1,str2)
+string.isalpha()
+string.isdigit()
+string.islower()
+string.isspace()
+string.istitle()
+string.isupper()
+string1.startswith(string2)
+string1.endswith(string2)
+string1.count(string2)
+string1.find(string2)
+len(string)
+
+You can create very complex nested objects to organize data.
+– May consist of elements of diﬀerent types
+– Can contain other collections as elements (nested)
+- Lists []
+- Tuples ()
+- Sets {}
+- Frozensets – immutable sets
+- Dictionaries {key:value}
+
+list[element1, element2, element3]
+tuple(element1, element2, element3)
+set{element1, element2, element3}
+dictionary{key1:value1, key2:value2}
+
+List and Tuple Operations
+- element in list – Returns True if the element is in the list
+- element not in list – Returns True if the element is not in the list
+- n * list – Copies the list n times and concatenates the copies
+List Modiﬁcation
+- list.append(element) – Appends an element after the ﬁnal element in a list
+- list.insert(offset, element) – Inserts an element into a list after the oﬀset
+- list.remove(element) – Removes the ﬁrst occurrence of element from the list
+- list.pop() – Returns the last element in the list and removes it
+Working with Multiple Lists
+- list3 = list1 + list2
+- list1.extend(list2)
+- list1 += list2
+- list1 = list1 + list2
+append() - add la lista nueva al final de la lista original
+extend() - extiende los elementos de la lista nueva a la original
+- del list – Deletes the entire list
+- del list[offset] – Deletes the element at the given oﬀset
+- del list[start:end]
+- del list[start:end:increment]
+List and Tuple Interrogation
+- len(list) – The number of elements in the list
+- list.count(element) – Counts the number of identical elements in a list
+- list.min() – Returns the minimum value element in the list
+- list.max() – Returns the maximum value element in the list
+- list.index(element)
+List Transformation
+- list.sort() – Sorts the list of elements in ascending order in place – Changes the order of the list itself
+- sorted(list) – Returns a sorted copy
+- list.reverse() – Reverses the current order of elements in the list in place
+- list = string.split(delimiter) – Create a list from a delimited string 
+- mystring = delimiter.join(list)
+
+triple, quadruple, pentuple, septuple, octuple, … n-tuple -> tuple, In Python, a tuple is an immutable collection. 
+
+It has all the same operation and interrogation methods as a list, but none of the manipulation or transformation methods.
+
+Set Theory Methods and Operators
+- set1.union(set2) or set1 | set2: – All the elements in both sets
+- set1.intersection(set2) or set1 & set2: – Only elements that are in both sets, and not in only one
+- set1.difference(set2) or set1 – set2: – Provides the diﬀerence between the sets - are not in the intersection
+    s1.difference(s2) no es lo mismo que s2.difference(s1)
+- set1.symmetric_difference(set2) or set1 ^ set2: – Returns the set of all elements that are not in the intersection
+
+Set Interrogation Methods
+- set1.isdisjoint(set2) – Returns True if both sets share no elements
+- set1.issubset(set2) – Returns True if every element in set1 is in set2 – Symbolic notation: set1 <= set2
+- set1.issuperset(set2) – Returns True if every element in set2 is in set1 – Symbolic notation: set1 >= set2
+- set2 > set1 – Proper subset – Returns True if set2 contains all elements of set1, and one or more additional elements
+
+Set Manipulation Methods - Sets have their own manipulation methods
+- set.add() – Adds an element to the set
+- set.update()
+- set.copy()
+- set.pop()
+- set.discard()
+
+frozenset – Tuple is to list as frozenset is to set
+- You can create a frozenset from a set using frozenset()
+- A frozenset is immutable
+
+Dictionaries and Lists
+- When you explicitly cast a dictionary to any other collection, you get the keys, not the values
+- Use the values() method to get the values
+Dictionary Methods
+- dict[key] – Returns the value associated with the key
+- dict[key] = newvalue – Overwrites the old value with the new value for that key
+- dict1.update(dict2) – Adds or updates key-value pairs in dict1 using contents of dict2
+- len(dict) – Provides the number of key-value pairs in the dictionary
+- del dict[key] – Removes the entry identiﬁed by the speciﬁed key from the dictionary
+- dict.pop(key) – Returns the value and removes the key-value pair from the dictionary
+
+type(a), type(b), type(c), type(d)
+(list, tuple, set, dict)
+e = [a, b, c, d]
+f = (a, b, c, d)
+type(e), type(f)
+(list, tuple)
+Si cambiara los valores de a y b, por ejemplo 
+type(a), type(b) 
+(set, tuple)
+el resultado de e y de f sería el mismo. Conclusión: Las colecciones se construyen por duplicación, no por referencia.
+OJO --- The list e and the tuple f still contain the original versions of a and b.
+Take-away: Collections are constructed by duplication, not by reference.
+
+a = [1, 2, 3, 4, 5] => [1, 2, 3, 4, 5]
+b = [a, a, a, a, a] => [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
+c = [b, b, b, b, b] => 
+[[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+ [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+ [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+ [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+ [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]]
+d = [c, c, c, c, c] =>
+[[[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]],
+ [[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]],
+ [[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]],
+ [[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]],
+ [[[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
+  [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]]]
+
+print (d[3][3][3][3]) = 4
+
+Code Blocks
+- Code blocks in Python are represented by indentation
+    – Not curly braces
+    – End of line sequence (EOLS), not semicolon
+- Statements in a block must be indented identically
+    – If your indentation is oﬀ – even by a space – then it is an error
+
+Conditional Looping - while is used for Conditional (True/False) looping
+- while test
+
+count = 0
+while count < len(x):
+    print count, len(x[count])
+    print x[count]
+    count += 1
+
+Countable Looping
+for is used for repetition
+– for in range()
+– for element in collection
+– for element in enumerate(collection)
+– for element in zip(collection1, collection2)
+
+for var in range(start,end,inc):
+for c in range(5):
+    print c
+for c in range(3,8):
+    print c
+for c in range(0,12,3):
+    print c
+Modifying Loop Operations
+– Break: Ends a loop
+for i in range(100):
+    if(i > 4):
+    break
+    print i
+– Continue: Skips one iteration of a loop
+for i in range(10):
+    if(i==5):
+    continue
+    print(i)
+
+iterations
+– Execute a block of code for each element in a list, tuple, set, frozenset, or dictionary Returns variable of type of the element
+- for each_element in list:
+- for each_element in collection :
+
+Key and Value Iteration
+- Example of iterating over keys and values simultaneously in a Dictionary
+modelnumbers = {'F40L':'Sorrento', 'F41L':'Sorrento', '2500':'Titanic', '3000':'Titanic', '3A':'iFruit', '4':'iFruit'}
+for key,value in modelnumbers.items():
+    print key,value
+
+In [94]: x=[30,33,54,34,29,49]
+
+In [95]: y=[elem*9/5+32 for elem in x]
+
+In [96]: print(y)
+[86.0, 91.4, 129.2, 93.2, 84.2, 120.2]
+
+Iteration with Enumeration
+for is used for repetition
+- for each_element in enumerate(list):
+    – Returns a two-value tuple where the element at index 0 is the enumeration, and the element at position 1 is the item content
+
+In [102]: mylist = ['Ronin','MeToo','iFruit']
+     ...: for each in enumerate(mylist):
+     ...:     print (each)
+     ...: 
+(0, 'Ronin')
+(1, 'MeToo')
+(2, 'iFruit')
+
+In [103]: type(each)
+Out[103]: tuple
+
+In [104]: len(each)
+Out[104]: 2
+
+Corresponding Iteration with Zip
+- for each_element in zip(list1,list2):
+    – Returns a two-value tuple where the 0 element comes from the ﬁrst list, 
+    and the 1 element is the corresponding element from the second list
+
+In [105]: mylist1 =['Ronin','MeToo','iFruit','Sorrento']
+     ...: mylist2 =['s1','4.0','3A','F41L']
+     ...: for each in zip(mylist1, mylist2):
+     ...:     print (each)
+     ...: 
+('Ronin', 's1')
+('MeToo', '4.0')
+('iFruit', '3A')
+('Sorrento', 'F41L')
+
+In [106]: type(each)
+Out[106]: tuple
+
+In [107]: len(each)
+Out[107]: 2
+
+Multiple List Iteration with zip() and List Comprehension
+In [108]: x = ['x1','x2','x3']
+     ...: y = ['y1','y2']
+     ...: 
+     ...: for a,b in zip(x,y):
+     ...:     print (a,b)
+     ...: 
+x1 y1
+x2 y2
+
+In [115]: x = ['x1','x2','x3']
+     ...: y = ['y1','y2']
+     ...: for a,b in[(a,b) for a in x for b in y]:
+     ...:     print (a,b)
+     ...: 
+x1 y1
+x1 y2
+x2 y1
+x2 y2
+x3 y1
+x3 y2
+
+Conditional (True/False) execution using if, elif, and else
+Python does not have switch() case, 
+if test1:
+    code-block-1
+elif test2:
+    code-block-2
+elif test3:
+    code-block-3
+elif test4:
+    code-block-4
+elif test5:
+    code-block-5
+elif test6:
+    code-block-6
+elif test7:
+    code-block-7
+else:
+    code-block-n
+
+Single-line If
+- Python supports a single-line conditional statement – also called an “inline function”
+a = 5
+'low' if a <= 5 else 'high'
+
+try:
+    code-block-1            #   Code to test for error
+except: error
+    code-block-2            #   handler
+finally:
+    code-block-3            #   Optional code runs whether error was detected or not
+
+Error Handling
+In [2]: mylist =['Ronin','MeToo','iFruit','Sorrento']
+   ...: print("mylist =['Ronin','MeToo','iFruit','Sorrento']: ", mylist)
+   ...: print ("len(mylist): ", len(mylist))
+   ...: toofar = len(mylist)+1
+   ...: print("len(mylist)+1: ", toofar)
+   ...: index = 0
+   ...: try:
+   ...:     for index in range(0,toofar):
+   ...:         print("for index:", mylist[index])
+   ...: except IndexError:
+   ...:     print("Index Error")
+   ...: finally:
+   ...:     print ("finally")
+   ...: 
+mylist =['Ronin','MeToo','iFruit','Sorrento']:  ['Ronin', 'MeToo', 'iFruit', 'Sorrento']
+len(mylist):  4
+len(mylist)+1:  5
+for index: Ronin
+for index: MeToo
+for index: iFruit
+for index: Sorrento
+Index Error
+finally
+
+Named Functions
+- Deﬁnes a function and associates it with a name
+
+def name(parameters):       # la función obtiene una copia de los parametros pasados
+    code-block
+    return variable         # is optional
+
+# Define function to return month from date timestamp
+
+In [3]: def getmonth(dts):
+   ...:     months = {1: 'JAN', 2: 'FEB', 3: 'MARCH', 4: 'APRIL', 5: 'MAY', 6: 'JUN',
+   ...:               7: 'JUL', 8: 'AUG', 9: 'SEP', 10:'OCT', 11: 'NOV', 12: 'DIC'}
+   ...:     month = dts[5:7]
+   ...:     nummonth = int(month)
+   ...:     return months[nummonth]
+   ...: 
+
+In [4]: dts = "2021-10-04:10:10:20"
+   ...: print("getmonth(dts):", getmonth(dts))
+getmonth(dts): OCT
+
+Alcance de las variables - Variable Scope
+
+- Las variables pueden definirse dentro de la función (es decir, ámbito local)
+
+- Las variables locales deﬁnidas en el código que llama a una función no son visibles para la función a la que se llama
+
+- Los parámetros se pasan a las funciones por copia, no por referencia
+
+- La modificación del valor de un parámetro sólo modifica la copia local
+
+- Cuando una función retorna, las variables locales definidas dentro de la función se pierden
+
+- Es posible deﬁnir variables globales preﬁjando su deﬁnición con la palabra clave la palabra clave global, pero debe evitarse siempre que sea posible
+
+In [1]: def fun1(a):
+   ...:     global b
+   ...:     c = 1
+   ...:     a += 1
+   ...:     b += 1
+   ...:     c += 1
+   ...:     return a
+
+In [2]: a=7
+
+In [3]: b=3
+
+In [5]: d=fun1(a)
+
+In [6]: print("a: ", a)
+a:  7
+
+In [7]: print("b: ", b)
+b:  4
+
+In [8]: print("c: ", c)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-8-049567c808d6> in <module>
+----> 1 print("c: ", c)
+
+NameError: name 'c' is not defined
+
+In [9]: print ("d: ", d)
+d:  8
+
+Single-Line Notation Functions
+
+- Occurs on a single line
+- return keyword precedes single line of code
+
+def name(parameters): return code-line
+
+In [10]: def CtoF(tempC): return (tempC*9/5) + 32
+    ...: 
+
+In [11]: print("CtoF(18): ", CtoF(18))
+CtoF(18):  64.4
+
+Pass by Reference
+
+- When a function name appears in parentheses, meaning it is passed as a parameter, Python executes it
+- When a function name appears without parentheses, Python treats it as an object and passes it by reference (called ﬁrst class functions)
+
+def cuadrado(number):
+    return number*number
+
+def mitad(number):
+    return number/2
+
+def doit(somefunction,input):
+    return somefunction(input)
+
+doit(mitad, 7)
+doit(cuadrado, 7)
+
+Anonymous Functions (Lambda) - lambda
+lambda parameters: code-line
+
+Permite definir una función en línea sin un nombre simbólico
+
+- Se define dentro de la llamada a otra función
+- Útil para funciones de una sola vez en las que la reutilización no es un objetivo
+- Limitado a una sola línea - funciones pequeñas
+- El código debe devolver implícitamente un valor
+
+filter()
+- Iterates over each element in the collection and returns only those elements that match the criteria determined by the function
+
+
+In [39]: devices = ['iFruit','Sorrento','Titanic','Ronin','MeToo'] 
+
+# la definición d filter  es algo parecido a esto:
+#                           filter(      function,       collection)
+In [40]: filtered_devices = filter(lambda x: len(x) < 6, devices) 
+
+In [43]: for x in filtered_devices:
+    ...:     print(x)
+    ...: 
+Ronin
+MeToo
+
+map()
+- Iterates over each element in the collection and returns 1-for-1 elements that are transformed by the function
+
+In [46]: cpu_util= ['32','46','18','76','23','49','91','87']
+
+In [47]: print(cpu_util)
+['32', '46', '18', '76', '23', '49', '91', '87']
+
+# la definición de la función map es algo como:
+             map(      transform_function, collection)
+In [49]: x = map(lambda c: float(c)/100.0, cpu_util)
+
+In [50]: print(x)
+<map object at 0x7f30a3bf2640>
+
+In [51]: type (x)
+Out[51]: map
+
+In [52]: for i in x:
+    ...:     print (i)
+    ...: 
+0.32
+0.46
+0.18
+0.76
+0.23
+0.49
+0.91
+0.87
+
+- You can pass map()multiple collections of the same size
+
+In [53]: ambient = [21,26,54,87,69,77,61,47,81,49,37]
+    ...: device = [86,97,53,98,31,61,71,70,92,98,58]
+    ...: 
+
+# la definición de la función map es algo como:
+#                    map(  transform_function, collections   )
+In [54]: variation = map(lambda x,y: abs(x-y), ambient,device)
+
+In [55]: print(variation)
+<map object at 0x7f30b19175b0>
+
+In [57]: for i in variation:
+    ...:     print(i)
+    ...: 
+65
+71
+1
+11
+38
+16
+10
+23
+11
+49
+21
+
+In [58]: type(variation)
+Out[58]: map
+
+
+reduce()
+- Iterates over a sequence of elements in the collection and performs a function on the sequence
+
+from functools import reduce
+restarts = {'MeToo':7,'Ronin':7,'Sorrento':15, 'Titanic':11, 'iFruit':7}
+
+# la definición de reduce es algo como:
+#       reduce(reduce_function, collection)
+total = reduce(lambda x,y: x+y, restarts.values())
+print(total)
+47
+type(total)
+int
+
+--O-J-O-- npi de donde hay que importar reduceByKey
+total = reduceByKey(lambda x,y: x+y, restarts.values())
+print(total)
+type(total)
+
+Generator Functions
+- A Python generator is an iterable function – Also known as a cofunction in computer science
+yield - rendimiento
+– Preserves the functional context (local variables and state)
+– Returns control to the caller
+– Passes an iterator object back - devuelve un iterator
+
+# A Python program to generate squares from 1
+# to 100 using yield and therefore generator
+
+# An infinite generator function that prints
+# next square number. It starts with 1
+
+def nextSquare():
+	i = 1
+
+	# An Infinite loop to generate squares
+	while True:
+		yield i*i				
+		i += 1 # Next execution resumes
+				# from this point	
+
+# Driver code
+for num in nextSquare():
+	if num > 100:
+		break
+	print(num)
+
+Working with Libraries
+Storing and Retrieving FuncFons
+Python Modules
+- Also called a “library”
+- The program that is loaded into Python from the command line is the main program
+    – $ python program.py
+- Load code from other *.py ﬁles into the main program
+    – import libraryname
+    – Searches the path for libraryname.py
+    – Loads the library as an object, and all functions as methods
+        – To access fun1() in libraryname, use libraryname.fun1()
+    – from libraryname import fun1, fun2, fun3
+    – Loads the functions directly into the main program
+        – To access fun1(), use fun1()
+
+vi library.py
+def loadfile(filename):
+    lines=[ ]
+    file = open(filename,'rt')
+    lines = file.readlines();
+    file.close()
+    return lines
+
+def userinput(prompt):
+    keybuffer = input(prompt)
+    return keybuffer
+
+import library
+# loads the functions as methods of the library
+mylist = library.loadfile('loudacre.log')
+print (mylist)
+print ("\n\n")
+myline = library.userinput('Greetings: ')
+print (myline)
+
+from library import loadfile, userinput
+# loads the functions directly into the main program symbol table
+mylist = loadfile('loudacre.log')
+print (mylist)
+print ("\n\n")
+myline = userinput('Greetings: ')
+print (myline)
+
+- Module Control
+How Does Python Find Libraries?
+- At Python startup
+    – Current directory where the program is located
+    – PYTHONPATH
+    – OS-dependent path
+    – A list of directory names with the same syntax as PATH in the OS
+    – Path to default libraries such as prefix/lib/pythonversion
+- After program is running
+    – The path is available and can be changed by a running program
+    – It is located in sys.path
+    – Add to path with sys.path.append(newpath)
+
+Example of Adding to the Path
+- Adding a user-deﬁned directory of libraries
+import sys
+print sys.path
+> ['',
+'/Library/Frameworks/Python.framework/Versions/2.7/bin',
+'/Library/Python/2.7/site-packages/bigquery-2.0.17-py2.7.egg',
+'/Library/Python/2.7/site-packages/httplib2-0.8-py2.7.egg',
+'/Library/Python/2.7/site-packages/oauth2client-1.2-py2.7.egg',
+. . .and so forth . . .
+sys.path.append('/home/user/python-libs')
+
+Site-Speciﬁc Paths
+- Provides a single location for maintenance of site-speciﬁc paths
+- On import, site extends sys.path with sys.prefix and sys.exec_prefix
+    – The exact ﬁles/paths are OS-dependent
+        – Example Unix: lib/python$version/site-packages and lib/site-python
+    – You can globally set/change site-speciﬁc paths
+
+import sys
+print sys.path
+print sys.prefix
+print sys.exec_prefix
+
+import site
+print site.PREFIXES
+print site.USER_BASE
+print site.USER_SITE
+
+Where Do Libraries Come From?
+- Standard (ships with Python)
+    – Not loaded by default, must be imported
+    – Examples: sys, math, re
+- Separately installed
+    – *.egg ﬁles
+    – A Python “egg” (*.egg) is a distribuGon of a Python project that may contain code, metadata, and resources
+    – Separately installed using pip or easy_install
+
+What's in a Library?
+- import libraryname
+- dir(libraryname)
+
+In [88]: import math
+
+In [89]: dir(math)
+Out[89]: 
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'comb', 'copysign', 'cos', 'cosh', 'degrees', 'dist', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'isqrt', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'perm', 'pi', 'pow', 'prod', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+
+Special Strings
+- __doc__ Contains a documentaFon string
+- __name__ – Contains a string with the context in which the code is running, name of the library if imported, or __main__
+- __file__ Contains the path from which the library originated
+
+In [90]: print(math.__doc__)
+This module provides access to the mathematical functions
+defined by the C standard.
+
+In [91]: print(math.__name__)
+math
+
+In [92]: print(math.__file__)
+/home/hadoop/anaconda3/lib/python3.8/lib-dynload/math.cpython-38-x86_64-linux-gnu.so
+
+- A program can test __name__ to determine if it is running after import in a main program or if it is running standalone
+    – One use is to test code that only runs if the library is executed standalone
+
+if __name__ == '__main__':
+    # only prints if in main program
+    print ("running library test")
+
+def loadfile(filename):
+    lines=[ ]
+    file = open(filename,'rt')
+    lines = file.readlines();
+    file.close()
+    return lines
+
+Passing Command Line Arguments
+- Arguments are passed from the command line using the sys module
+    – sys is a built-in; not enabled by default, you have to import it
+    – import sys
+- Arguments on the command line are passed as space-delimited string
+    $ python args.py 1 2 3
+        -> sys.argv[0]='1', sys.argv[1]='2', sys.argv[2]='3'
+
+    $ python args.py 1,2,3
+        -> sys.argv[0] ='1,2,3'
+
+import sys
+arguments = len(sys.argv)
+for i in range(0,arguments):
+    print("argv[',i,'] ", sys.argv[i])
+
+- Common Standard Libraries
+
+Built-in sys
+- import sys
+    – Imports system environment object
+    – help(sys) -> details on available values and methods
+        – sys.version       • Gives the version of Python
+    – sys.executable        • Gives the path to the Python executable
+    – sys.getrefcount(var)  • Gives the refcount of a variable    
+
+Built-in math
+- import math - Imports the math module
+- math.ceil() – rounds up to a whole number, returns a float
+- math.floor() – rounds down to whole number, returns a float
+- math.sqrt() – square root
+- math.pi() – constant
+- math.e() – constant
+
+Built-in re - RegEx
+- import re – Imports regular expression module for sophisticated pattern matching
+– re.compile(pattern) – Creates the pattern object – Loads and parses the regular expression search string
+– pattern.match(content) – creates the Match object – Executes the regular expression code and stores the results
+– You can then call methods on the pattern object to investigate
+    • pattern.start(), pattern.end()
+    • pattern.group(), pattern.span()
+
+Overview of Regular Expressions
+- RegEx re-deﬁnes elements within the pattern string that already have a diﬀerent meaning to Python outside of the search string
+– [ ] = delimits a group of characters, any of which are a match
+– [0-9] = matches characters between zero and nine
+– [^0-9] = matches any characters except zero through nine
+– [0-9]* = matches number of times (zero or more repetitions)
+– . = matches any character except a newline
+– \w = matches any whitespace character
+- Python wrinkle… if you wanted to match '['
+– you'd have to escape it like this in the search string: \[
+– but… Python will process the escape sequence in the string…
+– so… you'd need to escape the escape and the bracket: \\\\[
+– or… use Python raw: r"\["
+– or… triple quotes: """match[this] string exactly"""
+
+In [95]: import re
+    ...: regobj = re.compile("[a-z]*")
+    ...: print(type(regobj))
+    ...: mat = regobj.match("abcdefghijk")
+<class 're.Pattern'>
+
+In [99]: print(type(regobj))
+<class 're.Pattern'>
+
+In [101]: print(regobj)
+re.compile('[a-z]*')
+
+In [102]: mat = regobj.match("abcdefghijk")
+     ...: 
+
+In [103]: print(mat)
+<re.Match object; span=(0, 11), match='abcdefghijk'>
+
+In [104]: print(type(math))
+<class 'module'>
+
+------------------------------------------------------------------------------------------------------------------------------------------
+|                shell iPython
+------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------
+| continuación, reubicar cuando termine el libro |
+--------------------------------------------------
+
+Recursive functions - Cuando una función se llama a sí misma para producir un resultado, se dice que es recursiva. A veces, las funciones recursivas son muy útiles porque facilitan la escritura de código. 
+Algunos algoritmos son muy fáciles de escribir utilizando el paradigma recursivo, mientras que otros no lo son. 
+No hay ninguna función recursiva que no pueda ser reescrita de forma iterativa, por lo que normalmente depende de
+el programador elegir el mejor enfoque para el caso en cuestión.
+El cuerpo de una función recursiva suele tener dos secciones: 
+- una en la que el valor de retorno depende de una llamada posterior a sí misma, y
+- otra en la que no (llamada caso base).
+
+¡Como ejemplo, podemos considerar la función factorial, N!
+
+El caso base es cuando N es 0 o 1. 
+La función devuelve 1 sin necesidad de más cálculos.
+Por otro lado, en el caso general, N! devuelve el producto 1 * 2 * ... * (N-1) * N. 
+
+N! se puede reescribir así N! = (N-1)! * N. 
+¡considera 5! = 1 * 2 * 3 * 4 * 5 = (1 * 2 * 3 * 4) * 5 = ¡4! * 5.
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/recursive.factorial.py
+
+Anonymous functions
+One last type of functions that I want to talk about are anonymous functions. These
+functions, which are called lambdas in Python, are usually used when a fully-fledged
+function with its own name would be overkill, and all we want is a quick, simple one-liner
+that does the job.
+
+Funciones anónimas - Lambdas
+Se utilizan normalmente cuando una función con su propio nombre sería exagerado, 
+rápidas en una linea
+
+lista de todos los números hasta N que son múltiplos de cinco.  y filtrarlos usando la función filter, 
+
+Sin usar una función anónima:
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/filter.regular.py
+
+Como lambda function:
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/filter.lambda.py
+
+Definir una lambda: 
+
+func_name = lambda [parameter_list]: expresión
+
+def func_name([parameter_list]): 
+    return expression
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/lambda.explained.py
+
+Atributos de las funciones
+Cada función es un objeto completo y, como tal, tiene muchos atributos. 
+Algunos de ellos son especiales y pueden utilizarse de forma introspectiva para inspeccionar el objeto en tiempo de ejecución. 
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/func.attributes.py
+
+la función incorporada getattr obtiene el valor de esos atributos.
+obtener un atributo en tiempo de ejecución utilizando su nombre de cadena
+
+getattr(obj, attribute) is equivalent to obj.attribute 
+
+print(atributo, '->', getattr(multiplicación, atributo))
+
+atributo global: Python Data Model documentation 
+https://docs.python.org/3/reference/datamodel.html#the-%E2%80%8B%20standard-%E2%80%8B%20type-%E2%80%8B%20hierarchy
+
+list de todos los atributos de un objeto: dir(object_name)
+
+Funciones incorporadas - builtins
+
+lista de funciones
+>>> dir(__builtins__)
+['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False', 'FileExistsError', 'FileNotFoundError', 'FloatingPointError', 'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError', 'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError', 'MemoryError', 'ModuleNotFoundError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented', 'NotImplementedError', 'OSError', 'OverflowError', 'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError', 'RecursionError', 'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning', 'StopAsyncIteration', 'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError', 'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning', 'ValueError', 'Warning', 'ZeroDivisionError', '__build_class__', '__debug__', '__doc__', '__import__', '__loader__', '__name__', '__package__', '__spec__', 'abs', 'all', 'any', 'ascii', 'bin', 'bool', 'breakpoint', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property', 'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
+>>> 
+
+Documenting your code
+
+You can find the guidelines for documenting Python in PEP 257 - Docstring conventions ( https://www.python.org/dev/peps/pep-0257/
+
+Python se documenta con cadenas, que se llaman apropiadamente docstrings. 
+Cualquier objeto puede ser documentado, y puedes usar docstrings de una o varias líneas. 
+Los de una línea son muy simples. 
+No deben proporcionar otra firma para la función, sino indicar claramente su propósito:
+
+Utilizar cadenas de comillas dobles triples para ampliar facilmente las explicaciones de las funciones. 
+Utilizar frases que terminen en un punto.
+no dejar líneas en blanco antes ni después.
+
+ /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/docstrings.py
+
+def square(n):
+"""Return the square of a number n. """
+    return n ** 2
+
+def get_username(userid):
+"""Return the username of a user given their id. """
+    return db.get(user_id=userid).username
+
+Los comentarios multilínea se estructuran de forma similar. 
+Debe haber una línea que brevemente explique lo esencial del objeto, 
+y luego una descripción más detallada. 
+- notación Sphinx
+
+def connect(host, port, user, password):
+"""Connect to a database.
+Connect to a PostgreSQL database directly, using the given parameters.
+:param host: The host IP.
+:param port: The desired port.
+:param user: The connection username.
+:param password: The connection password.
+:return: The connection object.
+"""
+# body of the function here...
+    return connection
+
+Sphinx es probablemente la herramienta más utilizada para crear documentación en Python. 
+De hecho, la documentación oficial de Python fue escrita con ella. 
+https://www.sphinx-doc.org/en/master/
+
+Importing objects
+
+El objetivo de escribir funciones es poder reutilizarlas, y en Python, esto se traduce en importárlas al espacio de nombres donde las necesites.
+
+formas de importar funciones:
+-- import module_name
+
+esta forma encuentra el module_name y define un nombre para él en el espacio de nombres local donde se ejecuta la sentencia import. 
+
+
+-- from module_name import function_name
+
+esta forma encuentra el module_name y busca un atributo (o un submódulo) y almacena una referencia al identificador en el espacio de nombres local.
+
+
+Both forms pueden cambiar el nombre del objeto usando as
+
+from mymodule import myfunc as otro_nombre
+
+Python Enhancement Proposal - Un PEP es un documento de diseño que proporciona información a la comunidad de Python, o que describe una nueva característica para Python o sus procesos o entorno. 
+El PEP debe proporcionar una especificación técnica concisa de la característica y una justificación de la misma.
+
+>>> PEP Index >>> 
+https://www.python.org/dev/peps/
+
+https://www.python.org/dev/peps/pep-0008/
+PEP 8 -- Style Guide for Python Code - style guide for Python code
+
+Nos ayuda a escribir código fácilmente legible, de modo que si lo mostráramos a otros desarrolladores, o incluso a nosotros mismos en el futuro, serían capaces de entender lo que está pasando desde el primer vistazo. 
+
+Los imports se colocan siempre al principio del archivo, justo después de los comentarios y docstrings del módulo, y antes de los globales y constantes del módulo.
+https://www.python.org/dev/peps/pep-0008/#imports
+
+from datetime import datetime, timezone          # two imports on the same line
+from unittest.mock import patch                  # single import
+import pytest                                    # third party library
+from core.models import (                        # multiline import
+    Exam,
+    Exercise,
+    Solution,
+)
+
+Importaciones absolutas por que definen toda la ruta del módulo que queremos importar.
+o del módulo que queremos importar un objeto. 
+
+Cuando la estructura de archivos comienza en la raíz del proyecto, se puede usar la notación de punto
+para llegar al objeto que se quiere importar, ya sea un paquete, un módulo, una clase, 
+una función o cualquier otra cosa.
+
+The from module import syntax tambien permite una clausula catch-all, from module import * ,
+que a veces se utiliza para obtener todos los nombres de un módulo en el espacio de nombres actual a la vez, 
+pero está mal visto por varias razones como el rendimiento y el riesgo de ensombrecer silenciosamente otros nombres. 
+
+# /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
+
+├── func_from.py
+├── func_import.py
+├── lib                         --> lib folder 
+   ├── funcdef.py               --> module que contiene las funciones square y cube.
+   └── __init__.py              --> indica a python que es un paquete.
+
+Quieres usar las funciones square.py y cube.py en los modules que estan en el mismo nivel de la carpeta lib:
+
+__init__.py indica que es un módulo de Python de pleno derecho, por lo que puede poner el código en él como lo haría
+con cualquier otro módulo. 
+A partir de Python 3.3, su presencia ya no es para que una carpeta sea interpretada como un paquete de Python.
+
+The code is:
+
+# funcdef.py
+
+def square(n):
+   return n ** 2
+   
+def cube(n):
+   return n ** 3
+
+# func_import.py
+import lib.funcdef
+
+""" accedemos a las funciones cuadrado y cubo."""
+print(lib.funcdef.square(10))
+print(lib.funcdef.cube(10))
+
+# func_from.py
+from lib.funcdef import square, cube
+
+""" accedemos a las funciones cuadrado y cubo."""
+print(square(10))
+print(cube(10))
+
+Importaciones Relativas: PEP 328 ( https://www.python.org/dev/peps/pep-0328/ )
+
+Es útil en situaciones en las que queremos reorganizar la estructura de paquetes grandes sin tener que
+editar los subpaquetes, o cuando queremos que un módulo dentro de un paquete pueda importarse a sí mismo.
+Las importaciones relativas se realizan añadiendo tantos puntos delante del módulo como el número de carpetas en las que tengamos que retroceder para encontrar lo que buscamos.
+
+from .mymodule import myfunc
+
+Saving Time and Memory
+
+# /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/squares.py
+
+No es necesario preocuparse por ahorrar una fracción de microsegundo en una función que se llama unas pocas veces.
+
+Es importante la optimización, es cuando hay que tratar con enormes colecciones de datos.
+
+Cuando se está aplicando la misma función a un millón de objetos, entonces querrá que su función esté afinada al máximo. 
+
+Ganar 1/10 de segundo en una función llamada un millón de veces le ahorra 100.000 segundos, lo que equivale a unas
+27,7 horas...
+
+en un constructor de lista para pasar un iterador/generador a list(...) lo agota y pone todos los elementos generados en una lista recién creada, que  se puede imprimir fácilmente para mostrar su contenido. 
+
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/alias.py
+
+- iterador e iterable: la capacidad de un objeto de devolver su siguiente elemento cuando se le pide, 
+y de lanzar una excepción StopIteration cuando se agote.
+
+map
+---
+
+map(function, iterable, ...) 
+devuelve un iterador que aplica la función a cada elemento del iterable, obteniendo los resultados.
+Si se pasan argumentos adicionales al iterable, 
+la función debe tomar ese número de argumentos y se aplica a los elementos de todos los iterables en paralelo. 
+Con múltiples iterables, el iterador se detiene cuando se agota el iterable más corto.
+
+usaremos una función lambda que toma un número variable de argumentos posicionales y los devuelve como una tupla:
+/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/map.example.py
+
+
+los elementos de cada iterable se aplican a la función; 
+al principio el primer elemento de cada iterable, 
+luego el segundo de cada iterable, y así sucesivamente. 
+
+map se detiene cuando se agota el más corto de los iterables con los que lo hemos llamado
+NO es obligatorio a nivelar todos los iterables a una longitud común común, 
+y no se rompe si no tienen la misma longitud.
+
+es muy útil cuando hay que aplicar la misma función a una o varias colecciones de objetos
+
+-- transformación Schwartziana es una técnica utilizada para mejorar la eficiencia de la ordenación de una lista de elementos. 
+apropiado para la ordenación por comparación cuando la ordenación se basa realmente en el ordenamiento de una determinada propiedad (la clave) de los elementos, 
+donde el cálculo de esa propiedad es una operación intensiva que debe realizarse un número mínimo de veces. 
+se caracteriza por no utilizar matrices temporales con nombre.
+
+Queremos clasificar en orden descendente por la suma de los créditos acumulados por los estudiantes, para tener al mejor estudiante en la posición 0. 
+Escribimos una función para producir un objeto decorado, lo ordenamos, y luego lo deshacemos. 
+
+Esta función crea una tupla con la suma de los creditos por cada estudiante
+def decorate(student):
+   return ( sum(student['credits'].values()), student )
+
+Cada estudiante tiene créditos en tres asignaturas (posiblemente diferentes).
+
+En este contexto, decorar un objeto significa transformarlo, ya sea añadiéndole datos adicionales, 
+o poniéndolo en otro objeto, de forma que nos permita ser capaces de ordenar los objetos originales de la manera que queramos. 
+
+Después de la ordenación, revertimos los objetos decorados para obtener los originales a partir de ellos. 
+A esto se le llama llama desdecorar:
+
+Esta función deshace la suma de los creditos, devolviendo el objeto original
+def undecorate(decorated_student):
+   return decorated_student[1
+
+
+decorate.sort.undecorate.py
+
+Empecemos por entender qué es cada objeto del alumno....
+es un dictionary con two keys: credits, e id. 
+pero credits a su ves es un dictionary con tres pares (k,v) clave/valor de asignatura/grado.
+{'credits': {'history': 7, 'math': 9, 'physics': 6}, 'id': 0}
+
+dict.values(), retorna los valores del dictionary
+
+print("credits.values(): ", credits.values()) 
+
+El resultado de llamar a la función decorar con el primer registro:
+decorate(students[0])
+(22, {'credits': {'history': 7, 'math': 9, 'physics': 6}, 'id': 0})
+
+si ejecutamos la función decorate a todos los registros:
+map(decorate, students)
+
+podemos ordenarlos por su cantidad total de créditos simplemente ordenando la lista de tuplas
+
+
+https://docs.python.org/3/howto/sorting.html#the-old-way-using-decorate-sort-undecorate
+
+-- hasta aquí pag: 145

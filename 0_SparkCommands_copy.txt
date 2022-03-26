@@ -1,0 +1,484 @@
+
+
+YARN command.
+
+Run an program on the YARN cluster
+$ spark-submit $DEVSH/exercises/yarn/program.py /data.... 
+$ yarn application -listyarn application -list
+$ yarn application -list -appStates ALL
+$ yarn application -status app-id
+-------------------------------------------------------------------
+
+pyspark command.
+$ pyspark
+spark
+
+>>> help()
+
+Welcome to Python 3.7's help utility!
+
+If this is your first time using Python, you should definitely check out
+the tutorial on the Internet at https://docs.python.org/3.7/tutorial/.
+
+Enter the name of any module, keyword, or topic to get help on writing
+Python programs and using Python modules.  To quit this help utility and
+return to the interpreter, just type "quit".
+
+To get a list of available modules, keywords, symbols, or topics, type
+"modules", "keywords", "symbols", or "topics".  Each module also comes
+with a one-line summary of what it does; to list the modules whose name
+or summary contain a given string such as "spam", type "modules spam".
+
+help> str
+
+devDF = spark.read.json("/devsh_loudacre/devices.json")
+accountsDF = spark.read.table("devsh.accounts")
+
+devDF.printSchema()
+devDF.show(5)
+rows = devDF.take(5)
+for row in rows: print(row)
+devDF.count()
+makeModelDF = devDF.select("make","model")
+makeModelDF.printSchema()
+makeModelDF.show()
+
+devDF.select("devnum","make","model").where("make = 'Ronin'").show()
+
+myDF = spark.sql("SELECT * FROM people WHERE pcode = 94020")
+myDF = spark.read.table("people").where("pcode=94020")
+
+accountsDF.where("zipcode = 94913").write.option("header", "true").csv("/devsh_loudacre/accounts_zip94913")
+acczip94913DF = spark.read.option("inferschema", "true").csv("/devsh_loudacre/accounts_zip94913") 
+
+from pyspark.sql.types import *
+devColumns = [
+... StructField("devnum",LongType()),
+... StructField("make",StringType()),
+... StructField("release_dt",TimestampType()),
+... StructField("dev_type",StringType())]
+
+devSchema = StructType(devColumns)
+devDF = spark.read.schema(devSchema).json("/devsh_loudacre/devices.json")
+
+parquetDF = spark.read.parquet("/devsh_loudacre/devices_parquet")
+
+devDF['devnum']
+devDF.devnum
+
+devDF.select("model", devDF.dev_type, devDF.dev_type*10).show()
+devDF.where(devDF.model.startswith("A")).show()
+devDF.select("model", (devDF.model * 10).alias("model_10")).show()
+devDF.groupBy("dev_type").count().show()
+
+accountsDF.select(accountsDF["first_name"]).show()
+accountsDF.select(accountsDF.first_name).show()
+fnCol = accountsDF.first_name
+fnCol
+lucyCol = fnCol == "Lucy"
+lycyCol.show()
+accountsDF.printSchema()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).show()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(lucyCol).show()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(accountsDF.first_name == "Lucy").show()
+accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(fnCol == "Lucy").show()
+accountsDF.where(fnCol == "Lucy").show()
+accountsDF.select("city", "state", accountsDF.phone_number.substr(1,3)).show(5)
+accountsDF.select("city", "state", accountsDF.phone_number.substr(1,3).alias("area_code")).show(5)
+accountsDF.where(accountsDF.first_name.substr(1,2) == accountsDF.last_name.substr(1,2)).select("first_name","last_name").show(5)
+accountsDF.groupBy("last_name").count().show(5)
+accountsDF.groupBy("last_name","first_name").count().show(5)
+accountsDF.select("acct_num","first_name","last_name","zipcode").join(baseDF, baseDF.zip == accountsDF.zipcode).show()
+accountDeviceDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.printSchema()
+activeAccountsDF = accountsDF.where(accountsDF.acct_close_dt.isNull())
+activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt").join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).show()
+accountDeviceDF.select("id", "account_id", "device_id", "activation_date", "account_device_id").join(devDF, devDF.devnum == accountDeviceDF.device_id).show()
+activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt").join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).join(devDF, devDF.devnum == accountDeviceDF.device_id).show()
+activeAcctDevsDF = activeAccountsDF.join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).select("device_id")
+sumDevicesDF = activeAcctDevsDF.groupBy("device_id").count().withColumnRenamed("count", "active_num")
+sumDevicesDF.show()
+orderDevicesDF = sumDevicesDF.orderBy(sumDevicesDF.active_num.desc())
+joinDevicesDF = orderDevicesDF.join(devDF, sumDevicesDF.device_id == devDF.devnum)
+joinDevicesDF.select("device_id", "make", "model", joinDevicesDF.active_num).write.mode("overwrite").save("/devsh_loudacre/top_devices")
+
+myRDD = spark.sparkContext.textFile("mydata/")
+myRDD = spark.sparkContext.textFile("/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/purplecow.txt")
+
+???
+userRDD = spark.sparkContext.wholeTextFiles("/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/user1.json", "/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/user2.json")
+myData = ["Alice","Carlos","Frank","Barbara"]
+myRDD = sc.parallelize(myData)
+myRDD.saveAsTextFile("mydata/")
+myRDD = sc.textFile("purplecow.txt")
+for line in myRDD.take(2):
+    print(line)
+myRDD = sc.textFile("/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/purplecow.txt") 
+for line in myRDD.take(2):
+     print(line)
+myRDD = sc.textFile("/devsh_loudacre/frostroad.txt")
+myRDD.count()
+lines = myRDD.collect()
+type(lines) - <class 'list'>
+for make in makes1RDD.collect(): print(make)
+makes2RDD = sc.textFile("/devsh_loudacre/makes2.txt")
+for make in makes2RDD.collect(): print(make)
+... 
+allMakesRDD = makes1RDD.union(makes2RDD)
+allMakesRDD.collect()
+distinctRDD = allMakesRDD.distinct()
+for makes in distinctRDD.collect(): print(makes)
+... 
+
+intersectionRDD = makes1RDD.intersection(makes2RDD)
+for makes in intersectionRDD.collect(): print(makes)
+
+subtractRDD = makes1RDD.subtract(makes2RDD)
+for makes in subtractRDD.collect(): print(makes)
+
+zipRDD = makes1RDD.zip(makes2RDD)
+for makes in zipRDD.collect(): print(makes)
+
+logsRDD = sc.textFile("/devsh_loudacre/weblogs/")
+jpglogsRDD = logsRDD.filter(lambda line: ".jpg" in line)
+jpgLines = jpglogsRDD.take(5)
+for line in jpgLines: print(line)
+... 
+lineLengthsRDD = logsRDD.map(lambda line: len(line))
+lineLengthsRDD.isEmpty()
+lineLengthsRDD.count()
+lenLines = lineLengthsRDD.take(5)
+for line in lenLines: print(line)
+...
+lineFieldsRDD = logsRDD.map(lambda line: line.split(' '))
+lineFields = lineFieldsRDD.take(5)
+for fields in lineFields:
+    print("-------")
+    for field in fields: print(field)
+
+ipsRDD = logsRDD.map(lambda line: line.split(' ')[0])
+for ip in ipsRDD.take(5): print(ip))
+hdfs dfs -rm -r /devsh_loudacre/iplist
+ipsRDD.saveAsTextFile("/devsh_loudacre/iplist")
+hdfs dfs -ls /devsh_loudacre/iplist
+hdfs dfs -cat /devsh_loudacre/iplist/part-0000
+
+ipusersRDD = logsRDD.filter(lambda line: ".html" in line).map(lambda line: line.split(' ')[0]+","+line.split(' ')[2])
+
+devstatusRDD = sc.textFile("/devsh_loudacre/devicestatus.txt")
+delimitadorRDD = devstatusRDD.filter(lambda line: len(line) > 20)
+lineFieldsRDD = devstatusRDD.map(lambda line: line.split(line[19:20]))
+valuesFieldsRDD = lineFieldsRDD.filter(lambda values: len(values) == 14)
+dataRDD = valuesFieldsRDD.map(lambda line: (line[0], line[1].split(' ')[0], line[2], line[12], line[13]) )
+dataRDD.saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+dataRDD.map(lambda line: ','.join(line)).saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+
+devstatusRDD = sc.textFile("/devsh_loudacre/devicestatus.txt")
+cleanstatusRDD = devstatusRDD.filter(lambda line: len(line) > 20).map(lambda line: line.split(line[19:20])).filter(lambda values: len(values) == 14)
+for line in cleanstatusRDD.take(2): print(line)
+dataRDD = cleanstatusRDD.map(lambda line: (line[0], line[1].split(' ')[0], line[2], line[12], line[13]) )
+dataRDD.map(lambda line: ','.join(line)).saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+
+import xml.etree.ElementTree as ElementTree
+def getActivations(s):
+     filetree = ElementTree.fromstring(s)
+     return filetree.getiterator('activation')
+
+def getModel(activation):
+     return activation.find('model').text
+
+def getAccount(activation):
+     return activation.find('account-number').text
+
+files="/devsh_loudacre/activations"
+activationFiles = sc.wholeTextFiles(files)
+for line in activationFiles.take(2): print (line)
+activationRecords = activationFiles.flatMap(lambda pair: getActivations(pair[1]))
+for line in activationRecords.take(2): print (line)
+models = activationRecords.map(lambda record: getAccount(record) + ":" + getModel(record))
+models.saveAsTextFile("/devsh_loudacre/account-models")
+
+weblogfiles=("/devsh_loudacre/weblogs/*2.log")
+weblogsRDD = sc.textFile(weblogfiles)
+for line in weblogsRDD.take(2): print(line)
+weblogs1RDD = weblogsRDD.map(lambda line: line.split(' '))
+for line in weblogs1RDD.take(2): print(line)
+weblogs2RDD = weblogs1RDD.map(lambda words: (words[2],1))
+for line in weblogs2RDD.take(2): print(line)
+weblogs3RDD = weblogs2RDD.reduceByKey(lambda count1,count2: count1 + count2)
+for line in weblogs3RDD.take(2): print(line)
+weblogs4dict = weblogs3RDD.map(lambda x: (x[0],x[1])).countByKey()
+weblogs5RDD = weblogsRDD.map(lambda line: line.split(' '))
+for line in weblogs5RDD.take(2): print(line)
+weblogs6RDD = weblogs1RDD.map(lambda words: (words[2], words[0]))
+for line in weblogs6RDD.take(2): print(line)
+weblogs7RDD = weblogs6RDD.groupByKey()
+for line in weblogs7RDD.take(2): print(line)
+weblogs8list = weblogs7RDD.map(lambda x : (x[0], list(x[1]))).collect()
+for line in weblogs8list: print(line)
+for (userid,ips) in weblogs7RDD.take(2):
+     print(userid, ":")
+     for ip in ips: print("\t",ip)
+
+accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+accountsRDD = sc.textFile(accountsdata)
+for line in accountsRDD.take(2): print(line)
+accounts1RDD = accountsRDD.map(lambda s: s.split(','))
+for line in accounts1RDD.take(2): print(line)
+accounts2RDD = accounts1RDD.map(lambda account: (account[0], account))
+for line in accounts2RDD.take(2): print(line)
+accountsjoinRDD = accounts2RDD.join(weblogs3RDD)
+for line in accountsjoinRDD.take(2): print(line)
+for (userid,(values, count)) in accountsjoinRDD.take(2) : print(userid, count, values[3], values[4])
+
+accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+accountsRDD = sc.textFile(accountsdata)
+for line in accountsRDD.take(2): print(line)
+accounts1RDD = accountsRDD.map(lambda s: s.split(','))
+for line in accounts1RDD.take(2): print(line)
+accounts2RDD = accounts1RDD.keyBy(lambda x: x[8])
+for line in accounts2RDD.take(2): print(line)
+
+
+\\-------------------------------------------------------------------
+
+scala command.
+$ spark-shell
+spark
+
+scala> :help
+All commands can be abbreviated, e.g., :he instead of :help.
+:completions <string>    output completions for the given string
+:edit <id>|<line>        edit history
+:help [command]          print this summary or command-specific help
+:history [num]           show the history (optional num is commands to show)
+:h? <string>             search the history
+:imports [name name ...] show import history, identifying sources of names
+:implicits [-v]          show the implicits in scope
+:javap <path|class>      disassemble a file or class name
+:line <id>|<line>        place line(s) at the end of history
+:load <path>             interpret lines in a file
+:paste [-raw] [path]     enter paste mode or paste a file
+:power                   enable power user mode
+:quit                    exit the interpreter
+:replay [options]        reset the repl and replay all previous commands
+:require <path>          add a jar to the classpath
+:reset [options]         reset the repl to its initial state, forgetting all session entries
+:save <path>             save replayable session to a file
+:sh <command line>       run a shell command (result is implicitly => List[String])
+:settings <options>      update compiler options, if possible; see reset
+:silent                  disable/enable automatic printing of results
+:type [-v] <expr>        display the type of an expression without evaluating it
+:kind [-v] <type>        display the kind of a type. see also :help kind
+:warnings                show the suppressed warnings from the most recent line which had any
+
+val devDF = spark.read.json("/devsh_loudacre/devices.json")
+val accountsDF = spark.read.table("devsh.accounts")
+
+devDF.printSchema
+devDF.show(5)
+val rows = devDF.take(5)
+rows.foreach(println)
+devDF.count()
+val makeModelDF = devDF.select("make","model")
+makeModelDF.printSchema
+makeModelDF.show
+
+devDF.select("devnum","make","model").where("make = 'Ronin'").show
+
+accountsDF.where("zipcode = 94913").write.option("header", "true").csv("/devsh_loudacre/accounts_zip94913")
+
+val acczip94913DF = spark.read.options(Map("inferSchema"->"true", "header"->"true")).csv("/devsh_loudacre/accounts_zip94913")
+acczip94913DF: org.apache.spark.sql.DataFrame = [acct_num: int, acct_create_dt: timestamp ... 10 more fields]
+
+val devDF = spark.read.json("/devsh_loudacre/devices.json")
+devDF: org.apache.spark.sql.DataFrame = [dev_type: string, devnum: bigint ... 3 more fields]
+
+import org.apache.spark.sql.types._
+
+val devColumns = List(
+     | StructField("devnum",LongType),
+     | StructField("make",StringType),
+     | StructField("model",StringType),
+     | StructField("release_dt",TimestampType),
+     | StructField("dev_type",StringType))
+devColumns: List[org.apache.spark.sql.types.StructField] = List(StructField(devnum,LongType,true), StructField(make,StringType,true), StructField(model,StringType,true), StructField(release_dt,TimestampType,true), StructField(dev_type,StringType,true))
+
+val devSchema = StructType(devColumns)
+devSchema: org.apache.spark.sql.types.StructType = StructType(StructField(devnum,LongType,true), StructField(make,StringType,true), StructField(model,StringType,true), StructField(release_dt,TimestampType,true), StructField(dev_type,StringType,true))
+
+val devDF = spark.read.schema(devSchema).json("/devsh_loudacre/devices.json")
+devDF: org.apache.spark.sql.DataFrame = [devnum: bigint, make: string ... 3 more fields]
+
+devDF.printSchema
+root
+ |-- devnum: long (nullable = true)
+ |-- make: string (nullable = true)
+ |-- model: string (nullable = true)
+ |-- release_dt: timestamp (nullable = true)
+ |-- dev_type: string (nullable = true)
+
+devDF.write.save("/devsh_loudacre/devices_parquet")
+val parquetDF = spark.read.parquet("/devsh_loudacre/devices_parquet")
+
+
+devDF.select($"model", $"dev_type", $"dev_type"*10).show
+devDF.where(devDF("model").startsWith("")).show
+devDF.select($"model", ($"model" * 10).alias("model_10")).show
+devDF.groupBy($"dev_type").count().show
+
+accountsDF.select(accountsDF("first_name")).show
+accountsDF.select(($"first_name")).show
+val fnCol = accountsDF("first_name")
+val lucyCol = (fnCol === "Lucy")
+lucyCol.desc
+accountsDF.select($"first_name",$"last_name",lucyCol).show
+accountsDF.select($"first_name",$"last_name",lucyCol).where(lucyCol).show()
+accountsDF.select($"first_name", $"last_name", lucyCol).where($"first_name" === "Lucy").show()
+accountsDF.select($"first_name", $"last_name", lucyCol).where(fnCol === "Lucy").show()
+accountsDF.where(fnCol === "Lucy").show()
+accountsDF.select($"city", $"state", $"phone_number".substr(1,3)).show(5)
+accountsDF.select($"city", $"state", $"phone_number".substr(1,3).alias("area_code")).show(5)
+accountsDF.where($"first_name".substr(1,2) === $"last_name".substr(1,2)).select("first_name","last_name").show(5)
+accountsDF.groupBy("last_name").count.show(5)
+accountsDF.groupBy("last_name","first_name").count.show(5)
+accountsDF.select("acct_num","first_name","last_name","zipcode").join(baseDF,$"zip" === $"zipcode").show()
+val accountDeviceDF = spark.read.options(Map("inferSchema"->"true", "header"->"true")).csv("/devsh_loudacre/accountdevice")
+accountDeviceDF.printSchema
+val activeAccountsDF = accountsDF.where(accountsDF("acct_close_dt").isNull)
+val activeAcctDevsDF = activeAccountsDF.join(accountDeviceDF,  accountDeviceDF("account_id") === activeAccountsDF("acct_num")).select("device_id")
+val sumDevicesDF = activeAcctDevsDF.groupBy("device_id").count().withColumnRenamed("count", "active_num")
+val orderDevicesDF = sumDevicesDF.orderBy($"active_num".desc)
+val devDF = spark.read.json("/devsh_loudacre/devices.json")
+val joinDevicesDF = orderDevicesDF.join(devDF, orderDevicesDF("device_id") === devDF("devnum"))
+joinDevicesDF.select("device_id", "make", "model", "active_num").write.mode("overwrite").save("/devsh_loudacre/top_devices")
+val myRDD = sc.textFile("purplecow.txt")
+for (line <- myRDD.take(2))
+     println(line)
+val myRDD = sc.textFile("/devsh_loudacre/frostroad.txt")
+myRDD.count()
+for (line <- lines) println(line)
+for (make <- makes1RDD.collect()) println(make)
+val makes2RDD = sc.textFile("/devsh_loudacre/makes2.txt")
+makes2RDD: org.apache.spark.rdd.RDD[String] = /devsh_loudacre/makes2.txt MapPartitionsRDD[70] at textFile at <console>:24
+for (make <- makes2RDD.collect()) println(make)
+
+allMakesRDD.collect()
+for (make <- allMakesRDD.collect()) println(make)
+
+val distinctRDD = allMakesRDD.distinct()
+for (make <- distinctRDD.collect()) println(make)
+
+val intersectionRDD = makes1RDD.intersection(makes2RDD)
+for (make <- intersectionRDD.collect()) println(make)
+
+val subtractRDD = makes1RDD.subtract(makes2RDD)
+for (make <- subtractRDD.collect()) println(make)
+
+val zipRDD = makes1RDD.zip(makes2RDD)
+for (make <- zipRDD.collect()) println(make)
+
+val logsRDD = sc.textFile("devsh_loudacre/weblogs/")
+val jpglogsRDD = logsRDD.filter(line => line.contains(".jpg"))
+val jpgLines = jpglogsRDD.take(5)
+jpgLines.foreach(println)
+val lineLengthsRDD = logsRDD.map(line => line.length)
+lineLengthsRDD.count 
+lineLengthsRDD.isEmpty
+val lineLen = lineLengthsRDD.take(5)
+lineLen.foreach(println
+val lineFieldsRDD = logsRDD.map(line => line.split(' '))
+val lineFields = lineFieldsRDD.take(5)
+for (fields <- lineFields) { 
+     println("-------")
+     fields.foreach(println)
+     }
+
+val ipsRDD = logsRDD.map(line => line.split(' ')(0))
+ipsRDD.take(5).foreach(println)
+hdfs dfs -rm -r /devsh_loudacre/iplist
+ipsRDD.saveAsTextFile("/devsh_loudacre/iplist")
+hdfs dfs -ls /devsh_loudacre/iplist
+hdfs dfs -cat /devsh_loudacre/iplist/part-00000
+
+val userIPRDD=logsRDD.filter(_.contains(".html")).map(line => line.split(' ')(0) + "," + line.split(' ')(2))
+
+val devstatusRDD = sc.textFile("/devsh_loudacre/devicestatus.txt")
+val delimitadorRDD = devstatusRDD.filter(line => line.length > 20)
+val lineFieldsRDD = devstatusRDD.map(line => line.split(line.charAt(19)))
+val valuesFieldsRDD = lineFieldsRDD.filter(values => values.length == 14)
+val dataRDD = valuesFieldsRDD.map(line =>  (line(0), line(1).split(' ')(0), line(2), line(12), line(13)) )
+dataRDD.saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+dataRDD.map(line => line.toString).map(s => s.substring(1,s.length-1)).saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+
+val devstatusRDD = sc.textFile("/devsh_loudacre/devicestatus.txt")
+val cleanstatusRDD = devstatusRDD.filter(line => line.length > 20).map(line => line.split(line.charAt(19))).filter(values => values.length == 14)
+val dataRDD = cleanstatusRDD.map(line =>  (line(0), line(1).split(' ')(0), line(2), line(12), line(13)) )
+dataRDD.map(line => line.toString).map(s => s.substring(1,s.length-1)).saveAsTextFile("/devsh_loudacre/devicestatus_etl")
+
+import scala.xml._
+
+def getActivations(xmlstring: String): Iterator[Node] = {
+     val nodes = XML.loadString(xmlstring) \\ "activation"
+     nodes.toIterator
+}
+def getModel(activation: Node): String = {
+     (activation \ "model").text
+}
+def getAccount(activation: Node): String = {
+     (activation \ "account-number").text
+}
+
+val files="/devsh_loudacre/activations"
+val activationFiles = sc.wholeTextFiles(files)
+for (line <- activationFiles.take(2)) print (line)
+val activationTrees = activationFiles.flatMap(pair => getActivations(pair._2))
+for (line <- activationTrees.take(2)) print (line)
+val models = activationTrees.map(record => getAccount(record) + ":" + getModel(record))
+models.saveAsTextFile("/devsh_loudacre/account-models")
+
+
+val weblogfiles=("/devsh_loudacre/weblogs/*2.log")
+val weblogsRDD = sc.textFile(weblogfiles)
+for (line <- weblogsRDD.take(2)) print(line)
+val weblogs1RDD = weblogsRDD.map(line => line.split(' '))
+for (line <- weblogs1RDD.take(2)) print(line)
+val weblogs2RDD = weblogs1RDD.map(words =>  (words(2),1))
+for (line <- weblogs2RDD.take(2)) print(line)
+val weblogs3RDD = weblogs2RDD.reduceByKey((v1,v2) => v1 + v2)
+weblogs3RDD.getClass
+for (line in weblogs3RDD.take(2)) print(line)
+# _2, segundo elemento de una tupla, _1, primer elemento de la tupla
+val weblogs4collection = weblogs3RDD.map(x => (x._2, x._1)).countByKey()
+print(weblogs4collection)
+val weblogs5RDD = weblogsRDD.map(line => line.split(' '))
+for (line <- weblogs5RDD.take(2)) print(line)
+val weblogs6RDD = weblogs1RDD.map(words => (words(2), words(0)))
+for (line <- weblogs6RDD.take(2)) print(line)
+val weblogs7RDD = weblogs6RDD.groupByKey()
+for (line in weblogs7RDD.take(2)) print(line)
+val weblogs7RDD = weblogs6RDD.groupByKey()
+for (line <- weblogs7RDD.take(2)) print(line)
+for (x <- weblogs7RDD.take(2)) {                                      # x es una tupla
+   println(x._1 + ":")
+   for (ip <- x._2) println("\t"+ip)
+}
+
+val accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+val accountsRDD = sc.textFile(accountsdata)
+for (line <- accountsRDD.take(2)) print(line)
+val accounts1RDD = accountsRDD.map(s => s.split(','))
+for (line <- accounts1RDD.take(2)) print(line)
+val accounts2RDD = accounts1RDD.map(x => (x(0), x))
+for (line <- accounts2RDD.take(2)) print(line)
+val accountsjoinRDD = accounts2RDD.join(weblogs3RDD)
+for (line <- accountsjoinRDD.take(2)) print(line)
+for (x <- accountsjoinRDD.take(2)) {                                  # x es una tupla 
+   printf("%s %s %s %s\n",x._1, x._2._2,  x._2._1(3), x._2._1(4))
+}
+
+val accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+val accountsRDD = sc.textFile(accountsdata)
+for (line <- accountsRDD.take(2)) print(line)
+val accounts1RDD = accountsRDD.map(s => s.split(','))
+for (line <- accounts1RDD.take(2)) print(line)

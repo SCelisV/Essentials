@@ -1,0 +1,17 @@
+//------------------
+//Hands-On Exercise: Working with the VM and Scala Shell
+//------------------
+
+:help
+
+<<TAB>>
+
+:quit
+
+//$ scalac src/ListPhones.scala
+
+//$ scala ListaPhones
+
+//(base) hadoop@sc-ubuntu-20-04-2-lts:~/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Scala/IntelliJProjects/scalaPUE/src$ scala
+
+:load ListPhones.scala

@@ -1,0 +1,51 @@
+#DataFrame vs RDD
+
+#export PYSPARK_DRIVER_PYTHON=ipython
+#PYSPARK_DRIVER_PYTHON_OPTS=ipython
+#pyspark
+
+spark
+
+#scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ vi rrhh.csv
+#scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ hdfs dfs -put rrhh.csv /devsh_loudacre/
+#scelisdev03@cluster-cca175-m:~/training_materials/devsh/data$ cat rrhh.csv
+#id,nombre,departamento,edad
+#1,lucas,finanzas,45
+#2,juana,recursos humanos,44
+#3,albertina,marketing,48
+#4,vega,finanzas,45
+#5,hugo,recursos humanos,44
+#6,paloma,marketing,48
+#7,ian,recursos humanos,68
+#8,marta,marketing,33
+#9,gonzalo,finanzas,29
+#10,alejandro,recursos humanos,49
+#11,alejandra,marketing,38
+#12,ramiro,finanzas,25
+#13,mariano,recursos humanos,50
+#14,rebeca,marketing,60
+#15,aitor,finanzas,55
+
+# Por cada departamento, hay que averiguar la edad media de sus empleados.
+
+rrhhDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/rrhh.csv")
+rrhhDF.printSchema()
+from pyspark.sql.functions import *
+avgdptoDF = rrhhDF.groupBy("departamento").agg(avg("edad"))
+avgdptoDF.show()
+
+
+file = ("/devsh_loudacre/rrhh.csv")
+rdd = sc.textFile(file)
+header = rdd.first( )
+rrhhRDD = ( rdd.filter( lambda i : i != header ). \
+            map( lambda i: i.split(',') ). \
+            map( lambda i: ( i[2], ( int( i[3] ), 1 ) ) ). \
+            # O-J-O : esta lambda no la tengo clara
+            reduceByKey( lambda v1, v2: ( v1[0] + v2[0], v1[1] + v2[1] ) ). \
+            mapValues ( lambda i : i[0] / float(i[1] ) )
+)
+rrhhList = rrhhRDD.collect ()
+for i in rrhhList: print(i)
+
+for i in rrhhRDD. take(10): print( i )

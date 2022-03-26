@@ -1,0 +1,101 @@
+# revert
+#Pairs with Complex Values
+
+#scelisdev03@cluster-cca175-m:~/training_materials/devsh/examples/example-data$ hdfs dfs -put orderskus.txt /devsh_loudacre/
+# en el primer map, devuelvo un pairRDD donde selecciono como key el [0] y el resto como values ([1], [2]): ( [0] , ([1], [2]))
+# en el segundo map hago un cast a float 
+# con el flatMapValues devuelvo un pairRDD
+
+# cat orderskus.txt
+# hdfs dfs -cat /devsh_loudacre/orderskus.txt
+#00001 sku010:sku933:sku022
+#00002 sku912:sku331
+#00003 sku888:sku022:sku010:sku594
+#00004 sku411
+#00005 sku331:sku010
+
+val ordersRDD = sc.textFile("/devsh_loudacre/orderskus.txt").
+map(_.split(' ')).
+map(i => (i(0), i(1)) ).
+flatMapValues( _.split(':') )
+
+val ordersRDD = sc.textFile("/devsh_loudacre/orderskus.txt"). map( _.split(' ') ).  map( i => ( i(0), i(1)) ).  flatMapValues( _.split(':') )
+
+print("ordersRDD.getClass: ", ordersRDD.getClass)
+for ( i <- ordersRDD.take(5) ) print(i)
+
+printRDD( ordersRDD, "ordersRDD" )
+
+import org.apache.spark.rdd.RDD
+def printRDD[T]( rdd: RDD[T], message: String = "RDD:"): Unit = {
+    println( message + " " + "*"*25)
+    rdd.collect.foreach(println)
+    println()
+}
+
+#---------------------------------------------------------
+# Usar las siguientes funciones en el orden indicado: groupByKey , mapValues , sortByKey , y map .
+# obtener un RDD cuyo contenido sea igual al fichero original.  # cat orderskus.txt
+
+val orderskusRDD = ordersRDD.groupByKey().
+// mapValues( i => i.mkString(": ") ).
+mapValues( _.mkString(": ") ).
+sortByKey().
+map( i => i._1 + " " + i._2 )
+
+print("orderskusRDD.getClass: ", orderskusRDD.getClass)
+for ( i <- orderskusRDD.take(2) ) print(i)
+
+for (x <- orderskusRDD.take(5)) {
+     println(x + ":")
+}
+
+printRDD( orderskusRDD, "orderskusRDD" )
+
+#---------------------------------------------------------
+# A partir del siguiente fichero:
+ 
+# cat orderskus.txt
+# hdfs dfs -cat /devsh_loudacre/orderskus.txt
+#00001 sku010:sku933:sku022
+#00002 sku912:sku331
+#00003 sku888:sku022:sku010:sku594
+#00004 sku411
+#00005 sku331:sku010
+
+val ordersRDD = sc.textFile("/devsh_loudacre/orderskus.txt").
+map(_.split(' ')).
+map(i => (i(0), i(1)) ).
+flatMapValues( _.split(':') )
+
+printRDD( ordersRDD, "ordersRDD" )
+
+print("type(ordersRDD): ", type(ordersRDD))
+for line in ordersRDD.take(2): print(line)
+# ordersRDD
+# ('00001', 'sku010')
+# ('00001', 'sku933')
+
+#Obtener el siguiente RDD 
+
+#"sku010 00001:00003:00005"
+#"sku022 00001:00003"
+#"sku331 00002:00005"
+#"sku411 00004"
+#"sku594 00003"
+#"sku888 00003"
+#"sku912 00002" 
+#"sku933 00001"
+
+# Usar las siguientes funciones en el orden indicado: map , groupByKey , mapValues , sortByKey y map.
+
+val skusorderRDD = ordersRDD.
+map( _.swap).
+groupByKey().
+mapValues( _.mkString(":") ).
+sortByKey().
+map( i => i._1 + " " + i._2 )
+
+for ( i <- skusorderRDD.take(5) ) print(i)
+
+printRDD( skusorderRDD, "skusorderRDD" )
