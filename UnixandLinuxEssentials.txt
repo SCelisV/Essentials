@@ -4028,6 +4028,7 @@ sudo wget http://deb.playonlinux.com/playonlinux_bionic.list -O /etc/apt/sources
 sudo apt-get update
 sudo apt-get install playonlinux
 
+
 --------------------------------------------------------------------------------
 
 He probado esta parte para hibernate por linea de comandos y me funciona:
@@ -4152,3 +4153,4 @@ You could do that for example by creating a powerdev group, add your current use
 
 // Esto no lo hice:
 --------------------------------------------------------------------------------
+

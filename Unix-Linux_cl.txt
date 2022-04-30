@@ -79,7 +79,6 @@ https://www.debian.org/doc/manuals/apt-guide/index.en.html
 Firewall - Netfilter firewall
 https://www.cyberciti.biz/faq/how-to-setup-a-ufw-firewall-on-ubuntu-18-04-lts-server/
 
-
 Shell command interpreter 
 - Bourne Again Shell (bash) = Korn (ksn) + C (csh) => default shells in Oracle Linux and Oracle Solaris OSes
 - Bourne (sh) 
@@ -1120,7 +1119,6 @@ t instead of x for other permissions.
 
 chmod -R 775 filename -> -R recursive
 chmod 777 -R —> cambio recursivo a todos los ficheros
-
 provide some special permissions for specific files or directories
 
 system administrator maintains groups in /etc/group

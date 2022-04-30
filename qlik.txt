@@ -5,7 +5,7 @@ my Qlik Cloud: https://8iplbiv9luzfohj.eu.qlikcloud.com/
 
 He creado diferentes Spaces para organizar las apps
 
-QlikExamples --> algunos ejemplos, estados alternos, scatter, lineas de referencia, Calculations and Transformations 
+QlikExamples --> algunos ejemplos, estados alternos, scatter, lineas de referencia, Calculations and Transformations
 
 con datasets del tutorial del qlik: 
 https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/25f5ead4-2c9f-4848-a18e-ed4a016d49e0/
@@ -227,7 +227,6 @@ https://help.qlik.com/es-ES/sense/August2021/Subsystems/Hub/Content/Sense_Hub/In
 
 
 
-
 - Ayuda Online de Qlik: 
 https://help.qlik.com/es-ES/
 https://help.qlik.com/es-ES/sense
@@ -245,6 +244,7 @@ https://www.sand.es/qlik_sense_cloud_business/
 https://sense-demo.qlik.com/sso/sense/app/2c4b45b7-bb43-46b7-83fb-b5cbe14cff18/overview
 
 https://demos.qlik.com/qliksense
+https://demos.qlik.com/qlikview
 
 https://www.youtube.com/channel/UCF7iNbbJAXmXx-SpQ7mwc6g
 
@@ -277,4 +277,33 @@ Richardson
 Show Me the Numbers: Designing Tables and Graphs to Enlighten, Second
 Edition, Stephen Few
 
+QlikView
+
+sonia.celis@moldtrans.es
+scelis@MOLDTRANS.COM
+
+QlikViewPersonal Edition
+QlikView Server y 
+QlikView Publisher
+
+QlikView Server puede ser accedido por diferentes clientes, incluyendo Internet Explorer Plugin, AJAX Zero Footprint y varios clientes móviles como iPhone, iPad, Android y
+dispositivos RIM.
+
+help.qlik.com
+
+El objeto de hoja más básico es el cuadro de lista. 
+Cada cuadro de lista representa una columna (campo) de la tabla de la base de datos cargada
+
+En términos de QlikView, el valor está seleccionado, cuando el color de la celda se vuelve verde. 
+Las celdas de los valores de los campos asociados son blancas. 
+Los valores seleccionados y asociados se denominan valores posibles.
+Una celda cuyo contenido no está asociado (cuyo valor no aparece en combinación con el del elemento seleccionado) se denomina excluida. 
+Las celdas de los valores excluidos son de color gris.
+los valores opcionales se colocan al principio de la lista, los excluidos al final.
+
+Ctrl key -> seleccionar valores adicionales
+"y lógico - AND " condición -> seleccionar valores de diferentes list box
+
+Current Selections box lists -> muestra todos los campos en los que se han realizado selecciones y los valores seleccionados. 
+Si se seleccionan demasiados valores, sólo se muestra el número de valores seleccionados.
 
