@@ -466,6 +466,18 @@ a // b                                  # integer division
 a % b                                   # modulo operation (reminder of division)
 2
 
+Types of operators in Python
+
+Type                 | Operators
+---------------------|------------------------------------------------------
+Arithmetic operators | +, -, *, /, %, //, **
+Comparison operators | >, <, ==, |=, >=, <=
+Logical operators    | and, or, not
+Bitwise operators    | &, |, ^, >>, <<
+Assignment operators | =, +=, -=, *=, /=, %=, //=, --=, &=, |=, ^=, >>=, <<=
+Identity operators   | is, is not
+Membership operators | in, not in 
+
 Pythonic form
 There are divmod function, which is called with a number and a divisor, 
 and returns a tuple with the result of the integer division and its remainder. 
@@ -2883,6 +2895,74 @@ for num in nextSquare():
 	if num > 100:
 		break
 	print(num)
+
+LIBRARIES & Frameworks
+
+Machine Learning & Data science
+
+NumPy
+Keras
+Theano
+pandasPyTorch
+NLTK
+TensorFlow
+Scikit-Learn
+Matplotlib
+SciPy
+Seaborn
+Broken
+
+Web Development
+
+Django
+Flask
+Bottle
+CherryPy
+Pyramid
+Web2Py
+FastAPI
+TurboGears
+CubicWeb
+Dash
+Falcon
+Tornado
+
+Automation Testing
+
+Splinter
+Robot
+Behave
+PyUnit
+Pytest
+
+Game Development
+
+PyGame
+PyGlet
+PyOpenGI
+Arcade
+Panda3D
+
+Image Processing & Data Visualization
+
+OpenCV
+Mahotas
+SimpleITK
+Pillow
+Scikit-image
+Plotly
+Bokeh
+GGplot
+Pygal
+Geoplotlib
+
+Web Scraping
+
+Requests
+Beautiful Soup
+Selenium
+Lxmi
+Scrapy
 
 Working with Libraries
 Storing and Retrieving FuncFons

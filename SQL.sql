@@ -1,18 +1,18 @@
 -- SQL => 
 
 -- mysql> show databases;
--- +--------------------+
--- | Database           |
--- +--------------------+
--- | analyst_dualcore   |
--- | bank               |
--- | dbMSMK             |
--- | information_schema |
--- | mysql              |
--- | performance_schema |
--- | sys                |
--- | world              |
--- +--------------------+
++--------------------+
+| Database           |
++--------------------+
+| analyst_dualcore   |
+| bank               |
+| dbMSMK             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| world              |
++--------------------+
 
 -- mysql> use analyst_dualcore;
 

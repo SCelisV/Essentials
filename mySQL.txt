@@ -1,0 +1,109 @@
+Some Errors and solutions with mysql
+---------------------------------------------------------------------------------------------------------------
+-- ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+
+remover mysql-serve y
+reinstalar mysql-serve
+
+
+$ sudo apt update && sudo apt upgrade
+$ sudo apt install mysql-client
+$ mysql --version
+$ sudo mysql_secure_installation
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : 
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+
+All done! 
+
+$ sudo systemctl status mysql
+
+$ sudo apt autoremove mysql-server
+
+$ mysql -u root -p
+Enter password: MySQL01*
+
+---------------------------------------------------------------------------------------------------------------
+-- ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+
+sudo mysql -u root
+
+mysql> USE mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT User, Host, plugin FROM mysql.user;
++------------------+-----------+-----------------------+
+| User             | Host      | plugin                |
++------------------+-----------+-----------------------+
+| debian-sys-maint | localhost | caching_sha2_password |
+| mysql.infoschema | localhost | caching_sha2_password |
+| mysql.session    | localhost | caching_sha2_password |
+| mysql.sys        | localhost | caching_sha2_password |
+| root             | localhost | auth_socket           |
++------------------+-----------+-----------------------+
+5 rows in set (0,00 sec)
+
+There are two ways to solve this:
+
+1. You can set the root user to use the mysql_native_password plugin
+
+sudo mysql -u root
+
+mysql> USE mysql;
+mysql> UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+
+$ sudo service mysql restart
+
+2. You can create a new db_user with you system_user (recommended)
+Option 2: (replace YOUR_SYSTEM_USER with the username you have)
+
+$ sudo mysql -u root
+
+mysql> USE mysql;
+mysql> CREATE USER 'YOUR_SYSTEM_USER'@'localhost' IDENTIFIED BY 'YOUR_PASSWD';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'YOUR_SYSTEM_USER'@'localhost';
+mysql> UPDATE user SET plugin='auth_socket' WHERE User='YOUR_SYSTEM_USER';
+mysql> FLUSH PRIVILEGES;
+mysql> exit;
+
+$ sudo service mysql restart
+
+Cambiar la contraseña a root
+$ sudo systemctl stop mysql.service
+$ sudo systemctl set-environment MYSQLD_OPTS="--skip-networking --skip-grant-tables"
+$ sudo systemctl start mysql.service
+$ sudo mysql -u root
+
+mysql> flush privileges;
+mysql> USE mysql;
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MySQL01*';
+mysql> quit;
+
+$ sudo killall -u mysql
+$ sudo systemctl restart mysql.service
+$ sudo mysql -u root -p
+Enter password: 
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bank               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| viajeros           |
++--------------------+
+6 rows in set (0,01 sec)
+
+--------------------------------------------------------------------------------------------------------------------

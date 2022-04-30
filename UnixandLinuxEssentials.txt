@@ -4028,5 +4028,127 @@ sudo wget http://deb.playonlinux.com/playonlinux_bionic.list -O /etc/apt/sources
 sudo apt-get update
 sudo apt-get install playonlinux
 
+--------------------------------------------------------------------------------
+
+He probado esta parte para hibernate por linea de comandos y me funciona:
+
+https://askubuntu.com/questions/6769/hibernate-and-resume-from-a-swap-file
 
 
+Estos son los pasos en mi ordenador:
+
+- Make your /swapfile have at least the size of your RAM
+
+swapoff  disables  swapping  on the specified devices and files
+- si tienes swapfile deshabilitalo: sudo swapoff /swapfile
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo dd if=/dev/zero of=/swapfile bs=$(cat /proc/meminfo | awk '/MemTotal/ {print $2}') count=1024 conv=notrunc
+        1024+0 records in
+1024+0 records out
+8114491392 bytes (8,1 GB, 7,6 GiB) copied, 152,056 s, 53,4 MB/s
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo mkswap /swapfile
+Setting up swapspace version 1, size = 7,6 GiB (8114487296 bytes)
+no label, UUID=1c3eb1c2-8213-4934-bb56-3756b611e695
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo swapon /swapfile
+
+- Note the UUID of the partition containing your /swapfile
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo findmnt -no UUID -T /swapfile
+53f40e22-f92e-494a-b657-8097c9ac74f9
+
+- Reconfigure the package uswsusp in order to correctly use the swapfile:
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo dpkg-reconfigure -pmedium uswsusp
+
+# Answer "Yes" to continue without swap space
+# Select "/dev/disk/by-uuid/53f40e22-f92e-494a-b657-8097c9ac74f9"
+# Encrypt: "No"
+
+update-initramfs: deferring update (trigger activated)
+Processing triggers for initramfs-tools (0.136ubuntu6.7) ...
+update-initramfs: Generating /boot/initrd.img-5.4.0-1066-gke
+
+- Edit the SystemD hibernate service using sudo systemctl edit systemd-hibernate.service and fill it with the following content:
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo systemctl edit systemd-hibernate.service
+[Service]
+ExecStart=
+ExecStartPre=-/bin/run-parts -v -a pre /lib/systemd/system-sleep
+ExecStart=/usr/sbin/s2disk
+ExecStartPost=-/bin/run-parts -v --reverse -a post /lib/systemd/system-sleep
+
+File /etc/systemd/system/systemd-hibernate.service.d/.#override.conf818ac1747df6fe54 saved
+
+- Note the resume offset of your /swapfile:
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo swap-offset /swapfile
+resume offset = 34816
+
+- Configure Grub to resume from the swapfile by editing /etc/default/grub and modify the following line:
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo vi /etc/default/grub
+
+#sc: 26/03/2022: he modificado la siguiente linea:
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX_DEFAULT="resume=UUID=53f40e22-f92e-494a-b657-8097c9ac74f9 resume_offset=34816 quiet splash"
+
+- Update Grub:
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo update-grub
+Sourcing file `/etc/default/grub'
+Sourcing file `/etc/default/grub.d/init-select.cfg'
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.4.0-1066-gke
+Found initrd image: /boot/initrd.img-5.4.0-1066-gke
+Found linux image: /boot/vmlinuz-5.4.0-1057-gke
+Found initrd image: /boot/initrd.img-5.4.0-1057-gke
+Found linux image: /boot/vmlinuz-5.4.0-72-generic
+Found initrd image: /boot/initrd.img-5.4.0-72-generic
+Found memtest86+ image: /boot/memtest86+.elf
+Found memtest86+ image: /boot/memtest86+.bin
+done
+
+- Create the following 
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo vi /etc/initramfs-tools/conf.d/resume
+
+RESUME=UUID=53f40e22-f92e-494a-b657-8097c9ac74f9 resume_offset=34816
+    # Resume from /swapfile
+
+    Update initramfs:
+
+sudo update-initramfs -u -k all
+
+Now you can hibernate 
+
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo systemctl hibernate
+
+--------------------------------------------------------------------------------
+
+// Esto no lo hice:
+
+One can also create those scripts:
+
+sudo tee /usr/local/bin/gotosleep <<EOF
+dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+sleep 2
+sudo /usr/sbin/s2both
+EOF
+sudo chmod +x /usr/local/bin/gotosleep
+sudo tee /usr/local/bin/gotohibernation <<EOF
+dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+sleep 2
+sudo systemctl hibernate
+EOF
+sudo chmod +x /usr/local/bin/gotohibernation
+
+So you can sleep with gotosleep or hibernate with gotohibernation.
+
+You must be able to execute sudo s2both, sudo s2ram and sudo systemctl hibernatewithout having to enter your password for the previous scripts to work.
+
+You could do that for example by creating a powerdev group, add your current user to it, and configure the following sudoers config (edit it with sudo visudo -f /etc/sudoers.d/powerdev):
+
+%powerdev ALL=NOPASSWD: /usr/sbin/s2both, /usr/sbin/s2ram, /bin/systemctl hibernate
+
+// Esto no lo hice:
+--------------------------------------------------------------------------------

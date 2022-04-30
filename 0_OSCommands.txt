@@ -360,3 +360,5 @@ erb                                 macerror5.28                        screenca
 errinfo                             machine                             script                              
 esac                                mail                                scselect                            
 eval                                mailq                               scutil          
+
+- OS X shasum -a 256 or md5 

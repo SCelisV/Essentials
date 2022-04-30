@@ -4,6 +4,7 @@ The Unix and Linux OS structure
 
 Kernel - Core manages all physical resources - CPU - RAM - Disks - I/O
 File system - organization of files / directories
+
 (/) - a root directory
 /bin - the most important commands OS
 /dev - the device files hardware
@@ -12,12 +13,72 @@ File system - organization of files / directories
 /boot - boot up (start) the OS
 /home - private directories for each user
 /mnt - to add a mount point file system (like D or Windows for ex)
-/proc - 
+/proc - contiene un sistema de archivos imaginario o virtual. Este no existe físicamente en disco, sino que el núcleo lo crea en memoria.
+Se utiliza para ofrecer información relacionada con el sistema (originalmente acerca de procesos, de aquí su nombre
 /tmp - temporary
-/usr -
-/var -
+/usr - todos los programas están instalados aquí.
+/var - contiene datos que cambian cuando el sistema se ejecuta normalmente
 /sbin -
 /kernel
+
+Unix/Linux File System Tree
+---------------------------
+
+       |--> bin  (common commands)
+       |--> boot (kernel images)
+       |--> dev  (special files)
+       |--> etc  (system maintenance file)
+       |--> home (user home directory)
+/ ---> |--> lib  (link libraries)
+       |--> proc (system information pseudo file system)
+       |--> sbin (superuser commands)
+       |          | --> bin     (commands)
+       |--> tmp   | --> include (header files)
+       |          | --> lib     (libraries)
+       |--> usr   | --> local
+       |          | --> man     (man pages)
+       |          | --> X11     (X-Windows)
+
+L/Ubuntu - LinuX - LTS - “Long Term Support”.
+
+Links: 
+
+Ubuntu File System Tree: https://help.ubuntu.com/community/LinuxFilesystemTreeOverview
+https://tldp.org/ - The Linux Documentation Project
+- Guía Para Administradores de Sistemas GNU/Linux
+https://tldp.org/pub/Linux/docs/ldp-archived/system-admin-guide/translations/es/html/index.html
+https://ss64.com/bash/ - lista de comandos 
+https://help.ubuntu.com/ - manual Ubuntu
+https://packages.ubuntu.com/ - packages ubuntu
+https://manual.lubuntu.me/index.html - manual Lubuntu
+https://tiswww.cwru.edu/php/chet/readline/rltop.html - GNU ReadLine Library LXDE desktop environment, Lubuntu 18.10 and later uses the LXQt which is a more modern environment.
+http://releases.ubuntu.com/bionic/ubuntu-18.04.3-desktop-amd64.iso
+http://manpages.ubuntu.com/
+http://manpages.ubuntu.com/manpages/bionic/man5/interfaces.5.html
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+
+Download an image vi ZSYNC: sudo apt install zsync ÓR for app snap: sudo snap install zsync
+zsync http://cdimage.ubuntu.com/lubuntu/bionic/daily-live/current/bionic-desktop-i386.iso.zsync
+zsync http://cdimage.releases.ubuntu.com/18.04/ubuntu-18.04.3-live-server-amd64.iso.zsync
+
+tool to create boot drives mkusb: https://help.ubuntu.com/community/mkusb
+
+file:///usr/share/xubuntu-docs/index.html
+http://www.gnu.org/home.es.html
+
+https://help.ubuntu.com/
+https://community.ubuntu.com/
+https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes
+
+https://www.debian.org/doc/user-manuals#apt-howto
+https://www.debian.org/doc/manuals/apt-guide/index.en.html
+
+Firewall - Netfilter firewall
+https://www.cyberciti.biz/faq/how-to-setup-a-ufw-firewall-on-ubuntu-18-04-lts-server/
+
 
 Shell command interpreter 
 - Bourne Again Shell (bash) = Korn (ksn) + C (csh) => default shells in Oracle Linux and Oracle Solaris OSes
@@ -65,6 +126,35 @@ $ su [-] [username] => assume an identify of other user
 $ cd
 $ cd ~username 
 
+Cambiar la contraseña de root, entrando como root 
+sudo -i
+passwd
+
+ó sudo passwd root
+
+Keyboard - teclado
+
+- install Spanish
+$ sudo apt-get install language-pack-es
+$ sudo apt-get install language-pack-UTF-8
+or
+$ sudo locale-gen UTF-8
+
+To see all available language packs, run: 
+$ apt-cache search "^language-pack-[a-z][a-z]$"
+   
+- Contiene archivos que cambian mientras el sistema se ejecuta normalmente.
+/var/lib
+
+To disable this message for all users, run:  
+$ sudo touch /var/lib/cloud/instance/locale-check.skip
+
+- Holds dynamic data libraries/files like the rpm/dpkg database and game scores. Furthermore, this hierarchy holds state information pertaining to an application or the system. State information is data that programs modify while they run, and that pertains to one specific host.
+Contiene bibliotecas/archivos de datos dinámicos como la base de datos rpm/dpkg y los resultados de los juegos. Además, esta jerarquía contiene información de estado perteneciente a una aplicación o al sistema. La información de estado son datos que los programas modifican mientras se ejecutan, y que pertenecen a un host específico.
+
+- \ quita el alias
+$ \ls -l /var/lib/
+
 ~~~~~~~~~~~~~~~~~~
 UBUNTU: "AltGr+ñ"
 MAC: "option+ñ"
@@ -84,7 +174,7 @@ Linux Distributions (distro) - DistroWatch.com
 
 - Red Hat Enterprise Linux (RHEL) including Fedora, CentOS
 - Oracle Linux (OL) based on RHEL with Oracl's Unbreakable Enterprise Kernel (UEK)
-- Debian GNU/Linux including Ubuntu, Linux Mint, and others
+- Debian GNU/Linux including Ubuntu, Linux Mint, and others - uses dpkg packaging system
 - Slackware
 - openSUSE (SUSE)
 - Gentoo
@@ -143,8 +233,11 @@ $ man 2 man
 $ man -s1 man
 $ man -s2 exit 
 
-
 $ man uname
+
+- the most important tools at the command line
+$ man free
+$ free --help
 
 comandos de ayuda dentro de uname:
 
@@ -219,7 +312,7 @@ cd ór cd ~ => return to your home directory
 cat (short for concatenate) or view file contents: $ cat filename
 
 Don't use to read binary files.
-cat first_file second_file > retult_file
+cat first_file second_file > result_file
 
 more (screen or page but not change)
 less (GNU less) navigate, and search but not change display screen or page at a time.
@@ -373,6 +466,8 @@ file3
 $ ls file[3]?
 file32
 
+ls -ltshaF 'sc'*
+
 Searching Files and Directories
 
 find [pathname] -name filename_pattern
@@ -461,6 +556,38 @@ $ grep -c net /usr/lib/sysctl.d/50-default.conf
 Display the number of lines that contain at least one instance of the pattern  - ("patron") -  "net" both in uppercase and lowercase (ignore case) 
 in the /usr/lib/sysctl.d/50-default.conf file
 $ grep -ic net /usr/lib/sysctl.d/50-default.conf
+
+grep -i 'par' *pl*.R => busca la palabra par ignore case en los nombres de ficheros .R que contengan pl
+grep -i alpha *.R => busca la palabra alpha ignore case en todos los ficheros .R
+
+$ grep -f pattern_file *py* 
+
+cat pattern_file
+
+Camel Case
+sensitive
+camel
+case
+CONSTANTE
+CONS
+tipado
+dinámico
+Dinámico
+dir(
+método
+split
+list
+empieza
+posici
+inverso
+number
+numeric
+alpha
+modulo
+operador
+precedencia
+input("
+cast
 
 In addition, originally there were two variant programs: egrep and fgrep.
 
@@ -651,6 +778,7 @@ types de Shell Expansions
  $(command) or (`command`)
  ex:
 
+ - which - locate a command - returns the pathnames of the files (or links) which would be executed in the current environment
  $ which passwd
    /usr/bin/passwd
 
@@ -753,6 +881,18 @@ $ cat -n lab/error
 
   $ who | wc -l -> count all users are login on
 
+           1         2         3         4
+  1234567890123456789012345678901234567890123
+
+  $ who
+  hadoop   :0           2022-04-11 19:11 (:0)
+  $ who | wc -l
+  1
+  $ who | wc -w
+  5
+  $ who | wc -c
+  44 
+  
   $ ls -F /etc | grep "/" | wc -l -> count all directories there are on /etc
 
   $ head -10 dante | tail -3 | lp -> print 
@@ -879,6 +1019,7 @@ to clear the history: $ history -c
 to re-execute a command use: !##### 
 $ !2135
 $ ps -ef | grep session-2.scope
+$ ps -ef | grep v[s]code
 
 or relative location number: !-n
  2135  ps -ef | grep session-2.scope
@@ -978,6 +1119,7 @@ s instead of x for user or group permission,
 t instead of x for other permissions. 
 
 chmod -R 775 filename -> -R recursive
+chmod 777 -R —> cambio recursivo a todos los ficheros
 
 provide some special permissions for specific files or directories
 
@@ -1102,6 +1244,43 @@ a User can change the group ONLY if user is own of object
 
  ex: $ chmod g+rw mytextfile => Group, Add, Read and Write permissions is added to the Group to the file or directory
 
+u owner - #--
+g group - -#-
+o other - --#
+a all (same as ugo)
+r read  - r or 4
+w write - w or 2
+x execute - x or 1
+
++ add permission
+- remove permission
+= set permission
+
+chmod u+x file —> le da permisos de execute al owner
+chmod o+wx file —> da permisos de write y execute al other
+chmod ugo+rwx file —> da permisos all a todos ó chmod 777 file
+
+read & write | read & write | read, write & execute
+4+2=6      . |.     4+2=6  .|.         4+2+1=7
+
+To change permission of only files under a specified directory
+$ sudo find /path/to/someDirectory -type f -print0 | xargs -0 sudo chmod 644
+
+To change permission of only directories under a specified directory (including that directory)
+$ sudo find /path/to/someDirectory -type d -print0 | xargs -0 sudo chmod 755
+
+CHANGE OWNER - GROUP - 
+
+To change the file file's owner to newowner and the group to newgroup with a single command, the syntax would be:
+$ sudo chown newowner:newgroup file
+$ sudo chown newowner -R BigData/
+$ sudo chgrp newgroup -R BigData/
+
+To force (-f) removal recursive (-r) 
+$ sudo rm -rf /path/to/file/filename
+
+$ chmod +t folder —> drwxrwxrwt 
+
  Special file permissions Setuid, Setgid, Stick Bit [st]
  When special file permissions are set on executable files, 
  the user who runs that executable file executes it with the permissions of the UIDor GID. 
@@ -1119,6 +1298,8 @@ a User can change the group ONLY if user is own of object
 
  $ ls -l /usr/bin/passwd
 -rwsr-xr-x 1 root root 59640 mar 22  2019 /usr/bin/passwd
+
+shadow password file, also known as /etc/shadow, is a system file in Linux that stores encrypted user passwords and is accessible only to the root user, preventing unauthorized users or malicious actors from breaking into the system.
 
  $ sudo ls -l /etc/shadow
 -rw-r----- 1 root shadow 1534 ene 12 21:51 /etc/shadow
@@ -1224,6 +1405,9 @@ A process consist of an address space and a metadata object.
 The process space pertains to all the memory and swap space a process consumes.
 The process metadata is just an entry in the kernel's process table and stores all other information about a process
 
+
+- report a snapshot of the current processes
+$ man ps
 Process States: (ps command) s, stat and state output describe the state of a process
  D: Uninterruptible sleep (usually IO)
  R: Running or runnable (on run queue)
@@ -1241,7 +1425,8 @@ Process States: (ps command) s, stat and state output describe the state of a pr
  nice is a useful program that is used to decrease or increase the scheduling priority of a process or batch processes. Users can assign nice values between -20 (most favorable), 0(no effect) and 19(least favorable). The higher the nice value, the lower the scheduling priority
 
        To see every process on the system using standard syntax:
-          ps -e   - Prints info about every process currently running
+          ps -e   - Prints info about every process currently running - Write information for all processes.
+          ps -f Generate  a  full  listing.
           ps -ef  - Generates a full listing
           ps -eF
           ps -ely - Long listing
@@ -1251,7 +1436,20 @@ Process States: (ps command) s, stat and state output describe the state of a pr
           ps axjf
 
           ps -eo format: Writes information according to the format specification given. Multiple -o options can be specified. 
+
+       To get security info:
+          ps -eo euser,ruser,suser,fuser,f,comm,label
+          ps axZ
+          ps -eM
+
+       To see every process running as root (real & effective ID) in user format:
+          ps -U root -u root u
+
 The format specification is interpreted as the space-character-separated concatenation of all the format option arguments.
+
+Format with vFat File System: sudo mkfs.vfat /dev/sdb1
+Format with NTFS File System: sudo mkfs.ntfs /dev/sdb1
+Format with EXT4 File System: sudo mkfs.ext4 /dev/sdb1
 
 A process, as it runs, uses the resources of the various subsystems 
          ------------------------
@@ -1503,7 +1701,9 @@ $ jobs
 
 Alias to customize and abbreviate commands, no whitespaces on either side of the equal sign, command must be quoted, each command in a single alias must be separated by ;
 alias aliasname="command string"
+alias short-command="your custom and very long command here”
 alias l='ls -CF'
+Para mantener alias entre las sesiones crear en  ~/. bashrc o ~/. zshrc —> archivo de perfil de configuración.
 
 group several commands under a single aliasname
 alias info="uname -a; id; date"
@@ -1909,6 +2109,9 @@ $ test "$strA" < "$strB"
 $ echo $?
 0
 
+Ordena el contenido del fichero file4.txt y lo muestra por pantalla
+sort < file4.txt
+
 File test Comparison Operators
 
  Operator 		Meaning			Syntax
@@ -2049,6 +2252,12 @@ $ mkdir $HOME/newdir || cd $HOME/newdir
 mkdir: cannot create directory ‘/home/hadoop/newdir’: File exists
 $ pwd
 /home/hadoop/newdir
+
+mkdir images && cd images 
+mkdir images || cd images
+
+- command1 is the input for command2
+command1 | command2 
 
 The if statement: evaluates the exit status of a command and initiates additional actions based on the return value
 if [ command | test ];
@@ -2247,6 +2456,11 @@ The bash shell provides the following three loop structure
       shift
     done
 
+until [true];
+do 
+ ls -ltshaF;
+done
+
 <<-O-J-O>> probar
 
 #!/bin/sh
@@ -2355,6 +2569,17 @@ Option	Description
  - to extract or restore a single file from the files.tar: $ tar [-]xvf files.tar file1 
 
   ex: $ tar -xf file.tgz
+
+descomprimir un ZipFile: tar -zxvf file.tar.gz
+tar -cvf my-archive.tar /path/to/directory
+tar -xvf my-archive.tar -C /home/myfolder/
+
+  c	Create un nuevo tar file
+  v	Executes in verbose mode; generate information about the operations that are executed; writes to the standard output
+  f	Specifies the archieve file or tape device the output will be redirected 
+  
+  x	Extracts files from the tar file
+  z Compresses and extracts files and directories by using gzip
 
  Compressing a File: gzip command: gzip [options] filename(s)
  - to compress a set of files: $ gzip file1 file2 file3 file4 file5
@@ -2469,10 +2694,23 @@ Option	Description
 
 OpenSSH and Remote Network Connections - OpenBSD Secure Shell - security utilities using the Secure Shell (SSH) network protocol.
 
+$ sudo apt install openssh-server openssh-client
+
 - sshd: (secure shell server daemon) secure end-to-end encrypted connection in an unsecure network
 - ssh: (secure shell) which connects a client to a server 
 - scp: (secure copy) which copies files securely
 - sftp: (secure ftp) which provides a secure file transfer protocol connection
+
+To stop ssh server
+$ sudo /etc/init.d/ssh stop
+
+To start sshs server
+$ sudo /etc/init.d/ssh start
+
+To restart ssh server
+$ sudo /etc/init.d/ssh restart
+
+/etc/ssh/sshd_config =>>> #PasswordAuthentication yes
 
 Remote login network connections can occur between a client machine and a server running sshd and between one server 
 to another server running sshd.
@@ -2489,8 +2727,21 @@ the type of key pairs being generated depends on the version of OpenSSH:
 "rsa1"  Version1 and 
 "dsa", "ecdsa", "rsa" Version2
 
+- change the machine name without reeboot
+$ sudo hostname newnamehostname
+- Después de reiniciar confirmar que en /etc/hostname esten los cambios, 
+$ sudo vi /etc/hostname 
+- Para probar que el fichero es correcto ejecutar:
+$ sudo service hostname start
+- cambie la línea ó lineas: 127.0.1.1     your-new-hostname
+$ sudo vi /etc/hosts
+
+$ sudo apt-get install pdsh
+Pdsh es un eficiente cliente shell remoto multihilo que ejecuta comandos en múltiples hosts remotos en paralelo. Pdsh implementa módulos que se pueden cargar dinámicamente para ampliar la funcionalidad, como los nuevos servicios de shell remoto y la selección de hosts remotos.
+
 - ssh: (secure shell) provides a secure encrypted communication between two untrusted host over an unsecure network
   allows you to connect and log in to a specified remote host
+  $ sudo apt-get install ssh
 
   $ ssh [options] [-l login_name | username@]hostname [command]
 
@@ -2539,11 +2790,15 @@ the type of key pairs being generated depends on the version of OpenSSH:
   The best practice is to set SSH to not permitted for root user because any user would be able to su - into root.
   This provides a layer of protection for the root user.
 
+  ssh-keygen command is used to generate a new SSH key pair
+- ssh-keygen -t ed25519 —> algoritmo de firma ED25519 —> Generar el par de keys SSH y configurarlo correctamente en Gitlab o Bitbucket
+
 - scp: (secure copy) which copies files and directories both ways securely between a Local and Remote Host.
      $ scp [options] SourceFile [username@]hostname:/directory/TargetFile 
      $ scp localFile remoteHost:/tmp
 
-     	$ scp 'Screenshot from 2020-12-31 14-17-51.png' hadoop@192.168.1.155:/home/hadoop/newdir
+     $ scp 'Screenshot from 2020-12-31 14-17-51.png' hadoop@192.168.1.155:/home/hadoop/newdir
+     
 	Welcome to Remote Login!
 	Screenshot from 2020-12-31 14-17-51.png                    100%  169KB  86.2MB/s   00:00    
 	$ 
@@ -2570,6 +2825,9 @@ the type of key pairs being generated depends on the version of OpenSSH:
   -r option recursively copies entire directories to and from another system 
      $ scp -r ~/localFile remoteHost:/tmp
      $ scp -r remoteHost:/tmp ~/localFile 
+  
+- scp - secure copy from remote server:  scp username@remotehost.com:/path/to/foobar.txt /some/local/directory 
+- scp - secure copy to remote server: scp /some/local/directory/foobar.txt username@remotehost.com:/destination/path/
   
   File Transfer Protocol (FTP): exchanging files over a TCP/IP protocol, user-based password authentication.
   also allows anonymous user access, where the password is usually a valid email address
@@ -2635,6 +2893,7 @@ the type of key pairs being generated depends on the version of OpenSSH:
   chown own path                     Change owner of file 'path' to 'own'
   df [-hi] [path]                    Display statistics for current directory or
                                      filesystem containing 'path'
+  df -h                              report file system disk space usage human readable
   exit                               Quit sftp
   get [-afPpRr] remote [local]       Download file - from remote to local			$ get filename
   reget [-fPpRr] remote [local]      Resume download file
@@ -2689,6 +2948,21 @@ the type of key pairs being generated depends on the version of OpenSSH:
   delete	ls		passive		runique
   debug		macdef		proxy		send
   Command
+
+Vs FTP d - VerySecureFTPdaemon
+$ sudo apt install vsftpd
+$ sudo systemctl status vsftpd
+$ anonymous_enable=Yes —> si quiero anónimo en /etc/vsftpd.conf
+$ sudo mkdir /srv/files/ftp
+$ sudo usermod -d /srv/files/ftp ftp
+$ cut -d: -f1 /etc/passwd --> list all local users
+$ sudo userdel username --> delete an user
+$ sudo rm -r /home/username --> delete the home directory 
+$ usermod -aG sudo username --> add the user to the sudo group.
+
+$ sftp hadoop@ip --> para conectarse, luego pide pswd
+
+$ sudo systemctl restart vsftpd.service
 
   The symbol that is used to represent the end-of-line or newline:
 
@@ -2756,3 +3030,404 @@ winecfg
 You also have the option of configuring Wine via the Configure Wine option in the Applications-> Wine menu.
 
 This will create a hidden folder (.wine) in your home directory containing the fake C: drive as well as registry files similar to those used in Windows. Once this directory is created, the Wine Configuration Window will appear. This window will allow you to customize a variety of settings for Wine, including which Windows Version that is emulated, drive mappings, DLL overrides, as well as application specific settings. Click 
+
+$ man systemctl --> Control the systemd system and service manager.
+$ man systemd --> systemd, init - systemd system and service manager is a system and service manager for Linux operating systems
+
+$ sudo systemctl status mysql
+
+Ubuntu use APT (Advanced Package Tool) => 
+apt-get provides a simple way to install packages from the command line. 
+Unlike dpkg, apt-get does not understand .deb files, 
+it works with the package's proper name and can only install .deb archives from a Source. 
+
+$ sudo apt update && sudo apt upgrade
+$ sudo apt-get check
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+
+- se executa el upgrade siempre que el update termine ok - &&
+sudo apt-get update && sudo apt-get upgrade
+- se executa el upgrade aunque el update falle - ||
+sudo apt-get update || sudo apt-get upgrade
+
+$ sudo apt update && sudo apt upgrade -y
+
+$ apt update => Refreshes repository index
+
+Hit: no hay cambios en la versión del paquete de la versión anterior
+Ign: el paquete está siendo ignorado. 
+O el paquete es demasiado reciente que ni siquiera se molesta en comprobar o hubo un error en la recuperación del archivo, pero el error fue trivial y por lo tanto se está ignorando.
+Get: Hay una nueva versión disponible. Se descargará la información sobre la versión (no el paquete en sí). 
+
+$ apt upgrade => Upgrades the latest versions of all the previously installed packages
+
+$ sudo apt-get dist-upgrade => also upgrades the packages. In addition to this, it also handles changing dependencies with the latest versions of the package. It intelligently resolves the conflict among package dependencies and tries to upgrade the most significant packages at the expense of less significant ones, if required
+
+$ sudo apt-get install 
+$ apt install <package_name> => Installs a package
+$ apt install <package_name> --no-upgrade => instalar un paquete, pero no actualizarlo siempre que esté instalado
+$ apt install <package_name> --only-upgrade => actualiza un paquete, pero no lo instala
+$ apt install <package_name>=<version_number> => instalar una versión especifica
+
+$ apt remove => Removes a package => only remove binaries 
+$ apt purge => Removes package with configuration
+$ apt autoremove => Removes unwanted packages - Para eliminar dependencias que ya no son necesarias
+$ apt full-upgrade =>  Upgrades packages with auto-handling of dependencies
+$ apt search => Searches for the program => mejor utilizar sólo para buscar una libreria especifica...
+
+Para buscar un paquete:  (r-cran <==> 'R')
+$ sudo apt search r-cran
+
+$ apt show => Shows package details => para ver el contenido del paquete
+
+$ apt list => Lists packages with criteria (installed, upgradable etc)
+
+$ apt list <package_name> --upgradeable => tienen una versión para ser actualizada
+$ apt list <package_name> --installed => all packages instalados
+$ apt list <package_name> --all-versions => lista todas las versiones de los packages instalados
+$ sudo apt list edit* -- all package_name edit*
+$ apt edit-sources => Edits sources list --> lista de los editores instalados en el sistema
+
+- lists hardware on your system, including maker, type, and where it is connected.
+- Listar el hardware del equipo
+$ sudo lshw 
+$ sudo lshw -class network -short
+$ sudo lshw -class network
+
+- CLAIMED indica que el controlador está cargado pero no funciona.
+- UNCLAIMED indica que no hay un controlador cargado.
+- ENABLED indica que el controlador está cargado y funciona.
+- DISABLED indica que el controlador está instalado, pero deshabilitado 
+
+$ hwinfo --short 
+- lists all PCI buses and devices connected to them. This commonly includes network cards and sound cards.
+$ man lspci
+- lists scsi/sata devices like hard drives and optical drives. list SCSI devices (or hosts), list NVMe devices
+$ man lsscsi
+$ lsscsi -s 
+
+- hdparm - get/set SATA/IDE device parameters
+$ sudo hdparm -i /dev/sda
+
+- lists all USB buses and any connected USB devices, such as printers and thumb drives.
+$ lsusb
+- reports information about the cpu and processing units
+$ lscpu 
+- all block devices, which are the hard drive partitions and other storage devices like optical drives and flash drives
+$ lsblk 
+
+# display information about the processor/cpu
+$ sudo dmidecode
+$ sudo dmidecode -t processor
+$ sudo dmidecode -t memory
+$ sudo dmidecode -t bios
+
+$ cat /proc/cpuinfo
+$ cat /proc/meminfo
+$ cat /proc/version
+$ cat /proc/scsi/scsi
+$ cat /proc/partitions
+
+$ man blkid - locate/print block device attributes
+$ man fdisk - manipulate disk partition table
+
+$ fdisk -l
+$ sudo mkdir /mnt/usb
+$ sudo mount /dev/sdb1 /mnt/usb
+$ sudo umount /mnt/usb
+$ sudo umount /dev/sdb1
+$ mount | column -t 
+$ mount | column -t | grep ext
+
+/media/hadoop/ --> /media/name user/
+$ ls /media/hadoop --> aquí vemos los usb
+
+$ sudo apt-get install mkusb mkusb-nox usb-pack-efi
+
+Command to create boot drives: 
+- $ sudo mkusb-nox path/file.iso
+- $ sudo mkusb-nox $HOME/ubuntu-18.04.3-live-server-amd64.iso
+
+- rsync -vah, rsync - avP - copy files high - copiar fichers muy grandes 
+
+$ du (Disk Usage), used to check the information of disk usage of files and directories on a machine
+$ du -ka
+$ du -sh
+
+Ubuntu Server system comes with dhclient, even if I haven't selected any package.
+- check the name of available network card:
+$ ip addr
+- check the configuration of available network
+- show ip configuration, network interfaces.
+$ ifconfig
+$ ping -c 3 www.ubuntu.org
+- shows you any wireless network adapters and the wireless-specific information from them, such as speed and network connected.
+$ iwconfig
+- Only the enp2s0
+$ ip a show enp2s0 <==> $ ip a show dev enp2s0 <==> ip a list enp2s0
+- Only show running interfaces
+$ ip link ls up
+- Only show TCP/IP IPv4
+$ ip -4 a
+- Only show TCP/IP IPv6
+$ ip -6 a
+- Assigns the IP address to the interface (IPv4/IPv6) address:
+- ip a add {ip_addr/mask} dev {interface}
+- To assign 192.168.1.200/255.255.255.0 to enp2s0, enter:
+$ ip a add 192.168.1.200/255.255.255.0 dev enp2s0 OR 
+$ ip a add 192.168.1.200/24 dev enp2s0
+- change the state of the device to UP or DOWN
+$ ip link set dev {DEVICE} {up|down}
+$ ip link set dev enp2s0 down
+- Display neighbour/arp cache
+$ ip n show <==> ip neigh show
+- enable network run:
+$ sudo dhclient enp2s0 (the name of your network card)
+$ sudo dhclient wlp1s0
+
+First, make sure your wireless card is enabled. 
+- Package rfkill. bionic (18.04LTS) (utils): tool for enabling and disabling wireless devices
+$ sudo apt install rfkill
+- Package wireless-tools · bionic (18.04LTS) (net): Tools for manipulating Linux Wireless
+$ sudo apt install wireless-tools
+$ sudo iwlist wlp1s0 scan | grep "MIWIFI_4RMC"
+- Package wpasupplicant (net): client support for WPA and WPA2 (IEEE 802.11i) 
+$ sudo apt install wpasupplicant
+$ wpa_passphrase MIWIFI_4RMC
+# reading passphrase from stdin
+s476FMR3
+network={
+        ssid="MIWIFI_4RMC"
+        #psk="s476FMR3"
+        psk=1c9b5f1dcb4f4805a92b254a9082d8b95d01007970c7e4d42c30bbb112cac10d
+}
+$ wpa_passphrase MIWIFI_4RMC s476FMR3| sudo tee /etc/wpa_supplicant.conf
+$ sudo wpa_supplicant - B -c /etc/wpa_supplicant.conf -i wlp1s0
+$ sudo ip link set dev wlp1s0 up
+$ sudo dhclient wlp1s0
+- lista de los usuarios en el sistema, su terminal y la fecha, who -THupb, who -q, 
+$ who 
+- informa las entradas en el sistema y lo que estan haciendo los usuarios
+$ w 
+- es la primera línea de la salida de w
+$ uptime 
+- últimas personas que han entrado al sistema, 
+$ last 
+$ last reebot; last scelis;
+
+/etc/utmp --> registra la entrada y los arranques del sistema 
+The utmp file allows one to discover information about who is currently using the system.
+There may be more users currently using the system, because  not  all  programs  use  utmp
+logging.
+
+$ sudo apt install finger --> determina si un usuario esta en el sistema --> user scelis
+
+- /etc/ttydefs
+- /etc/gettydefs --> Getty accede a este fichero para actualizar la entrada del usuario al sistema, agetty abre un puerto tty, solicita un nombre de usuario e invoca el comando /bin/login. Normalmente es invocado por init(8).. (/etc/gettydefs (System V) or /etc/gettytab (SunOS 4) files.) -  /etc/inittab file - /sbin/agetty --local-line 9600 ttyS1 vt100 
+
+- Unix to Unix Copy Program 
+$ sudo apt install uucp 
+- change real user name and information
+$ man chfn 
+- print files
+$ man lp 
+- allows to run commands with a substitute user and group ID.
+$ man su
+$ su -c ls -f 
+- log in to a new group
+$ man newgrp 
+- add user 
+$ sudo adduser username
+- del user
+$ sudo deluser username
+- mod un usuario
+$ usermod user 
+
+- to execute two commands consecutively
+command1; command2
+
+- how to check software version ubuntu: 
+$ lsb_release -a
+root@hadoop:~# cat /etc/os-release
+
+- command line utilities to verify the integrity of the downloaded file.
+$ man sha256sum or $ man md5sum 
+
+- ufw - program for managing a netfilter firewall
+$ sudo ufw allow 'Apache'
+$ sudo ufw allow 20:21/tcp
+$ sudo ufw allow 30000:31000/tcp
+$ sudo ufw allow OpenSSH
+$ sudo ufw allow from 192.168.0.0/24 to any app OpenSSH
+$ sudo ufw disable
+$ sudo ufw enable
+$ sudo ufw status
+$ sudo ufw status numbered 
+
+How to check if port is in use in
+
+- lsof - list open files
+$ sudo lsof -i -P -n | grep LISTEN
+
+netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+$ sudo netstat -tulpn | grep LISTEN
+- -t : Show only TCP sockets on Linux
+- -u : Display only UDP sockets on Linux
+- -l : Show listening sockets. For example, TCP port 22 is opened by SSHD server.
+- -p : List process name that opened sockets
+- -n : Don’t resolve service names i.e. don’t use DNS
+
+- ss - another utility to investigate sockets
+$ sudo ss -tulw
+$ sudo ss -tulwn
+$ sudo lsof -i:22 ## see a specific port such as 22 ##
+
+- nmap A free and open source utility for network discovery and security auditing
+$ sudo nmap -sTU -O IP-address-Here
+
+$ sudo lsof -t -i:9870 
+$ sudo kill -9 $(sudo lsof -t -i:9870)
+
+Telnet => 
+$ sudo apt install telnetd -y
+$ sudo systemctl status inetd
+$ telnet 127.0.0.1 9000
+$ sudo netstat -lpten | grep 9000
+
+sudo vi /var/log/syslog => system logs
+
+- sysstat provides a number of utilities for collecting the system use activities and system performance. 
+
+$ sudo apt install sysstat
+
+- sar: collects and reports system activity information; System Activity Report
+- iostat: reports CPU utilization and disk I/O statistics for the block devices and partitions and generate report. 
+- tapestat: reports statistics for tapes connected to the system;
+- mpstat: reports global and per-processor statistics;
+- pidstat: reports statistics for Linux tasks (processes);
+- sadf: displays data collected by sar in various formats;
+- cifsiostat: reports I/O statistics for CIFS filesystems.
+
+$ vi /etc/default/sysstat  —> ENABLED=”true”
+$ systemctl  restart systat
+
+- cantidad de memoria disponible 
+$ sar  -r 1 3 
+
+- report about network interface
+$ sar -n DEV 1 3 | egrep -v lo 
+
+- top - display Linux processes - table of processes, display info about the system, running processes, and system 
+$ top
+
+- vmstat - Report virtual memory statistics
+$ vmstat
+$ vmstat -s
+
+- inxi full featured system information script
+$ sudo apt-get install inxi
+$ inxi -F
+
+Samba is a free and open-source re-implementation of the Server Message Block (SMB)/CIFS Common Internet File System network file sharing protocol that allows end users to access files.
+
+$ sudo apt install samba
+$ sudo systemctl status nmbd
+If you have a firewall running on your Ubuntu system you’ll need to allow incoming UDP connections on ports 137 and 138 and TCP connections on ports 139 and 445.
+Assuming you are using UFW to manage your firewall, you can open the ports by enabling the ‘Samba’ profile:
+$ sudo ufw allow 'Samba'
+
+editors
+vim    
+nano    
+touch  
+cat  
+gedit
+
+ Nagios application that monitors systems, networks and infrastructure. Nagios offers monitoring and alerting services for servers, switches, applications and services
+
+- Le permite gestionar fácilmente sus fuentes de software de distribución y de proveedores de software independientes
+- Administración de repositorios
+$ sudo apt install -y software-properties-common
+
+- The add-apt-repository command is provided with the package named software-properties-common
+- Adicional el repositorio para las versiones actualizadas de PHP
+$ sudo add-apt-repository "ppa:ondrej/php"
+
+- al ejecutar esta página en el navegador es por que esta instalado y configurado PHP.
+$ vi /var/www/html/info.php
+<?php phpinfo();
+
+- Configurar Apache para permitir CGI:
+$ 2enmod cgi
+
+- Instalar los paquetes: gcc, make y unzip
+$ sudo apt-get install build-essential 
+$ gcc --version
+$ make --version
+$ sudo apt-get install unzip
+
+- Instalar Nagios:
+- añadir los paquetes en todas las máquinas
+  - libgd-dev
+  - libkrb5-dev
+  - libssl-dev
+
+- plugins de Nagios
+$ wget -q https://github.com/nagios-plugins/nagios-plugins/releases/download/release-2.3.3/nagios-plugins-2.3.3.tar.gz
+$ tar xf nagios-plugins-2.3.3.tar.gz
+$ cd nagios-plugins-2.3.3
+- configurar
+$ ./configure
+- compilar
+$ make install
+- comprobar que se han instalado:
+$ /usr/local/nagios/libexec/check_disk -w 20% -c 5% -p /
+- Instalar Nagios Core 4.4.6
+$ wget -q https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-4.4.6/nagios-4.4.6.tar.gz
+$ tar xf nagios-4.4.6.tar.gz
+$ cd nagios-4.4.6
+- configurar
+$ ./configure
+- compilar
+$ make all
+$ crear usuarios y grupos... y más cosas
+
+- Este paquete no recuerdo para que era... revisar
+$ sudo apt-get install python-software-properties 
+
+- apaga el sistema
+$ sudo shutdown -h
+
+- hibernate
+$ sudo systemctl hibernate
+
+Completely Remove LXDE/Lubuntu Desktop Environment
+
+$ sudo apt purge --remove lxde*; sudo apt autoremove -y
+or
+$ sudo apt purge --remove lubuntu-*; sudo apt autoremove -y
+or 
+Open up the Software Center and look for the package lxde and uninstall it.
+
+- displays the amount of free and used memory in the system. 
+- gives the information using megabytes,
+$ free
+$ free -h
+$ free -m 
+- gives the information using gigabytes,
+$ free -g 
+
+$ apropos 'copy files'
+cp (1)               - copy files and directories
+cpio (1)             - copy files to and from archives
+git-checkout-index (1) - Copy files from the index to the working tree
+
+$ whatis 'cp'
+cp (1)               - copy files and directories
+
+VSCode
+sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+sudo apt-get update
+sudo apt-get install ubuntu-make
+umake ide visual-studio-code
+
