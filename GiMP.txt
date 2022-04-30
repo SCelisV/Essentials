@@ -1,0 +1,33 @@
+[GIMP] GIMP - The Gnu Image Manipulation Program. http://gimp.org
+
+[GIMP-DEV] GIMP Development. http://developer.gimp.org
+
+[GIMP-DEV-PLUGIN] GIMP Plugin Development. http://developer.gimp.org/plug-ins.html
+
+[GIMP-DOCS] GIMP Documentation project page. https://www.gimp.org/docs/
+
+[GIMP-FONTS] Fonts in GIMP 2.0. http://gimp.org/unix/fonts.html
+
+[GIMP-NEWSYM26] List of new symbols in GIMP 2.6. libgimp-index-new-in-2-6.html
+
+[GROKKING01] Grokking the GIMP. http://gimp-savvy.com/BOOK/index.html
+
+[GROKKING02] Grokking the GIMP (9.2 Clickable Image Maps). http://gimp-savvy.com/BOOK/index.html?node81.html
+
+[GUNTHER04] Making shapes in GIMP. Gunther Dale. Copyright © 2004 Dale (Gunther). http://gug.criticalhit.dk/tutorials/gunther1
+
+http://next.gimp.org/tutorials/Lite_Quickies/
+
+Resolución = Ancho px * Alto px 
+
+Ancho en número de pixels
+Alto en número de pixels
+
+12.000.000 = 12MegaPx
+
+Redimensionar imagen/Lienzo
+
+Image -> Canvas Size -> 
+FullHD 1920 x 1080
+
+
