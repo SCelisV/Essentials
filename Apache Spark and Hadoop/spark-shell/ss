@@ -1,3 +1,0 @@
-val filename=("/user/hive/warehouse/devsh.db/accounts")
-val RDD = sc.read.textFile(filename)
-for (i <- RDD.take(10)) print(i)
