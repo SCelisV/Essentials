@@ -1,11 +1,77 @@
 [GIMP] GIMP - The Gnu Image Manipulation Program. http://gimp.org
+Open a new instance of an app of GIMP $ open -n /Applications/GIMP-2.10.app
+
+https://wiki.gimp.org/wiki/Main_Page
+https://wiki.gimp.org/wiki/Users:Tips
+https://www.gimp.org/tutorials/Lite_Quickies/
+https://www.gimp.org/man/gimprc.html →  
+http://gimpchat.com/
+
+/Applications/Gimp-2.10.app/Contents/MacOS/gimp -h
+/Applications/Gimp-2.10.app/Contents/MacOS/gimp -v
+/Applications/Gimp-2.10.app/Contents/MacOS/gimp --license
+
+https://docs.gimp.org/2.10/es/gimp-getting-unstuck.html#gimp-using-getting-unstuck
+
+Ayuda → Consejo el día
+Help → Tip of the Day
+
+formato de archivo .XCF
+Wilber, la mascota de GIMP docs/Wilber_Construction_Kit.xcf.gz diferentes apariencias to Wilber
+
+Los canales pueden ser útiles cuando trabaja sobre una imagen que necesita ajustes en un color en particular ex: quitar los “ojos rojos” de una fotografía, podría operar sobre el canal rojo.
+son como máscaras que permiten o restringen la salida del color que el canal representa. 
+Mediante el uso de filtros, se puede crear muchos efectos variados y sutiles sobre una imagen. 
+Ex: uso de un filtro sobre los canales de color es el filtro Mezclador de canales.
+
+Dominar el arte de hacer buenas selecciones, que contengan exactamente lo necesario y nada más. 
+herramientas GIMP: herramientas para hacer selecciones, menú de operaciones de selección y cambiar a modo de máscara rápida, en el que puede tratar al canal de la selección como a un canal de color, literalmente “pintando la selección”.
+
+GIMP usa complementos “plug-ins” y complementos (y scripts) para agregar funcionalidad a GIMP. El script de GIMP: Script-Fu, también se puede escribir scripts en Python o Perl. 
+
+Estos lenguajes son más flexibles y poderosos que Script-Fu. pero dependen de software que no viene empaquetado con GIMP automáticamente, por lo que no puede garantizarse que funcionen en cada instalación.
+
+Ventanas → Modo de ventana única
+Windows → Single-Window mode
+- modo multiventana:
+  ocultar estos paneles usando la tecla Tab.
+
+- modo de ventana única
+  Navegar entre ventanas: Ctrl ⌃ + AvPág o RePág o Option or Alt ⌥ + Número (las teclas de números de la parte superior de su teclado), no las del teclado numérico (en algunos teclados es necesario pulsar Option or Alt ⌥ +Mayús).
+
+- Recuperar la disposición GiMP → Ventanas → Empotrables cerrados recientemente ó Windows → Recently closed Docks
+
+→ GiMP → Preference → Interface → Configure KeyBoards Shortcuts
+→ GiMP → Preference → Interface → Toolbox
+→ GiMP → Preference → Image Windows → 
+    → Marching ants speed (hormigas) 
+
+
+
+
+Zoom
+Ctrl ⌃ + botón del ratón
+Ctrl ⌃ + F → nivel de zoom «Ajustar encogiendo» 
+Ctrl ⌃ + Mayús+J → nivel de zoom.
+
+Windows →  Dockable Dialogs
+empotrable: opciones de herramientas bajo la caja de herramientas en el panel izquierdo,
+empotrable: de capas, canales, rutas y deshacer en la parte superior del panel derecho,
+empotrable: de pinceles, patrones y degradados en la parte superior del panel derecho.
+
+tecla Tab → para cambiar la visibilidad de los empotrables
+
+Pestañas: Tab options menu
+Ctrl ⌃ + F → para buscar en la lista
+
+Cambiar tamaño de la imagen:
+Image → Scale Image → Shift ⇧ + H
+La resolución se aplica sólo a la impresión, no tiene efecto en el tamaño de la imagen.
+>= 300 píxeles por pulgada la imagen impresa será muy alta y no se notarán los píxeles.
 
 [GIMP-DEV] GIMP Development. http://developer.gimp.org
-
 [GIMP-DEV-PLUGIN] GIMP Plugin Development. http://developer.gimp.org/plug-ins.html
-
 [GIMP-DOCS] GIMP Documentation project page. https://www.gimp.org/docs/
-
 [GIMP-FONTS] Fonts in GIMP 2.0. http://gimp.org/unix/fonts.html
 
 [GIMP-NEWSYM26] List of new symbols in GIMP 2.6. libgimp-index-new-in-2-6.html
@@ -18,6 +84,64 @@
 
 http://next.gimp.org/tutorials/Lite_Quickies/
 
+Archivo → Exportar como JPEG tiene un esquema de compresión adaptativo que permite guardar variando los niveles de compresión.
+
+Herramientas → Herramientas de transformación 
+→ Recortar → Tools → Transform Tools → Crop → Shift ⇧ + C
+→ Voltear → Tools → Transform Tools → Flip → Shift ⇧ + F , con Cmd ⌘ key seleccionar de arriba a abajo y de izquierda a derecha
+→ Rotar → Tools → Transform Tools → Flip → Shift ⇧ + R
+→ Move → Tools → Transform Tools → Flip → Shift ⇧ + M
+→ Align → Tools → Transform Tools → Flip → Shift ⇧ + Q
+
+→ Tools → Selection Tools → Free Select(lazo) → F
+    → Retroceso selección anterior (elimina el último segmento de selección), Escape cancela todos los segmentos de selección. 
+    → Tool Options → Antialliasing (alisado)
+    → Select → Selection Editor
+    → Option or Alt ⌥  + Click 
+    → Add selection Shift ⇧ → cerrar y doble click para finalizar seleccion y adicionar a la seleccion actual
+    → Subtract selection Cmd ⌘ → cerrar y doble click para finalizar seleccion y adicionar a la seleccion actual
+    → Select → Shirink (enconger, contraer el contorno) → para enconger la selección marcada 
+    → 
+
+→ Tools → Selection Tools → Intelligent Scissors → I
+    → Cmd ⌘ key + (,) → rellenar Fill with pattern
+
+
+
+
+
+
+→ Image → Transform → Rotate 90º clockwise en sentido horario
+→ Image → Transform → Rotate 90º counter-clockwise sentido antihorario
+
+Windows →  Dockable Dialogs → Tool options → → Fixed → Aspect ratio
+
+View → Center Image → J
+View → Selection → T
+View → Guides → T
+
+Infomación de la imagen: Imagen → Image Properties
+Image → Mode 
+→ RGB: default mode, imágenes de alta calidad, millones de colores. 
+R->Rojo, G->Verde, B->Azul. valor de intensidad de 0-255. c/u.
+
+→ Indexado: modo para usar tamaño del archivo o pocos colores. 
+Implica usar un número fijo de colores (256 o menos) para representar los colores de la imagen entera. 
+GIMP genera una “Paleta óptima” para representar mejor su imagen.
+Convertir imagen a colores indexados → cada píxel es menor, el tamaño del archivo es más pequeño. 
+a veces la opción que intenta usar requiere que la capa tenga la capacidad de ser transparente. 
+Capa → Transparencia → Añadir canal alfa.
+Layer → Transparency → Add Alpha Channel.
+
+→ Escala de grises: sólo tienen matices de gris.
+
+No es necesario convertir una imagen a un modo específico antes de guardarla en un formato favorito, GIMP la exporta apropiadamente.
+
+
+→ 
+
+→ Cmd ⌘ key + (D) → duplica la imagen
+
 Resolución = Ancho px * Alto px 
 
 Ancho en número de pixels
@@ -29,5 +153,3 @@ Redimensionar imagen/Lienzo
 
 Image -> Canvas Size -> 
 FullHD 1920 x 1080
-
-

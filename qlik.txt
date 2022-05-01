@@ -16,13 +16,26 @@ https://learning.qlik.com/course/view.php?id=1756
 
 PortFolio --> projects about PortFolio Kaggle
 Market Basket: https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/25c274c3-d56c-4222-b709-a746ecd1ad41/
-
 Personal -->  detodo (super desordenado)
 con el DataSet de Tableau
 https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/9a5b8a6d-fd07-4676-997f-f3d94c27745c/
 
 
---------------------------------------
+Total Productos Vendidos = 20507 = Count([TransactionNo])
+Total Transacciones = 9684 = Count(distinct[TransactionNo])
+Media = 20507/9684 = Count([TransactionNo])/Count(distinct [TransactionNo])
+
+Sankey Chart
+
+opciones de link color
+'SOURCE'
+'TARGET'
+=rgb(255, 0, 0)
+=rgb(round(Avg (0)*255), 100, 100)
+=rgb(round(Avg (0.5)*255), 100, 100)
+=rgb(round(Avg (1)*255), 100, 100)
+
+Some formuls
 
 Buckets - Rangos -
 The bucket card can be applied to a field of numeric data, or measure, in order to group values based on specific ranges. The results are returned as a new field which defines each range as a dimension value, or 'bucket'.
@@ -71,6 +84,8 @@ Some Expressions
 Which functions can I use in a calculated field expression:
 https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/LoadData/add-calculated-field.htm
 
+
+
 Order Date = Count(distinct Year([Order Date.autoCalendar.Year]))
 
 #Customer = Count(distinct [Customer ID])
@@ -80,6 +95,8 @@ Order Date = Count(distinct Year([Order Date.autoCalendar.Year]))
 Total ventas =Sum(Sales)
 Total beneficio bruto = Sum(GrossProfit)
 Margen = Sum(Profit)/Sum(Sales)
+
+Shipping Cost = Sum([Shipping Cost])
 Gastos de envío = Sum([Shipping Cost])
 Total pedidos = Count(DISTINCT OrderID)
 Total proveedores = Count(DISTINCT Supplier)
@@ -100,6 +117,9 @@ Drill-down
 =[Orders$.Market]
 =Category
 =[Sub-Category]
+
+Prepare
+Data load editor
 
 Total Productos Vendidos = 20507 = Count([TransactionNo])
 Total Transacciones = 9684 = Count(distinct[TransactionNo])
@@ -146,14 +166,11 @@ SET NumericalAbbreviation='3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m;-6:μ;-9:n;
 
 
 
-
 https://help.qlik.com/es-ES/sense/August2021/Subsystems/Hub/Content/Sense_Hub/Visualizations/when-to-use-visualizations.htm
 
 Tipos de graficos
-=================
 
 - comparativas: 
----------------
 comparar valores entre sí
 diferencias entre valores, categorías 
 cambios a lo largo del tiempo
@@ -192,6 +209,32 @@ estados alternos para el análisis comparativo, comparar diferentes valores de l
 - Aplicando un estado a la visualización.
 - Usando estados en la expresión de conjunto de una medida.
 Master/Alternate state
+
+
+
+John|Anderson|JA|Yes
+
+Sue|Brown|SB|Yes
+
+Mark|Carr|MC |No
+
+Peter|Devonshire|PD|No
+
+Jane|Elliot|JE|Yes
+
+Peter|Franc|PF|Yes 
+
+
+mis apps
+
+con el dataset del tutorial del qlik: 
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/fa14341d-ff61-42a0-a267-9ce40acbeb67/
+
+con el DataSet de 
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/
+
+con el DataSet de Tableau
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/9a5b8a6d-fd07-4676-997f-f3d94c27745c/
 
 - ver relaciones:
 -----------------
@@ -306,4 +349,3 @@ Ctrl key -> seleccionar valores adicionales
 
 Current Selections box lists -> muestra todos los campos en los que se han realizado selecciones y los valores seleccionados. 
 Si se seleccionan demasiados valores, sólo se muestra el número de valores seleccionados.
-

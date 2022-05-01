@@ -1,0 +1,7 @@
+# para ejecutarla command + opiton + r
+
+GET https://reqres.in/api/users
+#HEAD https://reqres.in/api/users
+#HEAD http://restful.dev/wp-json/wp/v2/posts/4
+#OPTIONS https://reqres.in/api/
+#OPTIONS https://reqres.in/api/users?pages=2
