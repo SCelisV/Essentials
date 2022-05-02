@@ -332,7 +332,7 @@ que es el mismo lugar donde apunta el argumento.
 Cuando se realiza un paso de argumentos por referencia, los argumentos varían en la misma medida que varian los parámetros.
 Para evitar que los parámetros no puedan modificarse podemos declararlos con final
 _JavaDevelopment/testjdk_1.8.0.292/src/Metodo2referencia.java
-_JavaDevelopment/javasrc-main/src/testing/atributoFinal.java
+_JavaDevelopment01/javasrc-main/src/testing/atributoFinal.java
 
 STRINGS - INMUTABLE - tienen métodos
 Los Strings no forman parte de los tipops nativos de Java, sino que existe una clase String(java.lang.String)
@@ -508,7 +508,7 @@ Modificadores de no acceso: no controlan el nivel de acceso, pero proporcionan o
   - volatile El valor de un atributo no se almacena en caché localmente, y siempre se lee de la "memoria
     principal"
 
-_JavaDevelopment/javasrc-main/src/testing/AtributoStaticPublic.java
+_JavaDevelopment01/javasrc-main/src/testing/AtributoStaticPublic.java
 
 Un método static - estático significa que se puede acceder a él sin crear un objeto de la clase, 
 Un método public - publico significa que se debe acceder a él creando un objeto de la clase
@@ -1186,6 +1186,7 @@ Definir una máquina con cualquier numero de productos
 - Cuantas botellas de coca-cola nos quedan (en el deposito de botellas de coca-cola)
 - Cuantas monedas de Euro nos quedan (en el deposito de monedas de Euro)
 - Cuantas monedas de 10centimos de Euro nos quedan (en el deposito de monedas de 10centimos de Euro)
+
 Esta clase gestionará un Almacén de elementos reutilizar Almacen.java en MaquinaAlmacen.java
 
     /*---------------------
@@ -1395,9 +1396,9 @@ Es posible heredar atributos y métodos de una clase a otra.
 Para heredar de una clase, utilice la palabra clave extends
 La subclase hereda los atributos y métodos de la superclase
 
-_JavaDevelopment/javasrc-main/src/testing/Padre.java
-_JavaDevelopment/javasrc-main/src/testing/Hijo.java
-_JavaDevelopment/javasrc-main/src/testing/Herencia_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Padre.java
+_JavaDevelopment01/javasrc-main/src/testing/Hijo.java
+_JavaDevelopment01/javasrc-main/src/testing/Herencia_test.java
 
 ¿Por qué y cuándo utilizar la "herencia"?
 - Es útil para la reutilización del código: reutilizar atributos y métodos de una clase existente cuando se crea una nueva clase.
@@ -1577,27 +1578,69 @@ en una superclase llamada Animal que tiene un método llamado animalSound().
 Las subclases de Animals podrían ser Pigs, Cats, Dogs, Birds - 
 Y también tienen su propia implementación de un sonido animal (el cerdo oinks, y el gato meows, etc.):
 
-_JavaDevelopment/javasrc-main/src/testing/Animal.java
-_JavaDevelopment/javasrc-main/src/testing/Pig.java
-_JavaDevelopment/javasrc-main/src/testing/Cat.java
-_JavaDevelopment/javasrc-main/src/testing/Dog.java
-_JavaDevelopment/javasrc-main/src/testing/Poliformismo.java
+_JavaDevelopment01/javasrc-main/src/testing/Animal.java
+_JavaDevelopment01/javasrc-main/src/testing/Pig.java
+_JavaDevelopment01/javasrc-main/src/testing/Cat.java
+_JavaDevelopment01/javasrc-main/src/testing/Dog.java
+_JavaDevelopment01/javasrc-main/src/testing/Poliformismo.java
 
 
 INNER - NEST - ANIDAR - CLASES
 
-Anidar clases (una clase dentro de otra). 
+Anidar clases (una clase dentro de otra). dos class en un mismo fichero
 El propósito de las clases anidadas es agrupar las clases que pertenecen juntas, lo que hace que su código sea más legible y mantenible.
 
 Para acceder a la clase interna, 
-- cree un objeto de la clase externa, y luego 
-- cree un objeto de la clase interna
+- cree un objeto de la clase externa-Outer, y luego 
+- cree un objeto de la clase interna-Inner
 
-_JavaDevelopment/javasrc-main/src/testing/ExternaClass.java
-_JavaDevelopment/javasrc-main/src/testing/ExternaInterna_test.java
+_JavaDevelopment01/javasrc-main/src/testing/ExternaClass.java
+_JavaDevelopment01/javasrc-main/src/testing/ExternaInterna_test.java
+
+A diferencia de una clase "normal", una clase interna puede ser privada o protegida. 
+Si no quieres que objetos externos accedan a la clase interna, declara la clase como privada
+
+_JavaDevelopment01/javasrc-main/src/testing/Externa2Interna_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Externa2Class.java
+
+Una clase interna también puede ser estática, 
+lo que significa que se puede acceder a ella sin crear un objeto de la clase externa
+
+Al igual que los atributos y métodos estáticos, 
+una clase interna estática 
+no tiene acceso a los miembros de la clase externa.
+
+_JavaDevelopment01/javasrc-main/src/testing/Externa3Interna_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Externa3Class.java
+
+Acceso a la clase externa desde la clase interna
+Una de las ventajas de las clases internas, es que pueden acceder a los atributos y métodos de la clase externa:
+
+_JavaDevelopment01/javasrc-main/src/testing/Externa4Interna_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Externa4Class.java
+
+
+
+
+
+
+
+
+
+
 
 CLASES ABSTRACTAS E INTERFACES
 Métodos abstractos.
+
+La abstracción de datos es el proceso de ocultar ciertos detalles y mostrar sólo la información esencial al usuario.
+La abstracción puede lograrse con clases abstractas o interfaces
+
+La palabra clave abstracta es un modificador de no acceso, utilizado para las clases y los métodos.
+
+Clase abstracta: es una clase restringida que no puede ser utilizada para crear objetos.
+(para acceder a ella, debe ser heredada de otra clase).
+
+Una clase abstracta puede tener tanto métodos abstractos como regulares:
 
 En este ejemplo vemos como se define la clase abstracta y en ella un método abstracto.
 Además definimos una subclase ("Student") que extiende y/o hereda de la clase abstracta ("Abstracto"),
@@ -1605,13 +1648,17 @@ esta clase debe implementar el método abstracto.
 
 Si ejecutamos la clase Abstracto_test podemos ver como al definir el objeto, tiene tantos los atributos de su propia clase como los de la clase que hereda.
 
-_JavaDevelopment/javasrc-main/src/testing/Abstracto.java
-_JavaDevelopment/javasrc-main/src/testing/Student.java
-_JavaDevelopment/javasrc-main/src/testing/Abstracto_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Abstracto.java
+_JavaDevelopment01/javasrc-main/src/testing/Student.java
+_JavaDevelopment01/javasrc-main/src/testing/Abstracto_test.java
 
+_JavaDevelopment01/javasrc-main/src/testing/AbstractAnimal_test.java
+_JavaDevelopment01/javasrc-main/src/testing/AbstractAnimal.java
+_JavaDevelopment01/javasrc-main/src/testing/Dog2.java
+_JavaDevelopment01/javasrc-main/src/testing/Pig2.java
 
 Un método abstracto pertenece a una clase abstracta y no tiene cuerpo. 
-El cuerpo lo proporciona la subclase:
+El cuerpo lo proporciona la subclase (heredada de).
 Un método abstracto se declara pero no se define, no usa{}, usa la palabra abstract y termina con (;).
 No se deben definir como final ya que no se prodría redefinir en las SubClases, estas tendrán este método como abstracto y nunca podrían ser instanciadas.
 
@@ -1662,6 +1709,10 @@ Los métodos son siempre públicos y abstractos(no es necesario definirlos como 
 las constantes son siempre públicas, estáticas y 
 por supuesto, final (tampoco es necesario especificar sus atributos de acceso y modificadores).
 Proporcionan un mecanismo de herencia múltiple que no puede ser utilizado empleando únicamente clases.
+Una interfaz es una "clase abstracta" completa que se utiliza para agrupar métodos relacionados con cuerpos vacíos.
+Es otra forma de lograr abstraccción.
+
+Al igual que las clases abstractas, las interfaces no pueden utilizarse para crear objetos.
 
 Ex: // contiene sólo constantes
 public interface DatosCentroDeEstudios {
@@ -1681,6 +1732,11 @@ public interface CalculosCentroDeEstudios {
     ...
     resto de métodos
 }
+
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceAnimal.java
+_JavaDevelopment01/javasrc-main/src/testing/Dog3.java
+_JavaDevelopment01/javasrc-main/src/testing/Pig3.java
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceAnimal_test.java
 
 Ex: // contiene constantes y métodos
 public interface CentroDeEstudios {
@@ -1720,6 +1776,24 @@ Es obligatorio definir todos su métodos aunque no se desarrollen
 se emplea la palabra reservada implements para indicarlo:
 
 public class CCentroDeEstudios implements CentroDeEstudios {}
+
+Los métodos de la interfaz no tienen cuerpo - el cuerpo lo proporciona la clase "implement".
+Cuando se implementa una interfaz, hay que sobreescribir todos sus métodos
+Los métodos de la interfaz son por defecto abstractos y públicos
+Los atributos de la interfaz son, por defecto, públicos, estáticos y finales
+Una interfaz no puede contener un constructor (ya que no puede utilizarse para crear objetos)
+
+¿Por qué y cuándo utilizar las interfaces?
+
+1) Para conseguir seguridad - ocultar ciertos detalles y mostrar sólo los detalles importantes de un objeto (interfaz).
+
+2) Java no admite la "herencia múltiple" (una clase sólo puede heredar de una superclase). 
+Sin embargo, se puede lograr con las interfaces, porque la clase puede implementar múltiples interfaces. 
+
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceUno.java
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceDos.java
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceMultiple.java
+_JavaDevelopment01/javasrc-main/src/testing/InterfaceMultiple_test.java
 
 _JavaDevelopment/testjdk_1.8.0_292/src/CCentroDeEstudios.java
 _JavaDevelopment/testjdk_1.8.0_292/src/CalculosCentroDeEstudios.java
@@ -3703,8 +3777,8 @@ de sólo lectura (si sólo se utiliza el método get), o
 de sólo escritura (si sólo se utiliza el método set)
 Flexibilidad: el programador puede cambiar una parte del código sin afectar a otras partes Mayor seguridad de los datos
 
-_JavaDevelopment/javasrc-main/src/testing/Encapsutar_test.java
-_JavaDevelopment/javasrc-main/src/testing/Encapsular.java
+_JavaDevelopment01/javasrc-main/src/testing/Encapsutar_test.java
+_JavaDevelopment01/javasrc-main/src/testing/Encapsular.java
 
 Java Packages & API
 
@@ -3856,7 +3930,7 @@ ProcesaEvento.java
 OpcionErronea.java
 PruebaDigitos.java
 
-SkillAssessments, contiene ejercicios de cursos de pruebas
+_JavaDevelopment02/SkillAssessments, contiene ejercicios de cursos de pruebas
                                     
 ---------------------------
 |  _____________________  |
@@ -3913,7 +3987,38 @@ http://tutorials.jenkov.com/java-collections/sorting.html
         */
 
 
+Un enum es una "clase" especial que representa un grupo de constantes (variables inmutables, como las variables finales).
 
+Para crear una enum, utilice la palabra clave enum (en lugar de clase o interfaz), y separe las constantes con una coma. 
+Tenga en cuenta que deben ir en mayúsculas
+
+_JavaDevelopment01/javasrc-main/src/testing/Nivel.java
+_JavaDevelopment01/javasrc-main/src/testing/Nivel_test.java
+
+Nivel myVar = Nivel.MEDIUM; 
+
+Enum inside a Class
+_JavaDevelopment01/javasrc-main/src/testing/EnumNivel.java
+_JavaDevelopment01/javasrc-main/src/testing/EnumNivel_test.java
+
+Enum in a Switch Statement
+A menudo se usan para comprobar los valores correspondientes
+_JavaDevelopment01/javasrc-main/src/testing/Nivel.java
+_JavaDevelopment01/javasrc-main/src/testing/EnumSwitch_test.java
+
+Recorrer un enum en bucle.
+El tipo enum tiene un método values(), que devuelve un array de todas las constantes del enum
+_JavaDevelopment01/javasrc-main/src/testing/EnumFor.java
+
+Diferencia entre Enums y Clases
+
+Una enum puede, al igual que una clase, tener atributos y métodos. 
+La única diferencia es que las constantes de las enum son públicas, estáticas y finales (inmutables - no pueden ser sobrescritas).
+
+Un enum no puede ser utilizado para crear objetos, y no puede extender otras clases (pero puede implementar interfaces).
+¿Por qué y cuándo usar enums?
+
+Se usan a menudo cuando haya valores que no van a cambiar, como días del mes, días, colores, barajas, etc.
 
 
 
@@ -3951,7 +4056,7 @@ java -jar hello.jar
 
 - Obtener las variables de entorno:
 
-_JavaDevelopment/javasrc-main/src/com/others/GetEnv.java
+_JavaDevelopment01/javasrc-main/src/com/others/GetEnv.java
 		/*
 		 * Devuelve todas las variables de entorno en forma de String Map no modificable. 
 		 */
@@ -3964,7 +4069,7 @@ Basta con escribir una serie de métodos que empiezan por test.
 JUnit busca todos estos métodos y los ejecuta de forma automática.
 Las extensiones de JUnit gestionan tareas tan diversas como cargar pruebas o probar Enterprise JavaBeans(JEB)
 
-_JavaDevelopment/javasrc-main/src/testing/PersonTest.java
+_JavaDevelopment01/javasrc-main/src/testing/PersonTest.java
 
 package testing;
 
@@ -3995,9 +4100,9 @@ public class PersonTest extends TestCase{
 
 }
 
-_JavaDevelopment/javasrc-main/src/com/others/Person.java
+_JavaDevelopment01/javasrc-main/src/com/others/Person.java
 
-(base) hadoop@sc-ubuntu-20-04-2-lts:~/_JavaDevelopment/javasrc-main/src$ cat com/others/Person.java
+(base) hadoop@sc-ubuntu-20-04-2-lts:~/_JavaDevelopment01/javasrc-main/src$ cat com/others/Person.java
 package com.others;
 
 /*
@@ -4039,7 +4144,7 @@ public class Person {
 }
 
 - Obtener información de las propiedades del sistema:
-_JavaDevelopment/javasrc-main/src/com/others/GetProp.java
+_JavaDevelopment01/javasrc-main/src/com/others/GetProp.java
 
 java.util.Properties: https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html
 
@@ -4184,7 +4289,7 @@ sun.cpu.isalist=
     https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Constructor.html
 
 
-_JavaDevelopment/javasrc-main/src/com/others/GetClassforName.java
+_JavaDevelopment01/javasrc-main/src/com/others/GetClassforName.java
 
 package com.others;
 
@@ -4224,7 +4329,7 @@ Este código debería colocarse al principio del flujo principal de la aplicaci�
 
 - Enumerar las propiedades del sistema. - System.getProperty
 
-_JavaDevelopment/javasrc-main/src/com/others/SysPropDemo.java
+_JavaDevelopment01/javasrc-main/src/com/others/SysPropDemo.java
 
 package com.others;
 
@@ -4267,7 +4372,7 @@ public class SysDep {
 
 }
 
-_JavaDevelopment/javasrc-main/src/com/others/SysDep_02.java
+_JavaDevelopment01/javasrc-main/src/com/others/SysDep_02.java
 
 package com.others;
 
@@ -4312,7 +4417,7 @@ SecurityManager
 _JavaDevelopment/testjdk_1.8.0.292/src/???
 
 Dividir una cadena en palabras o tokens - métodos: hasMoreTokens, hasMoreElements, nextToken, nextElement
-_JavaDevelopment/javasrc-main/src/com/others/StringTokenizerTest.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringTokenizerTest.java
 
 https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/StringTokenizer.html
 Module java.base
@@ -4320,7 +4425,7 @@ Package java.util
 Class StringTokenizer
 
 Procesar e ignorar los tokens consecutivos, devolviendo los resultados como una matriz de cadenas.
-_JavaDevelopment/javasrc-main/src/com/others/StringTokenizerTest_02.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringTokenizerTest_02.java
 
 Unir cadenas mediante +, StringBuilder y StringBuffer
 * Todos los métodos que modifican más de un carácter de contenido de un StringBuilder 
@@ -4338,10 +4443,10 @@ Module java.base
 Package java.lang
 Class StringBuilder
 
-_JavaDevelopment/javasrc-main/src/com/others/StringBufferTest.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringBufferTest.java
 
 Convertir una lista de elementos en una lista separada por comas - StringBuffer
-_JavaDevelopment/javasrc-main/src/com/others/StringBufferTest_02.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringBufferTest_02.java
 
 Procesar una cadena carácter a carácter, utilizando un bucle for y el método charAt()
 _JavaDevelopment/testjdk_1.8.0_292/src/String4.java
@@ -4349,7 +4454,7 @@ _JavaDevelopment/testjdk_1.8.0_292/src/String4.java
 Realizar la suma de comprobación de un archivo, dado un BufferedReader abierto
 permite leer "fragmentos" de datos con el método readLine() de BufferedReader
 Lee carácter a carácter de un fichero y va sumando el valor ASCII de cada uno de ellos
-_JavaDevelopment/javasrc-main/src/com/others/ChekSum.java
+_JavaDevelopment01/javasrc-main/src/com/others/ChekSum.java
 
 https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/BufferedReader.html
 
@@ -4373,14 +4478,14 @@ Class FileReader
                 java.io.FileReader 
 
 Leer un fichero sin más
-_JavaDevelopment/javasrc-main/src/com/others/ReadFile.java
+_JavaDevelopment01/javasrc-main/src/com/others/ReadFile.java
 fileReader.txt
 
 Leer un fichero e imprimirlo
 - implementando try catch en el main
-_JavaDevelopment/javasrc-main/src/com/others/LeerEImprimirFichero.java
+_JavaDevelopment01/javasrc-main/src/com/others/LeerEImprimirFichero.java
 - implementando throws en el main
-_JavaDevelopment/javasrc-main/src/com/others/LeerEImprimirFicheroThrows.java
+_JavaDevelopment01/javasrc-main/src/com/others/LeerEImprimirFicheroThrows.java
 
 Class Format
 
@@ -4423,13 +4528,13 @@ Class SimpleDateFormat
 https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
 Alinear cadenas a la izquierda, a la derecha o al centro
 Hacer los calculos y emplear substring y StringBuilder.
-_JavaDevelopment/javasrc-main/src/com/others/FormatTest_03.java
+_JavaDevelopment01/javasrc-main/src/com/others/FormatTest_03.java
 
 - Format y jugando con align
 // alinear a la izquierda - Left justifies
 - Se crea el método espacios que recibe dos argumentos, un StringBuffer, y un entero que es el calculo de los espacios
   devuelve un StringBuffer 
-_JavaDevelopment/javasrc-main/src/com/others/FormatTest_02.java
+_JavaDevelopment01/javasrc-main/src/com/others/FormatTest_02.java
 
 JUST_RIGHT ==> maxChars = espacios + sb
 JUST_LEFT ==> maxChars = sb + espacios
@@ -4438,12 +4543,12 @@ JUST_CENTER ==> maxChars = espacios + sb + espacios
 - Alinear cadenas a la izquierda, a la derecha o al centro utilizando la clase StringAlign.java
 - Extiende de Format
 - Se imprementan los métodos abstractos de la clase Format
-_JavaDevelopment/javasrc-main/src/com/darwinsys/lang/StringAlign.java
+_JavaDevelopment01/javasrc-main/src/com/darwinsys/lang/StringAlign.java
 
 https://www.programcreek.com/java-api-examples/?api=java.text.Format
 
 Formatear tipo Date a String "yyyy/MM/dd - HH:mm:ss"
-_JavaDevelopment/javasrc-main/src/com/others/FormatTest.java
+_JavaDevelopment01/javasrc-main/src/com/others/FormatTest.java
 
 Module java.base
 Package java.text
@@ -4463,31 +4568,31 @@ un char puede incluir cualquier carácter Unicode.
 - el método append() de StringBuilder tiene una forma que acepta un valor char.
 Dado que char es un tipo entero, es posible realizar cálculos en chars
 
-_JavaDevelopment/javasrc-main/src/com/others/UnicodeChars.java
+_JavaDevelopment01/javasrc-main/src/com/others/UnicodeChars.java
 
 - Invertir una cadena por palabra o carácter
 
 - StringBuilder permite invertir una cadena.
-_JavaDevelopment/javasrc-main/src/com/others/StringReverseChars.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringReverseChars.java
 _JavaDevelopment/testjdk_1.8.0_292/src/String4.java
 
 - Tambien se podria con un StringTokenizer y una "pila" Stack LIFO.
-_JavaDevelopment/javasrc-main/src/com/others/StringReverseLIFOChars.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringReverseLIFOChars.java
 
 - Convertir cadenas de MAYUSCULAS a minusculas.
 - Comparar cadenas sin tener en cuenta si estan escritas en MAYUSCULAS Ó minusculas
 utilizando equals, equalsIgnoreCase
-_JavaDevelopment/javasrc-main/src/com/others/StringIgnoreCase.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringIgnoreCase.java
 
 - Identar (aumentar o insertar) una sangría a un documento de texto
-_JavaDevelopment/javasrc-main/src/com/others/StringIdentar.java
-_JavaDevelopment/javasrc-main/src/com/others/StringIdentarCadenaFija.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringIdentar.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringIdentarCadenaFija.java
 
 - DesIdentar (reducir ó eliminar) una sangría a un documento de texto
-_JavaDevelopment/javasrc-main/src/com/others/StringDesIdentar.java
+_JavaDevelopment01/javasrc-main/src/com/others/StringDesIdentar.java
 
 - Incluir caracteres no imprimibles - especiales - en un documento
-_JavaDevelopment/javasrc-main/src/com/darwinsys/strings/StringEscapes.java
+_JavaDevelopment01/javasrc-main/src/com/darwinsys/strings/StringEscapes.java
 
 Escapes de cadena:
 
@@ -4508,7 +4613,7 @@ Barra invertida: \\
 System.out.println("cadena.trim: " + cadena.trim());
 
 - Herramienta para incluir/excluir partes de un archivo.
-_JavaDevelopment/javasrc-main/src/com/darwinsys/strings/GetMark.java
+_JavaDevelopment01/javasrc-main/src/com/darwinsys/strings/GetMark.java
 
 ojo -  Probar este Script
 ------
@@ -4531,8 +4636,8 @@ base) hadoop@sc-ubuntu-20-04-2-lts:~/SCProjects/0_SCProjects_github.com_SCelisV/
         - otro que se inicializa con el separador que indiquemos
         Esta clase a su vez tiene un método parser() que toma una cadena que representa una línea del archivo de entrada y devuelve una lista de campos de la que se puede obtener un Iterator para controlar el bucle y su método next() para obtener el objeto siguiente.
 
-_JavaDevelopment/javasrc-main/src/com/others/CSV.java
-_JavaDevelopment/javasrc-main/src/com/others/CSVSimple.java
+_JavaDevelopment01/javasrc-main/src/com/others/CSV.java
+_JavaDevelopment01/javasrc-main/src/com/others/CSVSimple.java
     - La clase CSVSimple testea la clase CSV java.
         - Se puede utilizar inicializando el objeto:
         - CSV() que útilizará la (,) definida como separador por defecto en la clase ó 
@@ -4543,7 +4648,7 @@ la idea es que lee del teclado InputStreamBuffer y analiza cada campo teniendo e
 crea grupos de caracteres que coincidan con el pattern, hasta incluir el separador 
 y luego lo evalua, primero quita la (,); después quita las (") iniciales y finales 
 
-_JavaDevelopment/javasrc-main/src/com/others/CSVRE.java
+_JavaDevelopment01/javasrc-main/src/com/others/CSVRE.java
 ejemplo de ejecución escribiendo la línea: "LU",86.25,"11/4/1998","2:19PM",+4.0625
 CSV_PATTERN: 
 "([^"]+?)",?|([^,]+),?|,
@@ -4711,7 +4816,7 @@ $ 	Limita la búsqueda al final de una línea.
 https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/package-summary.html
 
 REGEXP - ejemplo de uso del paquete java.util.regex.*;
-_JavaDevelopment/javasrc-main/src/com/others/RE.java
+_JavaDevelopment01/javasrc-main/src/com/others/RE.java
 
 Interface 
 MatchResult: The result of a match operation.
@@ -4742,7 +4847,7 @@ Exception: PatternSyntaxException Unchecked exception thrown to indicate a synta
 
 
 Formatea texto como el fmt de Unix de Berkeley
-_JavaDevelopment/javasrc-main/src/com/others/Fmt_pg130.java
+_JavaDevelopment01/javasrc-main/src/com/others/Fmt_pg130.java
 para ejecutar utilizando un fichero: 
 java javasrc-main/src/com/others/Fmt_pg130.java javasrc-main/src/com/others/fmt.txt
 
@@ -5194,7 +5299,7 @@ public static void main(String[] args) {
 }
 
 - Recursión - recursividad
-_JavaDevelopment/javasrc-main/src/com/others/Recursion.java
+_JavaDevelopment01/javasrc-main/src/com/others/Recursion.java
 
 La recursión es la técnica de hacer que una función se llame a sí misma. 
 Esta técnica permite descomponer los problemas complicados en problemas sencillos que son más fáciles de resolver.
