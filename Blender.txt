@@ -1,0 +1,63 @@
+Blender.txt
+
+Links
+manual:
+https://docs.blender.org/manual/en/3.1/getting_started/about/introduction.html
+https://docs.blender.org/api/current/info_overview.html
+https://docs.blender.org/api/current/#
+
+https://www.blender.org/community 
+https://www.blender.org/download/demo-files/
+
+https://blenderartists.org/
+https://blender.chat/channel/today
+https://blender.chat/channel/blender-coders
+https://blender.chat/channel/python
+https://blender.chat/channel/docs
+
+
+KEYS
+https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html
+
+A --> Seleccionar Todo
+Shift + LMB 
+Alt + A --> DeSeleccionar
+Ctrl + LMB 
+Spacebar B --> Select box
+B
+C --> select circulo
+Shift + C --> deselect circulo
+Shift --> Perspectiva
+Ctrl + space --> Maximizar un panel
+Command --> Zoom
+View + Alt + F --> enfocar un objeto seleccionado
+View + Alt + A --> desenfocar
+t --> menu herramientas
+space --> menu herramientas con label
+n --> menu configuraciones
+Shift + A --> adicionar un nuevo objeto
+x --> delete un objeto
+Shift + s --> center cursor - Insert Keyframe menu
+z --> menu configuraciones
+Alt + w --> menu 
+Alt + z --> x-ray
+
+G --> mover el objeto por sus propios ejes y/o por su alrededor.
+Alt + G --> posición original
+R --> rotar el objeto
+Alt + R --> rotación inicial
+S --> scalar el objeto
+Alt + S --> scala original
+
+LMB Left Mouse Button
+RMB Right Mouse Button
+MMB Middle Mouse Button
+Wheel Scrolling the wheel.
+
+Spacebar Play/Pause
+
+S Set Location + Rotation + Scale keyframe
+Shift-W Set Location Key
+Shift-E Set Rotation Key
+Shift-R Set Scale Key
+

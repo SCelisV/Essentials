@@ -1,0 +1,86 @@
+
+https://mvnrepository.com/
+https://spring.io/guides/gs/maven/ - Building Java Projects with Maven
+Maven is downloadable as a zip file at https://maven.apache.org/download.cgi. 
+
+Is used to creating projects coded in Scala, C#, Ruby
+focuses on the simplification and standardization of the building process
+The Project Object Model (POM), has the description of the project, details regarding the versioning, and configuration management of the project. 
+Located in the project home directory, is an XML file that has all the information regarding project and configuration details.
+
+1. Configure Maven in Java, using Project Object Model (POM) found in a pom.xml file.
+2. All Maven-related configuration settings are found in the POM. You can edit and configure plug-ins in the <plugins> tag of a pom.xml file.
+3. Maven provides default settings for configurations, so you don’t have to add every configuration into the pom.xml file.
+
+Maven requires installation in the working system and the Maven plug-in for the IDE
+
+mvn -version
+mvn archetype : generate
+
+mkdir temp
+cd temp
+
+Choose a number or version: for example 5.
+Define value for property 'groupId': es.soniacelis
+Define value for property 'artifact': scalaproject
+Define value for property 'version': remains the same
+Define value for property 'package': remains the same 
+Enter Y for yes Press enter
+
+POM contains the following configurations: Dependencies, Developers and contributors, Plugins, Plugin configuration, Resources.
+The minimum required elements for POM are: project root, modelVersion – should be 4.0.0, groupId – project’s group id, artifactId – artifact (project) id, 
+version – version of the artifact.
+
+GO inside that directory and verify what files are created:
+
+cd scalaproject 
+ls -alrt
+cat pom.xml
+vi pom.xml
+
+When the pom.xml file is opened, you can see the attributes on the screen. 
+It shows the groupId, artifactId, the JAR file, and the version. 
+You can also add your own custom dependencies.
+
+If you run the clean command, it will be classified as a Maven project. 
+mvn clean install
+
+A pom.xml file is already present in the local repository. 
+The execution of the steps will take place accordingly.
+
+Eventually, you can see a couple of JAR files being created in the directory.
+
+You can create a new project with this method, and based on our understanding, amendments (modificacion) can be made in the dependencies. 
+Hence, (por tanto) a required final result can be obtained.
+
+ANT vs Maven
+
+ANT has no formal conventions, so information is to be provided in the build.xml file.
+ANT is procedural.
+ANT has no life cycle.
+ANT scripts are not reusable.
+ANT is specifically a build tool.
+
+Maven has conventions, so information is not to be provided in the pom.xml file.
+Maven is declarative.
+Maven has a life cycle.
+Maven is mainly used as a project management tool.
+Maven plugins are reusable.
+
+Maven repositories refer to the directories of packaged JAR files that contain metadata. The metadata refers to the POM files relevant to each project.
+This metadata is what allows Maven to download dependencies.
+
+There are three types of repositories:
+
+Local Repository refers to the machine of the developer where all the project material is saved. The local repository contains all the dependency jars.
+Remote Repository refers to the repository present on a server that is used when Maven needs to download dependencies.
+Whenever anything is required from the remote repository, it is first downloaded to the local repository, and then it is used.
+Central Repository refers to the Maven community that comes into action when there is a need for dependencies, and those dependencies cannot be found in the local repository.
+Maven downloads the dependencies from here in the local repository whenever needed.
+
+The full name of a project in Maven includes: <GroupId>: <artifactId>: <version> - org.apache.maven: maven: 2.0.1 - es.soniacelis: scalaproject: 2.0.1
+
+There are two types of Maven Plugins:
+Build plugins – These plugins are executed during the build and are configured in the <build/> element of pom.xml
+Reporting plugins – These plugins are executed during the stage generation and are configured in the <reporting/> element of the pom.xml.
+

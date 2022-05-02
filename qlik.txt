@@ -5,7 +5,7 @@ my Qlik Cloud: https://8iplbiv9luzfohj.eu.qlikcloud.com/
 
 He creado diferentes Spaces para organizar las apps
 
-QlikExamples --> algunos ejemplos, estados alternos, scatter, lineas de referencia, Calculations and Transformations 
+QlikExamples --> algunos ejemplos, estados alternos, scatter, lineas de referencia, Calculations and Transformations
 
 con datasets del tutorial del qlik: 
 https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/25f5ead4-2c9f-4848-a18e-ed4a016d49e0/
@@ -16,13 +16,26 @@ https://learning.qlik.com/course/view.php?id=1756
 
 PortFolio --> projects about PortFolio Kaggle
 Market Basket: https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/25c274c3-d56c-4222-b709-a746ecd1ad41/
-
 Personal -->  detodo (super desordenado)
 con el DataSet de Tableau
 https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/9a5b8a6d-fd07-4676-997f-f3d94c27745c/
 
 
---------------------------------------
+Total Productos Vendidos = 20507 = Count([TransactionNo])
+Total Transacciones = 9684 = Count(distinct[TransactionNo])
+Media = 20507/9684 = Count([TransactionNo])/Count(distinct [TransactionNo])
+
+Sankey Chart
+
+opciones de link color
+'SOURCE'
+'TARGET'
+=rgb(255, 0, 0)
+=rgb(round(Avg (0)*255), 100, 100)
+=rgb(round(Avg (0.5)*255), 100, 100)
+=rgb(round(Avg (1)*255), 100, 100)
+
+Some formuls
 
 Buckets - Rangos -
 The bucket card can be applied to a field of numeric data, or measure, in order to group values based on specific ranges. The results are returned as a new field which defines each range as a dimension value, or 'bucket'.
@@ -71,6 +84,8 @@ Some Expressions
 Which functions can I use in a calculated field expression:
 https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/LoadData/add-calculated-field.htm
 
+
+
 Order Date = Count(distinct Year([Order Date.autoCalendar.Year]))
 
 #Customer = Count(distinct [Customer ID])
@@ -80,6 +95,8 @@ Order Date = Count(distinct Year([Order Date.autoCalendar.Year]))
 Total ventas =Sum(Sales)
 Total beneficio bruto = Sum(GrossProfit)
 Margen = Sum(Profit)/Sum(Sales)
+
+Shipping Cost = Sum([Shipping Cost])
 Gastos de envío = Sum([Shipping Cost])
 Total pedidos = Count(DISTINCT OrderID)
 Total proveedores = Count(DISTINCT Supplier)
@@ -100,6 +117,9 @@ Drill-down
 =[Orders$.Market]
 =Category
 =[Sub-Category]
+
+Prepare
+Data load editor
 
 Total Productos Vendidos = 20507 = Count([TransactionNo])
 Total Transacciones = 9684 = Count(distinct[TransactionNo])
@@ -146,14 +166,11 @@ SET NumericalAbbreviation='3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m;-6:μ;-9:n;
 
 
 
-
 https://help.qlik.com/es-ES/sense/August2021/Subsystems/Hub/Content/Sense_Hub/Visualizations/when-to-use-visualizations.htm
 
 Tipos de graficos
-=================
 
 - comparativas: 
----------------
 comparar valores entre sí
 diferencias entre valores, categorías 
 cambios a lo largo del tiempo
@@ -193,6 +210,32 @@ estados alternos para el análisis comparativo, comparar diferentes valores de l
 - Usando estados en la expresión de conjunto de una medida.
 Master/Alternate state
 
+
+
+John|Anderson|JA|Yes
+
+Sue|Brown|SB|Yes
+
+Mark|Carr|MC |No
+
+Peter|Devonshire|PD|No
+
+Jane|Elliot|JE|Yes
+
+Peter|Franc|PF|Yes 
+
+
+mis apps
+
+con el dataset del tutorial del qlik: 
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/fa14341d-ff61-42a0-a267-9ce40acbeb67/
+
+con el DataSet de 
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/
+
+con el DataSet de Tableau
+https://8iplbiv9luzfohj.eu.qlikcloud.com/sense/app/9a5b8a6d-fd07-4676-997f-f3d94c27745c/
+
 - ver relaciones:
 -----------------
 
@@ -227,7 +270,6 @@ https://help.qlik.com/es-ES/sense/August2021/Subsystems/Hub/Content/Sense_Hub/In
 
 
 
-
 - Ayuda Online de Qlik: 
 https://help.qlik.com/es-ES/
 https://help.qlik.com/es-ES/sense
@@ -245,6 +287,7 @@ https://www.sand.es/qlik_sense_cloud_business/
 https://sense-demo.qlik.com/sso/sense/app/2c4b45b7-bb43-46b7-83fb-b5cbe14cff18/overview
 
 https://demos.qlik.com/qliksense
+https://demos.qlik.com/qlikview
 
 https://www.youtube.com/channel/UCF7iNbbJAXmXx-SpQ7mwc6g
 
@@ -277,4 +320,32 @@ Richardson
 Show Me the Numbers: Designing Tables and Graphs to Enlighten, Second
 Edition, Stephen Few
 
+QlikView
 
+sonia.celis@moldtrans.es
+scelis@MOLDTRANS.COM
+
+QlikViewPersonal Edition
+QlikView Server y 
+QlikView Publisher
+
+QlikView Server puede ser accedido por diferentes clientes, incluyendo Internet Explorer Plugin, AJAX Zero Footprint y varios clientes móviles como iPhone, iPad, Android y
+dispositivos RIM.
+
+help.qlik.com
+
+El objeto de hoja más básico es el cuadro de lista. 
+Cada cuadro de lista representa una columna (campo) de la tabla de la base de datos cargada
+
+En términos de QlikView, el valor está seleccionado, cuando el color de la celda se vuelve verde. 
+Las celdas de los valores de los campos asociados son blancas. 
+Los valores seleccionados y asociados se denominan valores posibles.
+Una celda cuyo contenido no está asociado (cuyo valor no aparece en combinación con el del elemento seleccionado) se denomina excluida. 
+Las celdas de los valores excluidos son de color gris.
+los valores opcionales se colocan al principio de la lista, los excluidos al final.
+
+Ctrl key -> seleccionar valores adicionales
+"y lógico - AND " condición -> seleccionar valores de diferentes list box
+
+Current Selections box lists -> muestra todos los campos en los que se han realizado selecciones y los valores seleccionados. 
+Si se seleccionan demasiados valores, sólo se muestra el número de valores seleccionados.

@@ -1,7 +1,7 @@
 ========================================================================================================================================================================
 https://cloud.google.com/
 ========================================================================================================================================================================
-Exercices CCA159 - Hands-On Exercises
+Exercices CCA 159 - Hands-On Exercises
 ========================================================================================================================================================================
 ------------------
 Hands-On Exercise: Data Ingest with Hadoop Tools
@@ -5712,7 +5712,7 @@ Las filas tienen que estar ordenadas por lname y luego por fname.
 Es obligatorio usar la función regexp_extract.
 
 ========================================================================================================================================================================
-Exercices CCA175 - Hands-On Exercises - Developer Training for Apache Spark and Hadoop
+Exercices CCA 175 - Hands-On Exercises - Developer Training for Apache Spark and Hadoop
 ========================================================================================================================================================================
 Just Enough Python
 ==================
@@ -9708,7 +9708,6 @@ scelisdev02@cca175-m:~$ export PYSPARK_DRIVER_PYTHON=ipython
 scelisdev02@cca175-m:~$ PYSPARK_DRIVER_PYTHON_OPTS=ipython
 scelisdev02@cca175-m:~$ pyspark
 
-
 En ubuntu he tenido que hacer esto para que no diera error: ModuleNotFoundError: No module named 'py4j'
 
 echo $PYTHONPATH
@@ -10374,7 +10373,8 @@ message spark_schema{
   optional int96 release_dt;
 }
 
-Note that the type of the release_dt column is noted as int96; this is how Spark denotes a timestamp type in Parquet.
+Note that the type of the release_dt column is noted as int96; this is how Spark
+denotes a timestamp type in Parquet.
 For more information about parquet-tools, run parquet-tools --help.
 
 18. Create a new DataFrame using the Parquet files you saved in devices_parquet and view its schema. 
@@ -10407,8 +10407,8 @@ Hands-On Exercise: Analyzing Data with DataFrame Queries
 ------------------
 
 Query DataFrames Using Column Expressions
-1. Optional: Review the API docs for the Column class (which is in the Python module pyspark.sql and the Scala package org.apache.spark.sql). 
-Take note of the various options available.
+1. Optional: Review the API docs for the Column class (which is in the Python module pyspark.sql and the Scala package org.apache.spark.sql). Take note of
+the various options available.
 2. Start the Spark shell in a terminal if you do not already have it running.
 3. Create a new DataFrame called accountsDF based on the Hive devsh.accounts table.
 4. Try a simple query with select, using both column reference syntaxes.
@@ -12956,9 +12956,21 @@ scelisdev02@cca175-m:~$ hdfs dfs -cat /devsh_loudacre/account-models/part-00000 
 scala> models.saveAsTextFile("/devsh_loudacre/account-models")
 
 ------------------
-OJO ---- este lo estaba haciendo en el cluster, pero lo repetí en local - Hands-On Exercise: Joining Data Using Pair RDDs
-OJO ---- lo empiezo de nuevo en local - Hands-On Exercise: Joining Data Using Pair RDDs
+Hands-On Exercise: Joining Data Using Pair RDDs
 ------------------
+
+solucion del manual: /home/scelisdev02/training_materials/devsh/exercises/pair-rdds
+-----------------------------------------------
+GCP - Viernes 25/09/2021 Free trial status: €144.18 
+GCP - Lunes 27/09/2021 Free trial status: €126.73 credit and 77 days remaining -
+GCP - Lunes 27/09/2021 Free trial status: €126.73 credit and 76 days remaining -
+GCP - Martes 28/09/2021 Free trial status: €111.05 credit and 76 days remaining - 
+GCP - Martes 28/09/2021 Free trial status: €107.75 credit and 76 days remaining - 
+GCP - Miercoles 29/09/2021 Free trial status: €102.07 credit and 75 days remaining - 
+GCP - Miercoles 29/09/2021 Upgrade your account to avoid a break in service (€97.67 credit and 75 days left in your trial). 
+GCP - Jueves 30/09/2021 Upgrade your account to avoid a break in service (€88.76 credit and 74 days left in your trial). 
+GCP - Viernes 01/10/2021 Upgrade your account to avoid a break in service (€84.04 credit and 73 days left in your trial).
+GCP - Viernes 01/10/2021 Upgrade your account to avoid a break in service (€84.04 credit and 73 days left in your trial). 
 
 Instance "cca175-m" is underutilized. 
 You can save an estimated $32 per month by switching to the machine type: custom (4 vCPUs, 15.75 GB memory)
@@ -13292,6 +13304,44 @@ scala> for (x <- accountsjoinRDD.take(2)) {
      | }
 27120 6 Dale Hanson
 41094 2 Billy Jordan
+
+Bonus Exercises
+If you have more time, attempt the following extra bonus exercises:
+1. Use keyBy to create an RDD of account data with the postal code (9 th field in the CSV file) as the key.
+
+>>> accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+>>> accountsRDD = sc.textFile(accountsdata)
+>>> for line in accountsRDD.take(2): print(line)
+... 
+1,2008-10-23 16:05:05.0,\N,Donald,Becton,2275 Washburn Street,Oakland,CA,94660,5100032418,2014-03-18 13:29:47.0,2014-03-18 13:29:47.0
+2,2008-11-12 03:00:01.0,\N,Donna,Jones,3885 Elliott Street,San Francisco,CA,94171,4150835799,2014-03-18 13:29:47.0,2014-03-18 13:29:47.0
+
+>>> accounts1RDD = accountsRDD.map(lambda s: s.split(','))
+>>> for line in accounts1RDD.take(2): print(line)
+... 
+['1', '2008-10-23 16:05:05.0', '\\N', 'Donald', 'Becton', '2275 Washburn Street', 'Oakland', 'CA', '94660', '5100032418', '2014-03-18 13:29:47.0', '2014-03-18 13:29:47.0']
+['2', '2008-11-12 03:00:01.0', '\\N', 'Donna', 'Jones', '3885 Elliott Street', 'San Francisco', 'CA', '94171', '4150835799', '2014-03-18 13:29:47.0', '2014-03-18 13:29:47.0']
+
+>>> accounts2RDD = accounts1RDD.keyBy(lambda x: x[8])
+>>> for line in accounts2RDD.take(2): print(line)
+... 
+('94660', ['1', '2008-10-23 16:05:05.0', '\\N', 'Donald', 'Becton', '2275 Washburn Street', 'Oakland', 'CA', '94660', '5100032418', '2014-03-18 13:29:47.0', '2014-03-18 13:29:47.0'])
+('94171', ['2', '2008-11-12 03:00:01.0', '\\N', 'Donna', 'Jones', '3885 Elliott Street', 'San Francisco', 'CA', '94171', '4150835799', '2014-03-18 13:29:47.0', '2014-03-18 13:29:47.0'])
+
+scala> val accountsdata = "/user/hive/warehouse/devsh.db/accounts"
+accountsdata: String = /user/hive/warehouse/devsh.db/accounts
+
+scala> val accountsRDD = sc.textFile(accountsdata)
+accountsRDD: org.apache.spark.rdd.RDD[String] = /user/hive/warehouse/devsh.db/accounts MapPartitionsRDD[21] at textFile at <console>:26
+
+scala> for (line <- accountsRDD.take(2)) print(line)
+1,2008-10-23 16:05:05.0,\N,Donald,Becton,2275 Washburn Street,Oakland,CA,94660,5100032418,2014-03-18 13:29:47.0,2014-03-18 13:29:47.02,2008-11-12 03:00:01.0,\N,Donna,Jones,3885 Elliott Street,San Francisco,CA,94171,4150835799,2014-03-18 13:29:47.0,2014-03-18 13:29:47.0
+
+scala> val accounts1RDD = accountsRDD.map(s => s.split(','))
+accounts1RDD: org.apache.spark.rdd.RDD[Array[String]] = MapPartitionsRDD[22] at map at <console>:25
+
+scala> for (line <- accounts1RDD.take(2)) print(line)
+[Ljava.lang.String;@bdb63c6[Ljava.lang.String;@5863bcee
 
 
 ------------------
@@ -14787,3 +14837,4 @@ GCP - Viernes 05/11/2021 Free trial status: €132.03 credit and 69 days remaini
 solucion del manual: /home/scelisdev02/training_materials/devsh/exercises/spark-application
 -----------------------------------------------
 OJO - ESTO ES DEL CAPITULO 14 QUE ESTA MAL ESCRITO Y DEBE SER: print( myRDD. todebugString(). decode() )
+

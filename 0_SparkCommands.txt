@@ -8,7 +8,7 @@ $ yarn application -listyarn application -list
 $ yarn application -list -appStates ALL
 $ yarn application -status app-id
 -------------------------------------------------------------------
--------------------------------------------------------------------
+
 pyspark command.
 $ pyspark
 spark
@@ -90,7 +90,6 @@ fnCol = accountsDF.first_name
 fnCol
 lucyCol = fnCol == "Lucy"
 lycyCol.show()
-
 accountsDF.printSchema()
 accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).show()
 accountsDF.select(accountsDF.first_name, accountsDF.last_name, lucyCol).where(lucyCol).show()
@@ -103,10 +102,8 @@ accountsDF.where(accountsDF.first_name.substr(1,2) == accountsDF.last_name.subst
 accountsDF.groupBy("last_name").count().show(5)
 accountsDF.groupBy("last_name","first_name").count().show(5)
 accountsDF.select("acct_num","first_name","last_name","zipcode").join(baseDF, baseDF.zip == accountsDF.zipcode).show()
-
 accountDeviceDF = spark.read.option("header","true").option("inferSchema","true").csv("/devsh_loudacre/accountdevice")
 accountDeviceDF.printSchema()
-
 activeAccountsDF = accountsDF.where(accountsDF.acct_close_dt.isNull())
 activeAccountsDF.select("acct_num","first_name","last_name","acct_close_dt").join(accountDeviceDF,  accountDeviceDF.account_id == activeAccountsDF.acct_num).show()
 accountDeviceDF.select("id", "account_id", "device_id", "activation_date", "account_device_id").join(devDF, devDF.devnum == accountDeviceDF.device_id).show()
@@ -123,9 +120,7 @@ myRDD = spark.sparkContext.textFile("/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELO
 
 ???
 userRDD = spark.sparkContext.wholeTextFiles("/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/user1.json", "/home/hadoop/0_DEVELOP__0_DEVELOP__0_DEVELOP__/Python/PycharmProjects/pythonPUE/files/user2.json")
-
 myData = ["Alice","Carlos","Frank","Barbara"]
-
 myRDD = sc.parallelize(myData)
 myRDD.saveAsTextFile("mydata/")
 myRDD = sc.textFile("purplecow.txt")
@@ -136,19 +131,14 @@ for line in myRDD.take(2):
      print(line)
 myRDD = sc.textFile("/devsh_loudacre/frostroad.txt")
 myRDD.count()
-
 lines = myRDD.collect()
-
 type(lines) - <class 'list'>
-
 for make in makes1RDD.collect(): print(make)
-
 makes2RDD = sc.textFile("/devsh_loudacre/makes2.txt")
 for make in makes2RDD.collect(): print(make)
 ... 
 allMakesRDD = makes1RDD.union(makes2RDD)
 allMakesRDD.collect()
-
 distinctRDD = allMakesRDD.distinct()
 for makes in distinctRDD.collect(): print(makes)
 ... 
@@ -265,12 +255,10 @@ for line in accounts2RDD.take(2): print(line)
 
 
 
-\\-------------------------------------------------------------------
-\\-------------------------------------------------------------------
-\\-------------------------------------------------------------------
 
 
 
+\\-------------------------------------------------------------------
 
 scala command.
 $ spark-shell
@@ -493,7 +481,6 @@ for (x <- weblogs7RDD.take(2)) {                                      # x es una
    println(x._1 + ":")
    for (ip <- x._2) println("\t"+ip)
 }
-
 
 val accountsdata = "/user/hive/warehouse/devsh.db/accounts"
 val accountsRDD = sc.textFile(accountsdata)

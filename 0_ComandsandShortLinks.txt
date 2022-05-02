@@ -447,6 +447,10 @@ UltraMP3: para usarlo como reproductor MP3 (tengo tambien el Mp3Go pero este me 
 
 
 
+Ejecutar Paint: mspaint
+Ejecutar Paint3D: shell:appsfolder\Microsoft.MSPaint_8wekyb3d8bbwe!Microsoft.MSPaint
+
+
 
 
 

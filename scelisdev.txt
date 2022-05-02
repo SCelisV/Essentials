@@ -63,8 +63,8 @@ scelisdev.txt  training_materials
 
 documentación:
 
-CCA159: https://www.cloudera.com/about/training/cdhhdp-certification/cca-data-analyst.html
-CCA175: https://www.cloudera.com/about/training/cdhhdp-certification/cca-spark.html/
+CCA 159: https://www.cloudera.com/about/training/cdhhdp-certification/cca-data-analyst.html
+CCA 175: https://www.cloudera.com/about/training/cdhhdp-certification/cca-spark.html/
 
 Hadoop includes two general data processing engines: MapReduce & Spark
 
@@ -1651,15 +1651,16 @@ Hive Table: people
 +-----+------------+-----------+--------+
 
 (Python)
-In [18]: peopleDF.write.mode("overwrite").save("/devsh_loudacre/people")
-In [19]: myDF = spark.sql("SELECT * FROM people WHERE pcode = 94020") 
-In [20]: myDF.printSchema()
+peopleDF.write.mode("overwrite").save("/devsh_loudacre/people")
+myDF = spark.sql("SELECT * FROM people WHERE pcode = 94020")
+myDF.printSchema()
+
 root
- |-- pcode: integer (nullable = true)
- |-- lastname: string (nullable = true)
- |-- firstname: string (nullable = true)
- |-- age: integer (nullable = true)
- 
+|-- pcode: integer (nullable = true)
+|-- lastname: string (nullable = true)
+|-- firstname: string (nullable = true)
+|-- age: integer (nullable = true)
+
 myDF.show()
 +----+----------+---------+-----+
 | age|first_name|last_name|pcode|
@@ -1748,6 +1749,7 @@ Listing Tables and Views (Python)
     for table in spark.catalog.listTables(): print(table)
     Table(name=u'people', database=u'default', description=None, tableType=u'EXTERNAL', isTemporary=False)
     Table(name=u'user_names', database=u'default’, description=None, tableType=u'TEMPORARY', isTemporary=True)
+
 
 Dataset - DataSet
 ▪ Datasets represent data consisting of strongly-typed objects
@@ -2387,7 +2389,7 @@ It coordinates execution and control of individual jobs
 
 **********************************************************************************************
 ***********************
-*   -O-J-O- CCA175    *   INICIO - CCA Spark and Hadoop Developer
+*   -O-J-O- CCA 175   *   INICIO - CCA Spark and Hadoop Developer
 ***********************
 **********************************************************************************************
 ----------------------------------------------------------------------------------------------
@@ -3529,6 +3531,7 @@ only showing top 20 rows
 
 scala> devDF.select($"model", ($"model" * 10).alias("model_10")).show
 scala> devDF.select($"model", ($"model" * 10).as("model_10")).show
+
 +--------------+--------+
 |         model|model_10|
 +--------------+--------+
@@ -5801,7 +5804,7 @@ Write data to a Hive metastore table called my_table
     myDF.write. \
     mode("append"). \
     option("path","/loudacre/mydata"). \
-    saveAsTable("my_table")
+    saveAsTable("my_table"
 
 
 
@@ -10512,7 +10515,7 @@ https://xrhpimwo2rgtpccrz4jfnnw2ia-dot-europe-west1.dataproc.googleusercontent.c
 
 **********************************************************************************************
 ***********************
-*   -O-J-O- CCA159   *   FIN
+*   -O-J-O- CCA 159   *   FIN
 ***********************
 **********************************************************************************************
 
@@ -11188,8 +11191,6 @@ Beeline version 2.3.7 by Apache Hive
 -----------------------------------------------------------------------------
 SCALA - sc
 -----------------------------------------------------------------------------
-Just Enough Scala
-==================
 
 Scala es un lenguaje escalable que se ejecuta en la máquina virtual Java (JVM)
 - Interopera con Java, pero tiene una sintaxis mucho más concisa
@@ -12581,6 +12582,15 @@ res63: scala.collection.immutable.Vector[Int] = Vector(77, 30, 6, 21, 5)
 
 scala> vec
 res64: scala.collection.immutable.Vector[Int] = Vector(77, 1, 6, 21, 5)
+
+Storing and Processing Key-Value Pairs
+- A Map is a collection of key-value pairs
+  – Immutable by default – values are not modified in place
+- Declare a map variable using either of these techniques
+  – Map((key1, value1), (key2, value2))
+  – Map(key1 -> value1, key2 -> value2)
+- Keys and values
+  – Keys are unique and may only appear once; values are not unique
 
 Storing and Processing Key-Value Pairs
 - A Map is a collection of key-value pairs

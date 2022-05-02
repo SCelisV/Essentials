@@ -323,6 +323,9 @@ los nombres globales de un módulo -- the global names in a module
 los nombres locales de una función -- the local names in a function
 Incluso el conjunto de atributos de un objeto puede considerarse un espacio de nombres. 
 
+Scopes - Alcances - local, enclosing, global, built-in (LEGB).
+/home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp (scope1, scope2, scope3)
+
 from biblioteca.segundo_piso.sección_x.fila_tres import libro
 
 >>> n = 3 # integer number
@@ -375,6 +378,13 @@ Si el nombre no se encuentra, Python continúa la búsqueda en el ámbito enclos
 y esto continúa hasta que se busque en el ámbito built-in. 
 Si no se encuentra un nombre después de buscar en el ámbito built-in, Python lanza una excepción NameError.
 
+Scopes are determined statically, but actually, during runtime, they are used dynamically
+
+El ámbito local,-local scope que es el más interno y contiene los nombres locales.
+El ámbito envolvente,-enclosing scope, es decir, el ámbito de cualquier función envolvente. = nombres no
+locales y no globales.
+El ámbito global, global scope, contiene los nombres globales.
+Funciones que puedes utilizar de forma estándar, como print , all , abs , etc. Viven en el ámbito incorporado. built-in scope
 
 OOP - 
 # /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp (bike.py)
@@ -1030,7 +1040,8 @@ a * 2                                   # `*` to concatenate the list to itself 
 
 That operators such as + , - . * , % , and so on, may represent different operations according to the context they are used in. 
 
---O-J-O-- sort (Tim Peters Timsort) - when multiple records have the same key, their original order is preserved
+--O-J-O-- sort (Tim Peters Timsort) - when multiple records have the same key, their original order
+is preserved
 
 from operator import itemgetter                 # sorted method
 a = [(5, 3), (1, 3), (1, 2), (2, -1), (4, 9)]
@@ -1113,8 +1124,8 @@ La hashabilidad hace que un objeto sea utilizable como clave de diccionario y co
 Todos los objetos inmutables de Python son hashables.-
 Los contenedores mutables no lo son.-
 
+creates an empty set and then adds elements one at a time.  - Esta forma crea un conjunto vacío y luego añade los elementos de uno en uno.
 
-creates an empty set and then adds elements one at a time.  - Esta forma crea un conjunto vacío y luego añade los elementos de uno en uno. 
 small_primes = set()                    # empty set
 small_primes.add(2)                     # adding one element at a time
 small_primes.add(3)
@@ -1148,8 +1159,7 @@ small_primes.add(3)                     # trying to add 3 again
 small_primes
 {2, 3, 5}                               # no change, duplication is not allowed
 
-
-creates the set using a list of numbers as an argument to the constructor - esta forma crea el conjunto utilizando una lista de números como como argumento para el constructor, que hace todo el trabajo por nosotros.
+creates the set using a list of numbers as an argument to the constructor
 
 bigger_primes = set([5, 7, 11, 13])     # faster creation, from a list or tuple (or any iterable: are objects you can iterate on in a direction.)
 bigger_primes
@@ -2039,6 +2049,7 @@ the elements of an ordered list S into a one-to-one correspondence with S itself
 
 /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/permutations.py
 
+pag 106 - Hasta aquí llegamos
 4 Functions, the Building Blocks of Code
 
 Functions, Una función es una secuencia de instrucciones que realizan una tarea, agrupadas como una unidad. 
@@ -2238,14 +2249,24 @@ Chapter 3, Functions in Clean Code by Robert C. Martin, Prentice Hall
 Pythonic form 
 /home/hadoop/SCProjects/0_SCProjects_github.com_SCelisV/python/SC.Code/learn.pp/learnpp/
 
+hasta aquí - página - 132
+
+Recursive functions - Cuando una función se llama a sí misma para producir un resultado, se dice que es recursiva. A veces, las funciones recursivas son muy útiles porque facilitan la escritura de código. 
+Algunos algoritmos son muy fáciles de escribir utilizando el paradigma recursivo, mientras que otros no lo son. 
+No hay ninguna función recursiva que no pueda ser reescrita de forma iterativa, por lo que normalmente depende de
+el programador elegir el mejor enfoque para el caso en cuestión.
+El cuerpo de una función recursiva suele tener dos secciones: una en la que el valor de retorno
+depende de una llamada posterior a sí misma, y otra en la que no (llamada caso base).
+
+¡Como ejemplo, podemos considerar la función factorial (esperemos que ya sea familiar), N!
+El caso base es cuando N es 0 o 1 . La función devuelve 1 sin necesidad de más cálculos.
+cálculo. Por otro lado, en el caso general, N! devuelve el producto 1 * 2 * ... * (N-1) *
+N. Si lo piensas, N! se puede reescribir así N! = (N-1)! * N. Como ejemplo práctico
+¡considera 5! = 1 * 2 * 3 * 4 * 5 = (1 * 2 * 3 * 4) * 5 = ¡4! * 5.
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 Just Enough Python - shell iPython
 ==================
-------------------------------------------------------------------------------------------------------------------------------------------
-|                shell iPython
-------------------------------------------------------------------------------------------------------------------------------------------
-
 
 typing ipython
 – IPython is a separate project from Python
@@ -3174,6 +3195,7 @@ In [103]: print(mat)
 
 In [104]: print(type(math))
 <class 'module'>
+
 
 -------------------------------------------------
 | continuación, reubicar cuando termine el libro |
