@@ -24,6 +24,7 @@ https://javacook.darwinsys.com/download.html
 https://github.com/IanDarwin/javasrc
 
 https://docs.oracle.com/en/java/java-components/jdk-mission-control/
+https://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html
 https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
 https://docs.oracle.com/javase/8/docs/api/overview-summary.html
 https://docs.oracle.com/javase/8/docs/technotes/tools/unix/toc.html
@@ -3223,6 +3224,7 @@ _JavaDevelopment/testjdk_1.8.0_292/src/OpcionErronea.java
 
     Scanner - Escritura desde el teclado - System.in (InputStream)
 
+https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Scanner.html
 _JavaDevelopment/testjdk_1.8.0_292/src/PruebaClassScanner.java
 
 _JavaDevelopment/testjdk_1.8.0_292/src/Scanner_Teclado.java
@@ -4019,6 +4021,19 @@ Un enum no puede ser utilizado para crear objetos, y no puede extender otras cla
 ¿Por qué y cuándo usar enums?
 
 Se usan a menudo cuando haya valores que no van a cambiar, como días del mes, días, colores, barajas, etc.
+
+https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/package-summary.html
+java.time package --> El paquete incluye muchas clases de fecha y hora.
+_JavaDevelopment01/javasrc-main/src/testing/TimePackage_test.java
+
+https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Date.html
+Date
+
+https://docs.oracle.com/javase/8/docs/api/
+Time
+https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Calendar.html
+Calendar
+
 
 
 
