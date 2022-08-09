@@ -3429,3 +3429,15 @@ sudo apt-get update
 sudo apt-get install ubuntu-make
 umake ide visual-studio-code
 
+xrandr --query
+dmesg
+lshw
+https://askubuntu.com/questions/1237965/reporting-i-cant-open-settings-in-ubuntu-20-04-lts
+
+
+para recuperar gnome (opción settings o config del sistema)
+sudo apt-get install --reinstall gnome-control-center
+
+para instalar un programa que testea la memoria
+(base) hadoop@sc-ubuntu-20-04-2-lts:~$ sudo apt install memtester
+

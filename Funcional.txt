@@ -1,0 +1,68 @@
+
+- Primeros requerimientos funcionales del proyecto
+
+Requisitos
+Alcance del proyecto: Objetivos, características, tareas, entregables, costos y plazos del proyecto.
+Riesgos y supuestos: Que puede afectar al diseño funcional del proyecto.
+
+Especificaciones:
+Explicación de cómo se resolverá un problema específico a través de la app.
+
+1. Definición de los procesos.
+2. Definición de las relaciones entre los procesos.
+3. Asociación de la información con el proceso correspondiente.
+4. Redacción profesional de cada proceso.
+
+Definición de los Casos de uso - Interacción entre el sistema y usuarios
+Configuración
+Requerimientos no funcionales
+Excepciones
+
+----------
+
+Debe permitir: 
+
+- Evaluar la viabilidad técnica y económica de los diferentes procesos que intervienen.
+- Describir las capacidades, la apariencia y las interacciones con los usuarios.
+- Describe todas las interfaces de programación y de usuario externas.
+- Estructura 
+    - Los principales grupos de módulos de código que admiten una función similar
+    - los módulos de código individuales y sus relaciones 
+    - y los parámetros de datos que se transmiten 
+- Ayuda a todos los miembros proyecto a comprender los procesos de prueba y desarrollo.
+- Comprobar que la aplicación proporciona todas las funcionalidades requeridas.
+- Definir tareas, objetivos y actividades
+- Control de cambios
+
+- Las especificaciones funcionales deben cubrir 
+    - requisitos comerciales y 
+    - detalles del usuario final sobre la app.
+
+
+Use el diagrama del caso – esto ayuda a representar la interacción entre el sistema y sus usuarios. 
+Cada rol de usuario se denomina «actor» y las diferentes funciones o procesos se representan en el diagrama. 
+Cada uno de estos se puede dividir en pasos que incluyen el «camino feliz», es decir, el escenario predeterminado o la alternativa positiva más probable sin condiciones excepcionales o de error, así como caminos alternativos.
+
+Caso de uso: Presentar la solicitud
+
+Actor: Cliente - Cada rol de usuario se denomina
+
+Descripción: Describe el proceso para enviar una solicitud de tarjeta de crédito
+
+Completar con exito:
+
+    El usuario ingresa la información de la aplicación, incluida la fecha de nacimiento.
+    El sistema valida la entrada para detectar errores en la entrada de datos.
+    Luego, el sistema envía la solicitud.
+
+Alternativa: El sistema rechaza el envío de la solicitud, citando un error en el formulario para la fecha de nacimiento.
+
+Condición previa: El usuario ha sido dirigido a la solicitud de la tarjeta de crédito desde un anuncio enviado por correo electrónico o un anuncio en un sitio web.
+
+Post-condición: El usuario recibe un mensaje de éxito.
+
+Supuestos: Ninguna
+
+
+
+
